@@ -1,94 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 .container {
-    margin-bottom: 0px;
-    margin-right: 15%;
-    margin-left: 15%;
-    display: flex;
-    height: fit-content;
+  margin-bottom: 0px;
+  margin-right: 15%;
+  margin-left: 15%;
+  display: flex;
+  height: fit-content;
 }
 
 .sidebar-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 marquee {
-    position: relative;
-    top: 0px;
+  position: relative;
+  top: 0px;
 }
 
 .sidebar {
-    margin-left: 20px;
-    width: 350px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom:  15px;
-    height: fit-content;
-    border-radius: 5px;
-    background: linear-gradient(180deg, #F9F9F9 0%, #CEE7FF 100%);
-    box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
+  top: 10px;
+  margin-left: 20px;
+  width: 350px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  height: fit-content;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #f9f9f9 0%, #cee7ff 100%);
+  box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .char {
-    margin-right: 15%;
-    margin-left: 15%;
-    padding: 15px;
-    height: fit-content;
-    overflow-wrap: break-word;
-    border-radius: 5px;
-    background: linear-gradient(180deg, #F9F9F9 0%, #CEE7FF 100%);
-    box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
+  margin-right: 15%;
+  margin-left: 15%;
+  padding: 15px;
+  height: fit-content;
+  overflow-wrap: break-word;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #f9f9f9 0%, #cee7ff 100%);
+  box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .sidebarContent {
-    margin: 10px;
-    overflow-wrap: break-word;
-    overflow-y: auto;
-    height: 100%;
+  margin: 10px;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .stickers {
-    display: flex;
-    width: 408px;
-    height: 116px;
-    padding: 101px 250px 111px 250px;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    flex-shrink: 0;
+  display: flex;
+  width: 408px;
+  height: 116px;
+  padding: 101px 250px 111px 250px;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
 
-    border-radius: 5px;
-    box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1.5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1.5;
 }
 
 .bordered-div {
-    font-family: "Patrick Hand";
-    font-weight: 400;
-    font-size: 17px;
-    position: inherit;
-    color: black;
-    background: linear-gradient(180deg, #DDF0FF 0%, #B4DEFF 100%);
-    border: 2px solid #7195b0; /* Border width, style, and color */
-    border-radius: 150px; /* Rounded corners */
-    padding: 10px; /* Optional: Adds space inside the border */
-    bottom: 5px;
-    text-align: center;
-    width: 45%;
+  font-family: "Patrick Hand";
+  font-weight: 400;
+  font-size: 17px;
+  position: inherit;
+  color: black;
+  background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
+  border: 2px solid #7195b0; /* Border width, style, and color */
+  border-radius: 150px; /* Rounded corners */
+  padding: 10px; /* Optional: Adds space inside the border */
+  bottom: 5px;
+  text-align: center;
+  width: 45%;
 }
 
 .sirkorgo-img {
-    display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0px !important;
+    margin: 0% !important;
+    flex-direction: column;
+  }
+
+  .sidebar-container {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+
+  .sidebar {
+    margin-left: 0;
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .char {
+    margin: 0 !important;
+  }
 }

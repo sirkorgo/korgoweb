@@ -5,55 +5,56 @@ title: "sirkorgo.com"
 
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/css/content.css">
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/content.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="content">
-            <h1>Chatroom</h1>
-            <p>talk with others on the site!</p>
-            <div id="chatroom"></div>
-                <script>
-                (function(){
-                const bannedIPs = [
-                    '174.218.80.87', // <-- put bad IPs here
-                    '174.243.148.110',
-                    '172.56.186.36',
-                    '108.85.146.54',
-                    '174.243.148.2',
-                    '174.243.146.93',
-                    '204.108.127.116',
-                    '204.108.127.154',
-                    '174.193.196.246',
-                    '71.80.178.140'
-                ];
-
-                fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                    const userIP = data.ip;
-                    
-                    if (bannedIPs.includes(userIP)) {
-                        document.getElementById('chatroom').innerHTML = `
-                <p style="text-align: left;"><span style="font-size: x-large;"><b></b></span></p><div class="separator" style="clear: both; text-align: center;"><span style="font-size: x-large;"><b><a href="/src/img/wget-dead.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" data-original-height="938" data-original-width="938" height="202" src="/src/img/wget-dead.png" width="202" /></a></b></span></div><span style="font-size: x-large;"><b>Something Went Wrong</b></span><p></p><p style="text-align: left;"><span style="font-size: medium;">You can't access this page right now. This may be because of unusual activity from this IP Address, or a violation of site policies. If you think this is a mistake, please contact the webmaster.</span></p><p style="text-align: left;"><i><span style="font-size: small;">Reference Code: ipban&nbsp; <br /><br /></span></i></p>
-                `;
-                    } else {
-                        const iframe = document.createElement('iframe');
-                        iframe.src = 'https://www3.cbox.ws/box/?boxid=3543080&boxtag=seXLFc'; // <-- your chatroom
-                        iframe.width = '100%';
-                        iframe.height = '700px';
-                        iframe.style.border = 'none';
-                        document.getElementById('chatroom').appendChild(iframe);
-                    }
-                    })
-                    .catch(error => {
-                    console.error('Failed to fetch IP address:', error);
-                    document.getElementById('chatroom').innerHTML = '<p style="text-align: left;"><span style="font-size: x-large;"><b></b></span></p><div class="separator" style="clear: both; text-align: center;"><span style="font-size: x-large;"><b><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuxYo1KDmDiYkIpzzWLlJTSXX_LjYYr8xpL91Xsbx8D_wzfzXyl32NKDgMS7pdyWlo_H2OwFFAJABiAWrR3k1Uzf0R4wX1FOqv0P2PaVeapA9S7CK9l5V4v9P0gZPJxJ5RQKYTEswvP7SQMmf1-YPQ2v9tAhVvQ5_lFbUJYHAPteXed-qSrej-61kjMh8/s938/IMG_0548.webp" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" data-original-height="938" data-original-width="938" height="202" src="/src/img/wget-dead.png" width="202" /></a></b></span></div><span style="font-size: x-large;"><b>Something Went Wrong</b></span><p></p><p style="text-align: left;"><span style="font-size: medium;">A network error occurred while trying to load this page. Please try again later.</span></p><p style="text-align: left;"><i><span style="font-size: small;">Reference Code: netwrkerr <br /><br /></span></i></p>';
-                    });
-                })();
-                </script>
-            </div>
-</body>
+      <div class="content">
+        <h1>Chatroom</h1>
+        <p>talk with others on the site!</p>
+        <div id="chatroom"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    (async () => {
+      const banned = new Set([
+        "174.218.80.87",
+        "174.243.148.110",
+        "172.56.186.36",
+        "108.85.146.54",
+        "174.243.148.2",
+        "174.243.146.93",
+        "204.108.127.116",
+        "204.108.127.154",
+        "174.193.196.246",
+        "71.80.178.140",
+      ]);
+      const err = (code, msg) =>
+        `<div style="display: flex; text-align:left; width: fit-content; padding-bottom: 100px;"><img src="/src/img/wget-dead.png" width="202" height="202" style="float:left;margin:0 1em 1em 0"> <div> <h2>Something Went Wrong</h2><p>${msg}</p><i style="font-size:small">Reference Code: ${code}</i></div></div>`;
+      try {
+        const ip = (
+          await (await fetch("https://api.ipify.org?format=json")).json()
+        ).ip;
+        document.getElementById("chatroom").innerHTML = banned.has(ip)
+          ? err(
+              "ipban",
+              "You can't access this page right now. This may be due to unusual activity or policy violations. Contact the webmaster if you think this is a mistake."
+            )
+          : `
+          <div id="warn"><img src="/src/img/srkgo-dizzy.png" width="64px" height="64px"><span style="padding-top: 6px; padding-left: 8px;"><p>Sorry! Korgosketch isn't available on smaller screens. Try making your browser window bigger or use a device with a larger screen...</p></span></div>
+          <div class="chatboxes">
+                    <iframe style="border: 0;"  id="canvas" width="720px" height="755px" src="/src/etc/canvas.html"></iframe>
+                    <iframe style="border: 0;" id="cbox" src="https://www3.cbox.ws/box/?boxid=3543080&boxtag=seXLFc">
+                </div>`;
+      } catch (e) {
+        document.getElementById("chatroom").innerHTML = err(
+          "netwrkerr",
+          "A network error occurred. Please try again later."
+        );
+      }
+    })();
+  </script>
 </html>

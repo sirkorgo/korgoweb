@@ -1,66 +1,56 @@
 <head>
-    <link rel="stylesheet" href="/src/css/global.css">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"
+  />
+  <link rel="stylesheet" href="/src/css/global.css" />
 </head>
-
 <nav class="navbar">
-  <div class="header"> 
-    <a href="/"><img class="navHeader" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDvFTOHpj67eCDdConbIzZdhw64xeoF8ZvCUhENhj9uabgLGqZvEiQ0XW4z0TBIv77br4At538a93T2NKU8zpMBt4Kb2ZYuHU-YvqpiKIqJmEe1-fmser4n5uv5onr6kM0E28PiNjrQ4edilWPr9j_OB3pUuHEeiPMguqLoce3u63CZbo-xAoygPMl36s/s320/logo.png"></a>
+  <div>
+    <div class="header">
+      <a href="/">
+        <img
+          class="navHeader"
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDvFTOHpj67eCDdConbIzZdhw64xeoF8ZvCUhENhj9uabgLGqZvEiQ0XW4z0TBIv77br4At538a93T2NKU8zpMBt4Kb2ZYuHU-YvqpiKIqJmEe1-fmser4n5uv5onr6kM0E28PiNjrQ4edilWPr9j_OB3pUuHEeiPMguqLoce3u63CZbo-xAoygPMl36s/s320/logo.png"
+        />
+      </a>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span class="material-symbols-outlined"> menu </span>
+    </div>
   </div>
-  <div class="navItems">
-    <a href="/"><button class="navBtn {% if page.url == '/' %}active{% endif %}">About</button></a>
-    <a href="/blog"><button class="navBtn {% if page.url contains '/blog' %}active{% endif %}">Blog</button></a>
-    <a href="/chat"><button class="navBtn {% if page.url contains '/chat' %}active{% endif %}">Chat</button></a>
-    <a href="/guestbook"><button class="navBtn {% if page.url contains '/guestbook' %}active{% endif %}">Guestbook</button></a>
+  <div class="navItems" id="navItems">
+    <a href="/">
+      <button class="navBtn {% if page.url == '/' %}active{% endif %}">
+        About
+      </button>
+    </a>
+    <a href="/blog">
+      <button
+        class="navBtn {% if page.url contains '/blog' %}active{% endif %}"
+      >
+        Blog
+      </button>
+    </a>
+    <a href="/chat">
+      <button
+        class="navBtn {% if page.url contains '/chat' %}active{% endif %}"
+      >
+        Chat
+      </button>
+    </a>
+    <a href="/guestbook">
+      <button
+        class="navBtn {% if page.url contains '/guestbook' %}active{% endif %}"
+      >
+        Guestbook
+      </button>
+    </a>
   </div>
 </nav>
 
-<style>
-/* customizable snowflake styling */
-.snowflake {
-  color: #fff;
-  font-size: 37px;
-  font-family: Arial, sans-serif;
-  text-shadow: 0 0 5px #000;
-}
-
-.snowflake,.snowflake .inner{
-  animation-iteration-count:infinite; animation-play-state:running}@keyframes snowflakes-fall{0%{transform:translateY(0)}100%{transform:translateY(110vh)}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;user-select:none;cursor:default;pointer-events:none;animation-name:snowflakes-shake;animation-duration:3s;animation-timing-function:ease-in-out}.snowflake .inner{animation-duration:10s;animation-name:snowflakes-fall;animation-timing-function:linear}.snowflake:nth-of-type(0){left:1%;animation-delay:0s}.snowflake:nth-of-type(0) .inner{animation-delay:0s}.snowflake:first-of-type{left:10%;animation-delay:1s}.snowflake:first-of-type .inner,.snowflake:nth-of-type(8) .inner{animation-delay:1s}.snowflake:nth-of-type(2){left:20%;animation-delay:.5s}.snowflake:nth-of-type(2) .inner,.snowflake:nth-of-type(6) .inner{animation-delay:6s}.snowflake:nth-of-type(3){left:30%;animation-delay:2s}.snowflake:nth-of-type(11) .inner,.snowflake:nth-of-type(3) .inner{animation-delay:4s}.snowflake:nth-of-type(4){left:40%;animation-delay:2s}.snowflake:nth-of-type(10) .inner,.snowflake:nth-of-type(4) .inner{animation-delay:2s}.snowflake:nth-of-type(5){left:50%;animation-delay:3s}.snowflake:nth-of-type(5) .inner{animation-delay:8s}.snowflake:nth-of-type(6){left:60%;animation-delay:2s}.snowflake:nth-of-type(7){left:70%;animation-delay:1s}.snowflake:nth-of-type(7) .inner{animation-delay:2.5s}.snowflake:nth-of-type(8){left:80%;animation-delay:0s}.snowflake:nth-of-type(9){left:90%;animation-delay:1.5s}.snowflake:nth-of-type(9) .inner{animation-delay:3s}.snowflake:nth-of-type(10){left:25%;animation-delay:0s}.snowflake:nth-of-type(11){left:65%;animation-delay:2.5s}
-</style>
-<div class="snowflakes" aria-hidden="true">
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner" style="font-size: 20px;">🐟</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-  <div class="snowflake">
-    <div class="inner">❄️</div>
-  </div>
-</div>
+<script>
+  function toggleMenu() {
+    document.getElementById("navItems").classList.toggle("active");
+  }
+</script>

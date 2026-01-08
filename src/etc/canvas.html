@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+      html {
+        background: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #toolbar {
+        width: fit-content;
+        min-width: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-left: 15px;
+        margin-top: 10px;
+        display: flex;
+        gap: 17px;
+        justify-content: center;
+        text-align: center;
+        font-family: "Roboto";
+        font-size: 15px;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+      }
+      #stroke {
+        border-radius: 5px;
+        border: none;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        width: 32px;
+      }
+      .canvas {
+        margin: 10px;
+        margin-top: 20px;
+        border: 1px solid grey;
+        border-radius: 5px;
+      }
+      .userCounter {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <span>
+        <div id="toolbar">
+          <div class="userCounter">
+            <p>🟢</p>
+            <p>0</p>
+          </div>
+          <input id="stroke" name="stroke" type="color" />
+        </div>
+        <div class="canvas">
+          <canvas style="background: white" id="canvas"></canvas>
+        </div>
+      </span>
+    </section>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const toolbar = document.getElementById("toolbar");
+      const ctx = canvas.getContext("2d");
+      canvas.width = 700;
+      canvas.height = 700;
+
+      let isPainting = false;
+      let currentStroke = [];
+      let startX;
+      let startY;
+
+      toolbar.addEventListener("click", (e) => {
+        if (e.target.id === "clear") {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      });
+
+      toolbar.addEventListener("change", (e) => {
+        if (e.target.id === "stroke") {
+          ctx.strokeStyle = e.target.value;
+        }
+      });
+
+      const draw = (e) => {
+        if (!isPainting) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        currentStroke.push({ x, y });
+
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      };
+
+      canvas.addEventListener("mousedown", (e) => {
+        isPainting = true;
+        currentStroke = [];
+        startX = e.clientX;
+        startY = e.clientY;
+      });
+
+      canvas.addEventListener("mouseup", (e) => {
+        isPainting = false;
+        ctx.stroke();
+        ctx.beginPath();
+
+        if (currentStroke.length > 0) {
+          sendStroke({
+            points: currentStroke,
+            color: ctx.strokeStyle,
+          });
+        }
+      });
+
+      canvas.addEventListener("mousemove", draw);
+    </script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "partysocket": "https://unpkg.com/partysocket@latest"
+        }
+      }
+    </script>
+
+    <script src="https://korgosketch.sirkorgo.partykit.dev/client.js"></script>
+  </body>
+</html>

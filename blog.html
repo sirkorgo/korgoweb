@@ -5,34 +5,41 @@ title: "sirkorgo.com"
 
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/css/content.css">
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/content.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="content">
-            <h2>Blog</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    {% for post in site.posts %}
-                    <div class="post">
-                        <a class="" href="{{ post.url }}">
-                            <div class="postPreview">
-                                <span>
-                                    <p style="margin-bottom: 0px;"><b>{{ post.date | date: "%b %-d, %Y" }}</b></p>
-                                    {{post.title}}
-                                    <p style="margin-top: 5px;">{{ post.excerpt }}</p>
-                                </span>
-                                {% assign first_image = post.content | split: '<img ' | slice: 1 | first | split: 'src="' | slice: 1 | first | split: '"' | first %}
-                                {% if first_image %}
-                                <img src="{{ first_image }}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover;">
-                                {% endif %}
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-            </div>
+      <div class="content">
+        <h2>Blog</h2>
+        <div class="shelf">
+          {% for post in site.posts %}
+          <div class="post">
+            <a class="" href="{{ post.url }}">
+              <div class="postPreview">
+                <span>
+                  <p style="margin-bottom: 0px">
+                    <b>{{ post.date | date: "%b %-d, %Y" }}</b>
+                  </p>
+                  {{post.title}}
+                  <p style="margin-top: 5px">{{ post.excerpt }}</p>
+                </span>
+                {% assign first_image = post.content | split: '<img ' | slice: 1
+                | first | split: 'src="' | slice: 1 | first | split: '"' | first
+                %} {% if first_image %}
+                <img
+                  src="{{ first_image }}"
+                  alt="{{ post.title }}"
+                  style="width: 150px; height: 150px; object-fit: cover"
+                />
+                {% endif %}
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>
