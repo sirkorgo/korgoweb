@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <style>
+    html {
+      background-image: url("/src/img/bg.png");
+      background-repeat: repeat;
+      animation: scrollBackground 300s linear infinite;
+      background-attachment: fixed;
+      background-size: 32px 32px;
+    }
+    /* ===== ANIMATIONS ===== */
+    @keyframes scrollBackground {
+      from {
+        background-position: 0% 0%;
+      }
+      to {
+        background-position: 100vw 100vh;
+      }
+    }
+  </style>
+  <body>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+      "
+    >
+      <div class="bordered-div">
+        <b>sirkorgo is feeling:</b>
+        <a href="https://www.imood.com/users/sirkorgo"
+          ><br /><img
+            src="https://moods.imood.com/display/uname-sirkorgo/fg-ffffff/bg-27c57d/imood.gif"
+            alt="Neutral"
+        /></a>
+      </div>
+      <br />
+      <img width="64px" height="64px" src="/srkgo-think.gif" />
+    </div>
+  </body>
+</html>
