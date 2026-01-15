@@ -5,52 +5,102 @@
   />
   <link rel="stylesheet" href="/src/css/global.css" />
 </head>
-<nav class="navbar">
+<div class="navContainer">
   <div>
-    <div class="header">
+    <div class="header" style="padding: 0px 20px 0px 20px">
       <a href="/">
         <img
           class="navHeader"
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDvFTOHpj67eCDdConbIzZdhw64xeoF8ZvCUhENhj9uabgLGqZvEiQ0XW4z0TBIv77br4At538a93T2NKU8zpMBt4Kb2ZYuHU-YvqpiKIqJmEe1-fmser4n5uv5onr6kM0E28PiNjrQ4edilWPr9j_OB3pUuHEeiPMguqLoce3u63CZbo-xAoygPMl36s/s320/logo.png"
+          src="/src/img/sitelogo.png"
+          width="64"
+          height="64"
         />
       </a>
     </div>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span class="material-symbols-outlined"> menu </span>
-    </div>
-  </div>
-  <div class="navItems" id="navItems">
-    <a href="/">
-      <button class="navBtn {% if page.url == '/' %}active{% endif %}">
-        About
-      </button>
-    </a>
-    <a href="/blog">
-      <button
-        class="navBtn {% if page.url contains '/blog' %}active{% endif %}"
-      >
-        Blog
-      </button>
-    </a>
-    <a href="/chat">
-      <button
-        class="navBtn {% if page.url contains '/chat' %}active{% endif %}"
-      >
-        Chat
-      </button>
-    </a>
-    <a href="/guestbook">
-      <button
-        class="navBtn {% if page.url contains '/guestbook' %}active{% endif %}"
-      >
-        Guestbook
-      </button>
-    </a>
-  </div>
-</nav>
+    <div
+      class="header"
+      style="position: absolute; gap: 10px; right: 10px; left: auto"
+    >
+      <script>
+        const ws = new WebSocket(
+          "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room"
+        );
 
-<script>
-  function toggleMenu() {
-    document.getElementById("navItems").classList.toggle("active");
-  }
-</script>
+        ws.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          if (data.type === "users") {
+            document.getElementById("online").innerHTML = "🟢 " + data.count;
+          }
+        };
+      </script>
+      <button id="btn" class="themeToggle" onclick="setTheme()">
+        <img src="/src/img/light.svg" />
+      </button>
+      <p id="online">🟡 ...</p>
+    </div>
+    <nav class="navbar" id="nav">
+      <div style="display: flex; align-items: center; justify-content: center">
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <span class="material-symbols-outlined"> menu </span>
+        </div>
+      </div>
+      <div class="navItems" id="navItems">
+        <a href="/">
+          <button class="navBtn {% if page.url == '/' %}active{% endif %}">
+            About
+          </button>
+        </a>
+
+        <a href="/blog">
+          <button
+            class="navBtn {% if page.url contains '/blog' or page.url contains '/202' %}active{% endif %}"
+          >
+            Blog
+          </button>
+        </a>
+        <a href="/canvas">
+          <button
+            class="navBtn {% if page.url contains '/canvas' %}active{% endif %}"
+          >
+            Canvas
+          </button>
+        </a>
+        <a href="/comics">
+          <button
+            class="navBtn {% if page.url contains '/comics' %}active{% endif %}"
+          >
+            Webcomics
+          </button>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <script>
+    const html = document.getElementById("html");
+    const btn = document.getElementById("btn");
+
+    function toggleMenu() {
+      document.getElementById("navItems").classList.toggle("active");
+      document.getElementById("nav").classList.toggle("active");
+    }
+
+    function setTheme() {
+      const isLight = html.classList.contains("light");
+      const newTheme = isLight ? "dark" : "light";
+      html.classList.remove("light", "dark");
+      html.classList.add(newTheme);
+      btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
+      localStorage.setItem("theme", newTheme);
+    }
+
+    // Init theme
+    const saved = localStorage.getItem("theme");
+    const theme =
+      saved ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+    html.classList.add(theme);
+    btn.innerHTML = `<img src="/src/img/${theme}.svg">`;
+  </script>
+</div>

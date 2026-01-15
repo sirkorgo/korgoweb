@@ -1,0 +1,34 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  width: 1000px;
+  height: fit-content;
+  min-height: 1000px;
+
+  padding: 10px 20px 10px 20px;
+
+  border-radius: 14px;
+  background: var(--page-bg);
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.3);
+}
+
+.pageHeader {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+}
+
+.pageHeader p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  text-align: right;
+  margin: 0;
+}

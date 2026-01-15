@@ -1,0 +1,7 @@
+collections:
+  comics:
+    output: true
+    permalink: /comics/:series/:issue/
+
+plugins:
+  - jekyll-sitemap

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html id="html" class="{{page.colors}} light">
   <head>
     <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/src/css/global.css" />
-    <link rel="stylesheet" href="/src/css/content.css" />
+    <link rel="stylesheet" href="/src/css/post.css" />
     <meta
       property="og:title"
       content="A post about {{ page.title }} on sirkorgo.com"
@@ -19,19 +19,21 @@
       content="https://www.sirkorgo.com/src/img/srkgo_meet.png"
     />
   </head>
-
   <body>
     {% include navbar.html %}
-
-    <button class="bkbtn" onclick="location.href = '/blog';">← Go Back</button>
-    <main class="content">
-      <div class="inner-content">
-        <h1>{{ page.title }}</h1>
+    <div class="pageContainer">
+      <main class="page">
+        <span class="pageHeader"
+          ><a href="/blog"><button class="generic-btn">← Go Back</button></a>
+          <p><b>{{ page.date | date_to_string }} • {{page.title}}</b></p></span
+        >
+        <hr />
+        <h2>{{page.title}}</h2>
         <p>Posted on {{ page.date | date_to_string }} by {{ page.author }}</p>
-
+        <br />
         {{ content }}
-      </div>
-    </main>
+      </main>
+    </div>
 
     <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
     {% include footer.html %}
