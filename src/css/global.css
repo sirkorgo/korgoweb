@@ -372,18 +372,20 @@ code {
   color: white;
 }
 
-.content {
-  width: 100%;
+.dropdown {
+  width: fit-content;
   height: fit-content;
-  padding: 15px;
-  height: 100%;
-  top: 15%;
-  border-radius: 5px;
-}
+  padding: 5px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
-.inner-content {
-  margin-left: 50px;
-  margin-right: 50px;
+  border-radius: 4px;
+  border: var(--btn-border);
+  background: var(--btn-bg);
+
+  font-family: "Cabin";
+  color: var(--font);
 }
 
 body {
@@ -478,4 +480,12 @@ body {
     gap: 10px;
     flex-direction: column;
   }
+}
+
+.container {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    var(--accent) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }

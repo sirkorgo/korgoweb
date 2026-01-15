@@ -32,3 +32,21 @@
   text-align: right;
   margin: 0;
 }
+
+.comicHeader p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  text-align: center;
+  margin: 0;
+}
+
+.comicHeader {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
