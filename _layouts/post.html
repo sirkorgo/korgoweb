@@ -25,11 +25,15 @@
       <main class="page">
         <span class="pageHeader"
           ><a href="/blog"><button class="generic-btn">← Go Back</button></a>
-          <p><b>{{ page.date | date_to_string }} • {{page.title}}</b></p></span
+          <p>
+            <b>{{ page.date | date: "%b %-d, %Y" }} • {{page.title}}</b>
+          </p></span
         >
         <hr />
         <h2>{{page.title}}</h2>
-        <p>Posted on {{ page.date | date_to_string }} by {{ page.author }}</p>
+        <p>
+          Posted on {{ page.date | date: "%b %-d, %Y" }}, by {{ page.author }}
+        </p>
         <br />
         {{ content }}
       </main>

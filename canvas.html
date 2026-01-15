@@ -4,57 +4,48 @@ title: "sirkorgo.com"
 colors: canvas
 ---
 
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <link rel="stylesheet" href="/src/css/global.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="content">
-        <h1>Chatroom</h1>
-        <p>talk with others on the site!</p>
-        <div id="chatroom"></div>
-      </div>
-    </div>
-  </body>
-  <script>
-    (async () => {
-      const banned = new Set([
-        "174.218.80.87",
-        "174.243.148.110",
-        "172.56.186.36",
-        "108.85.146.54",
-        "174.243.148.2",
-        "174.243.146.93",
-        "204.108.127.116",
-        "204.108.127.154",
-        "174.193.196.246",
-        "71.80.178.140",
-      ]);
-      const err = (code, msg) =>
-        `<div style="display: flex; text-align:left; width: fit-content; padding-bottom: 100px;"><img src="/src/img/wget-dead.png" width="202" height="202" style="float:left;margin:0 1em 1em 0"> <div> <h2>Something Went Wrong</h2><p>${msg}</p><i style="font-size:small">Reference Code: ${code}</i></div></div>`;
-      try {
-        const ip = (
-          await (await fetch("https://api.ipify.org?format=json")).json()
-        ).ip;
-        document.getElementById("chatroom").innerHTML = banned.has(ip)
-          ? err(
-              "ipban",
-              "You can't access this page right now. This may be due to unusual activity or policy violations. Contact the webmaster if you think this is a mistake."
-            )
-          : `
+<div class="container">
+  <div class="content">
+    <h1>Canvas</h1>
+    <div id="chatroom"></div>
+  </div>
+</div>
+<script>
+  (async () => {
+    const banned = new Set([
+      "174.218.80.87",
+      "174.243.148.110",
+      "172.56.186.36",
+      "108.85.146.54",
+      "174.243.148.2",
+      "174.243.146.93",
+      "204.108.127.116",
+      "204.108.127.154",
+      "174.193.196.246",
+      "71.80.178.140",
+    ]);
+    const err = (code, msg) =>
+      `<div style="display: flex; text-align:left; width: fit-content; padding-bottom: 100px;"><img src="/src/img/wget-dead.png" width="202" height="202" style="float:left;margin:0 1em 1em 0"> <div> <h2>Something Went Wrong</h2><p>${msg}</p><i style="font-size:small">Reference Code: ${code}</i></div></div>`;
+    try {
+      const ip = (
+        await (await fetch("https://api.ipify.org?format=json")).json()
+      ).ip;
+      document.getElementById("chatroom").innerHTML = banned.has(ip)
+        ? err(
+            "ipban",
+            "You can't access this page right now. This may be due to unusual activity or policy violations. Contact the webmaster if you think this is a mistake."
+          )
+        : `
           <div id="warn"><img src="/src/img/srkgo-dizzy.png" width="64px" height="64px"><span style="padding-top: 6px; padding-left: 8px;"><p>Sorry! Korgosketch isn't available on smaller screens. Try making your browser window bigger or use a device with a larger screen...</p></span></div>
           <div class="chatboxes">
                     <iframe style="border: 0;"  id="canvas" width="720px" height="755px" src="/src/etc/canvas.html"></iframe>
                     <iframe style="border: 0;" id="cbox" src="https://www3.cbox.ws/box/?boxid=3543080&boxtag=seXLFc">
                 </div>`;
-      } catch (e) {
-        document.getElementById("chatroom").innerHTML = err(
-          "netwrkerr",
-          "A network error occurred. Please try again later."
-        );
-      }
-    })();
-  </script>
-</html>
+    } catch (e) {
+      document.getElementById("chatroom").innerHTML = err(
+        "netwrkerr",
+        "A network error occurred. Please try again later."
+      );
+    }
+  })();
+</script>

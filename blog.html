@@ -4,42 +4,35 @@ title: "sirkorgo.com"
 colors: blog
 ---
 
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <link rel="stylesheet" href="/src/css/global.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="content">
-        <h2>Blog</h2>
-        <div class="shelf">
-          {% for post in site.posts %}
-          <div class="post">
-            <a class="" href="{{ post.url }}">
-              <div class="postPreview">
-                <span>
-                  <p style="margin-bottom: 0px">
-                    <b>{{ post.date | date: "%b %-d, %Y" }}</b>
-                  </p>
-                  {{post.title}}
-                  <p style="margin-top: 5px">{{ post.excerpt }}</p>
-                </span>
-                {% assign first_image = post.content | split: '<img ' | slice: 1
-                | first | split: 'src="' | slice: 1 | first | split: '"' | first
-                %} {% if first_image %}
-                <img
-                  src="{{ first_image }}"
-                  alt="{{ post.title }}"
-                  style="width: 150px; height: 150px; object-fit: cover"
-                />
-                {% endif %}
-              </div>
-            </a>
+<div class="container">
+  <div class="content">
+    <h2>Blog</h2>
+    <br />
+    <div class="shelf">
+      {% for post in site.posts %}
+      <div class="post">
+        <a class="" href="{{ post.url }}">
+          <div>
+            <span>
+              <p style="margin-bottom: 0px">
+                <b>{{ post.date | date: "%b %-d, %Y" }}</b>
+              </p>
+              {{post.title}}
+              <p style="margin-top: 5px">{{ post.excerpt }}</p>
+            </span>
+            {% assign first_image = post.content | split: '<img ' | slice: 1 |
+            first | split: 'src="' | slice: 1 | first | split: '"' | first %} {%
+            if first_image %}
+            <img
+              src="{{ first_image }}"
+              alt="{{ post.title }}"
+              style="width: 150px; height: 150px; object-fit: cover"
+            />
+            {% endif %}
           </div>
-          {% endfor %}
-        </div>
+        </a>
       </div>
+      {% endfor %}
     </div>
-  </body>
-</html>
+  </div>
+</div>

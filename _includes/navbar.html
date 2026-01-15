@@ -94,6 +94,8 @@
     }
 
     // Init theme
+    html.classList.remove("light");
+    html.classList.remove("dark");
     const saved = localStorage.getItem("theme");
     const theme =
       saved ||
