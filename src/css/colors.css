@@ -10,6 +10,10 @@ html.comics {
   --accent: #c081ff;
 }
 
+html.index {
+  --accent: #005dff;
+}
+
 html.light {
   --html-bg: #eaeaea;
   --font: #000000;

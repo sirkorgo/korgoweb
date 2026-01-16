@@ -17,7 +17,7 @@ body {
   padding-top: 100px;
 }
 
-.container::before {
+.pulse::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -27,6 +27,7 @@ body {
     rgba(255, 255, 255, 0) 100%
   );
   animation: pulse 7s ease-in-out infinite;
+  z-index: -1;
 }
 
 .bg-layer {
@@ -66,6 +67,19 @@ body {
   }
   50% {
     transform: scale(1.08);
+  }
+}
+
+@keyframes fadeInBlur {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -128,6 +142,11 @@ code {
   width: 100vw;
   height: 100vh;
   border: none;
+}
+
+#content {
+  animation: fadeInBlur 0.6s;
+  will-change: opacity, filter;
 }
 
 /* Nav */

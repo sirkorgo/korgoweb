@@ -8,25 +8,6 @@
   flex-direction: column;
 }
 
-.pulse::before {
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    #005dff 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  animation: pulse 7s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(0.95);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-}
-
 .content {
   position: relative;
   display: flex;
