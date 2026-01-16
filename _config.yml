@@ -1,3 +1,5 @@
+permalink: pretty
+
 collections:
   comics:
     output: true
