@@ -18,6 +18,7 @@ html.light {
   --html-bg: #eaeaea;
   --font: #000000;
   --content-bg: rgba(255, 255, 255, 0.5);
+  --content-bg-hover: rgba(255, 255, 255, 0.75);
   --html-img: url(/src/img/bg.png);
   --nav-bg: rgba(234, 234, 234, 0.5);
   --page-bg: #ffffff;
@@ -28,6 +29,7 @@ html.light {
 html.dark {
   --html-bg: #1b1b1b;
   --content-bg: rgba(82, 82, 82, 0.19);
+  --content-bg-hover: rgba(255, 255, 255, 0.145);
   --font: #ffffff;
   --nav-bg: rgba(27, 27, 27, 0.5);
   --html-img: url(/src/img/bg-dark.png);
