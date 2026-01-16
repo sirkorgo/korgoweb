@@ -16,4 +16,4 @@ jobs:
           source_repo: "${{ github.repository }}"
           source_branch: "main"
           destination_repo: "https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/sirkorgo/korgoweb.git"
-          destination_branch: "korgoweb"
+          destination_branch: "korgoweb4"
