@@ -5,58 +5,41 @@ title: "sirkorgo.com"
 
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/css/content.css">
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/content.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="content">
-            <h1>Guestbook</h1>
-            <p>Sign the guestbook!</p>
-            
-            <div id="chatroom"></div>
-                <script>
-                (function(){
-                const bannedIPs = [
-                    '174.218.80.87', // <-- put bad IPs here
-                    '174.243.148.110',
-                    '172.56.186.36',
-                    '108.85.146.54',
-                    '174.243.148.2',
-                    '174.243.146.93',
-                    '204.108.127.116',
-                    '204.108.127.154',
-                    '174.193.196.246',
-                    '71.80.178.140',
-                ];
-
-                fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                    const userIP = data.ip;
-                    
-                    if (bannedIPs.includes(userIP)) {
-                        document.getElementById('chatroom').innerHTML = `
-                    <p style="text-align: left;"><span style="font-size: x-large;"><b></b></span></p><div class="separator" style="clear: both; text-align: center;"><span style="font-size: x-large;"><b><a href="/src/img/wget-dead.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" data-original-height="938" data-original-width="938" height="202" src="/src/img/wget-dead.png" width="202" /></a></b></span></div><span style="font-size: x-large;"><b>Something Went Wrong</b></span><p></p><p style="text-align: left;"><span style="font-size: medium;">You can't access this page right now. This may be because of unusual activity from this IP Address, or a violation of site policies. If you think this is a mistake, please contact the webmaster.</span></p><p style="text-align: left;"><i><span style="font-size: small;">Reference Code: ipban&nbsp; <br /><br /></span></i></p>
-                `;
-                    } else {
-                        const iframe = document.createElement('iframe');
-                        iframe.src = 'https://sirkorgo.atabook.org'; // <-- your chatroom
-                        iframe.width = '100%';
-                        iframe.height = '2300px';
-                        iframe.style.border = 'none';
-                        document.getElementById('chatroom').appendChild(iframe);
-                    }
-                    })
-                    .catch(error => {
-                    console.error('Failed to fetch IP address:', error);
-                    document.getElementById('chatroom').innerHTML = '<p style="text-align: left;"><span style="font-size: x-large;"><b></b></span></p><div class="separator" style="clear: both; text-align: center;"><span style="font-size: x-large;"><b><a href="/src/img/wget-dead.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" data-original-height="938" data-original-width="938" height="202" src="/src/img/wget-dead.png" width="202" /></a></b></span></div><span style="font-size: x-large;"><b>Something Went Wrong</b></span><p></p><p style="text-align: left;"><span style="font-size: medium;">A network error occurred while trying to load this page. Please try again later.</span></p><p style="text-align: left;"><i><span style="font-size: small;">Reference Code: netwrkerr <br /><br /></span></i></p>';
-                    });
-                })();
-                </script>
-                <div data-gg-image-block-reason-modal-anchor="true" id="f4eca0c2-07ac-4ac8-85d8-da324e0969ae" style="border: 0px; display: block; height: 0px; margin: 0px; min-height: 0px; min-width: 0px; padding: 0px; position: relative; width: 0px; z-index: 2147483647;"></div>
+      <div class="content">
+        <h1>Guestbook</h1>
+        <div id="guestbook">
+          <div
+            style="
+              display: flex;
+              text-align: left;
+              width: fit-content;
+              padding-bottom: 100px;
+            "
+          >
+            <img
+              src="/src/img/srkgo-dizzy.png"
+              width="202"
+              height="202"
+              style="float: left; margin: 0 1em 1em 0"
+            />
+            <div>
+              <h2>The Guestbook is currently unavailable</h2>
+              <p>
+                Sorry, the Guestbook is currently disabled for security and
+                troubleshooting reasons. Don't worry it'll be back up
+                eventually!
+              </p>
+              <i style="font-size: small">Reference Code: debug</i>
             </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
