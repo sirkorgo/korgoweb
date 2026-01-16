@@ -1,4 +1,4 @@
-name: Sync to GitLab
+name: korgoweb4-gitlab-sync
 
 on:
   push:
@@ -15,5 +15,5 @@ jobs:
         with:
           source_repo: "${{ github.repository }}"
           source_branch: "main"
-          destination_repo: "https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/username/repo.git"
-          destination_branch: "main"
+          destination_repo: "https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/sirkorgo/korgoweb.git"
+          destination_branch: "korgoweb"
