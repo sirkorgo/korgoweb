@@ -1,0 +1,33 @@
+<!doctype html>
+<html id="html" class="{{page.colors}} dark" lang="en-US">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title | default: "sirkorgo.com" }}</title>
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <meta property="og:title" content="sirkorgo.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=help"
+    />
+    <meta
+      property="og:description"
+      content="Heyo! I'm Sirkorgo. Sirkorgo is my shapeshifting fox OC. This is my website, the home of Sirkorgo and his friends!"
+    />
+    <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
+    <meta
+      property="og:image"
+      content="https://www.sirkorgo.com/src/img/srkgo_meet.png"
+    />
+  </head>
+  <body style="margin: 0 !important">
+    <div class="bg-layer"></div>
+    {% include navbar.html %}
+
+    <main style="margin: 0px 10px 0px 10px; height: 100%">
+      {{ content }} {% include footer.html %}
+    </main>
+    <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+  </body>
+</html>

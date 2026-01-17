@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <style>
@@ -22,14 +22,15 @@
         align-items: center;
       }
       #toolbar {
+        position: fixed;
+        top: 10px;
+        left: 15px;
         width: fit-content;
         min-width: 50px;
         padding-left: 15px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-        margin-left: 15px;
-        margin-top: 10px;
         display: flex;
         gap: 17px;
         justify-content: center;
@@ -40,6 +41,7 @@
         background: rgba(255, 255, 255, 0.5);
         box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
         border-radius: 10px;
+        z-index: 1000;
       }
       #stroke {
         border-radius: 5px;
@@ -48,10 +50,15 @@
         width: 32px;
       }
       .canvas {
-        margin: 10px;
-        margin-top: 20px;
-        border: 1px solid grey;
-        border-radius: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        cursor: grab;
+      }
+      .canvas.panning {
+        cursor: grabbing;
       }
       .userCounter {
         display: flex;
@@ -60,34 +67,65 @@
         text-align: center;
         align-items: center;
       }
+      #canvas {
+        background: white;
+        position: absolute;
+      }
     </style>
   </head>
   <body>
-    <section class="container">
-      <span>
-        <div id="toolbar">
-          <div class="userCounter">
-            <p>🟢</p>
-            <p>0</p>
-          </div>
-          <input id="stroke" name="stroke" type="color" />
-        </div>
-        <div class="canvas">
-          <canvas style="background: white" id="canvas"></canvas>
-        </div>
-      </span>
-    </section>
+    <div id="toolbar">
+      <input id="stroke" name="stroke" type="color" />
+    </div>
+    <div class="canvas" id="canvasContainer">
+      <canvas id="canvas"></canvas>
+    </div>
     <script>
       const canvas = document.getElementById("canvas");
+      const canvasContainer = document.getElementById("canvasContainer");
       const toolbar = document.getElementById("toolbar");
       const ctx = canvas.getContext("2d");
-      canvas.width = 700;
-      canvas.height = 700;
 
+      // Large canvas size for infinite feel
+      canvas.width = 5000;
+      canvas.height = 5000;
+
+      // Pan state
+      let panOffset = { x: -2150, y: -2150 }; // Center on viewport initially
+      let isPanning = false;
+      let panStart = { x: 0, y: 0 };
       let isPainting = false;
       let currentStroke = [];
-      let startX;
-      let startY;
+      let isSpacePressed = false;
+      let history = [];
+      let historyStep = -1;
+      let touchStartDistance = 0;
+
+      // Apply initial transform
+      canvas.style.transform = `translate(${panOffset.x}px, ${panOffset.y}px)`;
+
+      // Save initial state
+      const saveState = () => {
+        historyStep++;
+        if (historyStep < history.length) {
+          history.length = historyStep;
+        }
+        history.push(canvas.toDataURL());
+      };
+
+      const undo = () => {
+        if (historyStep > 0) {
+          historyStep--;
+          const img = new Image();
+          img.src = history[historyStep];
+          img.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+          };
+        }
+      };
+
+      saveState();
 
       toolbar.addEventListener("click", (e) => {
         if (e.target.id === "clear") {
@@ -101,44 +139,161 @@
         }
       });
 
-      const draw = (e) => {
-        if (!isPainting) return;
-
+      // Convert screen coordinates to canvas coordinates
+      const getCanvasCoords = (clientX, clientY) => {
         const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top,
+        };
+      };
 
-        currentStroke.push({ x, y });
-
+      const draw = (e) => {
+        if (!isPainting || isPanning) return;
+        const coords = getCanvasCoords(e.clientX, e.clientY);
+        currentStroke.push(coords);
         ctx.lineWidth = 2;
         ctx.lineCap = "round";
-        ctx.lineTo(x, y);
+        ctx.lineTo(coords.x, coords.y);
         ctx.stroke();
       };
 
-      canvas.addEventListener("mousedown", (e) => {
-        isPainting = true;
-        currentStroke = [];
-        startX = e.clientX;
-        startY = e.clientY;
-      });
-
-      canvas.addEventListener("mouseup", (e) => {
-        isPainting = false;
-        ctx.stroke();
-        ctx.beginPath();
-
-        if (currentStroke.length > 0) {
-          sendStroke({
-            points: currentStroke,
-            color: ctx.strokeStyle,
-          });
+      canvasContainer.addEventListener("mousedown", (e) => {
+        if (e.button === 2) {
+          // Right click - pan mode
+          isPanning = true;
+          panStart = { x: e.clientX - panOffset.x, y: e.clientY - panOffset.y };
+          canvasContainer.classList.add("panning");
+          e.preventDefault();
+        } else if (e.button === 0) {
+          // Left click - draw mode
+          isPainting = true;
+          currentStroke = [];
+          const coords = getCanvasCoords(e.clientX, e.clientY);
+          ctx.beginPath();
+          ctx.moveTo(coords.x, coords.y);
         }
       });
 
-      canvas.addEventListener("mousemove", draw);
-    </script>
+      canvasContainer.addEventListener("mouseup", (e) => {
+        if (isPanning && e.button === 2) {
+          isPanning = false;
+          canvasContainer.classList.remove("panning");
+          canvasContainer.style.cursor = "crosshair";
+        }
 
+        if (isPainting && e.button === 0) {
+          isPainting = false;
+          ctx.stroke();
+          ctx.beginPath();
+          saveState();
+          if (currentStroke.length > 0 && typeof sendStroke === "function") {
+            sendStroke({
+              points: currentStroke,
+              color: ctx.strokeStyle,
+            });
+          }
+        }
+      });
+
+      canvasContainer.addEventListener("mousemove", (e) => {
+        if (isPanning) {
+          panOffset.x = e.clientX - panStart.x;
+          panOffset.y = e.clientY - panStart.y;
+          canvas.style.transform = `translate(${panOffset.x}px, ${panOffset.y}px)`;
+        } else if (isPainting) {
+          draw(e);
+        }
+      });
+
+      // Prevent context menu on right click
+      canvasContainer.addEventListener("contextmenu", (e) =>
+        e.preventDefault(),
+      );
+
+      // Ctrl+Z for undo
+      document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === "z") {
+          undo();
+          e.preventDefault();
+        }
+      });
+
+      // Touch support
+      const getTouchDistance = (touches) => {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+      };
+
+      canvasContainer.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 2) {
+          // Two finger - pan mode
+          isPanning = true;
+          const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+          const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+          panStart = { x: midX - panOffset.x, y: midY - panOffset.y };
+          touchStartDistance = getTouchDistance(e.touches);
+          e.preventDefault();
+        } else if (e.touches.length === 1) {
+          // One finger - draw mode
+          isPainting = true;
+          currentStroke = [];
+          const coords = getCanvasCoords(
+            e.touches[0].clientX,
+            e.touches[0].clientY,
+          );
+          ctx.beginPath();
+          ctx.moveTo(coords.x, coords.y);
+          e.preventDefault();
+        }
+      });
+
+      canvasContainer.addEventListener("touchmove", (e) => {
+        if (isPanning && e.touches.length === 2) {
+          const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+          const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+          panOffset.x = midX - panStart.x;
+          panOffset.y = midY - panStart.y;
+          canvas.style.transform = `translate(${panOffset.x}px, ${panOffset.y}px)`;
+          e.preventDefault();
+        } else if (isPainting && e.touches.length === 1) {
+          const coords = getCanvasCoords(
+            e.touches[0].clientX,
+            e.touches[0].clientY,
+          );
+          currentStroke.push(coords);
+          ctx.lineWidth = 2;
+          ctx.lineCap = "round";
+          ctx.lineTo(coords.x, coords.y);
+          ctx.stroke();
+          e.preventDefault();
+        }
+      });
+
+      canvasContainer.addEventListener("touchend", (e) => {
+        if (isPanning) {
+          isPanning = false;
+        }
+
+        if (isPainting) {
+          isPainting = false;
+          ctx.stroke();
+          ctx.beginPath();
+          saveState();
+          if (currentStroke.length > 0 && typeof sendStroke === "function") {
+            sendStroke({
+              points: currentStroke,
+              color: ctx.strokeStyle,
+            });
+          }
+        }
+        e.preventDefault();
+      });
+
+      // Initial cursor
+      canvasContainer.style.cursor = "crosshair";
+    </script>
     <script type="importmap">
       {
         "imports": {
@@ -146,7 +301,6 @@
         }
       }
     </script>
-
     <script src="https://korgosketch.sirkorgo.partykit.dev/client.js"></script>
   </body>
 </html>

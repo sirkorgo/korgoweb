@@ -23,7 +23,7 @@
     >
       <script>
         const ws = new WebSocket(
-          "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room"
+          "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room",
         );
 
         ws.onmessage = (event) => {
@@ -50,7 +50,13 @@
             About
           </button>
         </a>
-
+        <a href="/comics">
+          <button
+            class="navBtn {% if page.url contains '/comics' %}active{% endif %}"
+          >
+            Webcomics
+          </button>
+        </a>
         <a href="/blog">
           <button
             class="navBtn {% if page.url contains '/blog' or page.url contains '/202' %}active{% endif %}"
@@ -63,13 +69,6 @@
             class="navBtn {% if page.url contains '/canvas' %}active{% endif %}"
           >
             Canvas
-          </button>
-        </a>
-        <a href="/comics">
-          <button
-            class="navBtn {% if page.url contains '/comics' %}active{% endif %}"
-          >
-            Webcomics
           </button>
         </a>
       </div>

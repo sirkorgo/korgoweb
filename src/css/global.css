@@ -9,7 +9,10 @@
 html {
   --mouse-x: 100px;
   --mouse-y: 100px;
-  transition: background 0.5s ease, color 0.5s ease;
+  transition:
+    background 0.5s ease,
+    color 0.5s ease;
+  cursor: url(/src/img/cursor.png), auto;
 }
 
 body {
@@ -20,7 +23,9 @@ body {
 }
 
 * {
-  transition: background-color 0.3s ease, color 0.3s ease,
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
     border-color 0.3s ease;
 }
 
@@ -484,6 +489,11 @@ body {
 
 #warn {
   display: none;
+  color: black !important;
+}
+
+#warn p {
+  color: black !important;
 }
 
 .shelf {
@@ -515,7 +525,7 @@ body {
   justify-content: center;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 300px) {
   .chatboxes {
     display: flex;
     gap: 5px;
@@ -525,10 +535,6 @@ body {
 
   #canvas {
     display: none;
-  }
-
-  #cbox {
-    width: 100%;
   }
 
   #warn {
@@ -542,6 +548,7 @@ body {
     border-radius: 10px;
     margin-bottom: 10px;
     padding: 5px;
+    color: black !important;
   }
 }
 @media (max-width: 600px) {
