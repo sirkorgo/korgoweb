@@ -27,14 +27,19 @@ body {
 .pulse::before {
   content: "";
   position: absolute;
-  inset: 0;
+
+  width: 100%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
   background: radial-gradient(
-    30% 30% at 50% 50%,
+    circle at center,
     var(--accent) 0%,
     rgba(255, 255, 255, 0) 100%
   );
   animation: pulse 7s ease-in-out infinite;
   z-index: -1;
+  border-radius: 50%;
+  filter: blur(250px);
 }
 
 .bg-layer {
