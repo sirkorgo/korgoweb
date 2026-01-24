@@ -20,6 +20,7 @@ body {
     background-image: none !important;
     padding-top: 100px;
     transition: background 0.3s ease;
+    margin: 0 25vw 0 25vw;
 }
 
 * {
@@ -123,7 +124,8 @@ h3 {
     color: var(--font);
 }
 
-p {
+p,
+li {
     font-family: "Cabin";
     font-weight: normal;
     font-size: 17px;
@@ -307,6 +309,12 @@ code {
     right: 0;
 }
 
+@media (max-width: 800px) {
+    body {
+        margin: 0 15vw 0 15vw;
+    }
+}
+
 @media (max-width: 600px) {
     .ad-left,
     .ad-right {
@@ -452,9 +460,9 @@ code {
     background: linear-gradient(0deg, #e2c5ff 0%, #a54cff 100%);
 }
 
-body {
-    margin-left: 15% !important;
-    margin-right: 15% !important;
+.comicBtn.disabled {
+    background: linear-gradient(0deg, #e8dff0 0%, #b89dd1 100%);
+    border: 1px solid #837491;
 }
 
 #guestbook {
