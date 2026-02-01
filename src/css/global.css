@@ -254,12 +254,13 @@ code {
     font-size: 15px;
     color: var(--font);
     border-radius: 25px;
+    text-align: center;
     padding: 0 13px;
     cursor: pointer;
     min-width: 80px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 /* Error Page*/
@@ -365,13 +366,13 @@ code {
 
     .navItems a {
         width: 100%;
+        text-align: center !important;
     }
 
     .navBtn {
         width: 100%;
         height: 45px;
         padding: 12px;
-        border-radius: 5px;
         margin-bottom: 5px;
         justify-content: flex-start;
     }
@@ -379,13 +380,11 @@ code {
     .navBtn.active {
         border-left: none;
         border-right: none;
-        border-radius: 5px;
     }
 
     .navBtn:hover {
         border-left: none;
         border-right: none;
-        border-radius: 5px;
     }
 }
 
