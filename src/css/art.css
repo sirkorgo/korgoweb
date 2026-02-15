@@ -1,0 +1,152 @@
+.thumb {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 15px;
+  background: var(--content-bg);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  padding-top: 80px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    backdrop-filter 0.3s;
+}
+
+#overlay.active {
+  opacity: 1;
+}
+
+#art-content {
+  max-width: 97%;
+  max-height: 90%;
+  text-align: center;
+  align-self: center;
+  flex-direction: row;
+  transform: scale(0.8);
+  transition: transform 0.3s ease-out;
+}
+
+#overlay.active #art-content {
+  transform: scale(1);
+}
+
+#art-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+#toolbar {
+  display: flex;
+  margin-left: 25px;
+  gap: 5px;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s 0.1s,
+    transform 0.3s 0.1s;
+}
+
+#overlay.active #toolbar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closeButton {
+  border-radius: 100px;
+  border: none;
+  padding: 10px;
+  margin: 0;
+  min-width: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  min-height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#title {
+  border-radius: 100px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  margin: 0;
+  backdrop-filter: blur(5px);
+  min-width: fit-content;
+  padding: 10px;
+}
+
+#title:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.swap {
+  border: none;
+  padding: 10px;
+  margin: 0;
+  min-width: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  min-height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.swap:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#backward {
+  border-radius: 0px 100px 100px 0px;
+}
+
+#forward {
+  border-radius: 100px 0px 0px 100px;
+}
+
+.context {
+  background: var(--content-bg);
+  text-align: left;
+  padding: 10px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px) !important;
+  width: 90%;
+  min-width: 75%;
+}

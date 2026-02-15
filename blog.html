@@ -15,7 +15,7 @@ colors: blog
           <div>
             <span>
               <p style="margin-bottom: 0px">
-                <b>{{ post.date | date: "%b %-d, %Y" }}</b>
+                {{ post.date | date: "%b %-d, %Y" }}
               </p>
               {{post.title}}
               <p style="margin-top: 5px">{{ post.excerpt }}</p>

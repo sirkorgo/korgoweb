@@ -1,0 +1,9 @@
+- id: 1000
+  title: "sirkorgo.com Spring Site Banner"
+  image: /src/img/spring-banner.gif
+  desc: "Description here"
+
+- id: 1001
+  title: "sampleA"
+  image: /src/img/bg.png
+  desc: "6 7"
