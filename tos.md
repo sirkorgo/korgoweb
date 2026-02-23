@@ -1,3 +1,8 @@
+---
+layout: default
+tite: Terms of Service
+---
+
 Terms of Service & Privacy Statement
 Last Updated: February 23, 2026
 By using this website, you agree to these terms for korgoserver applications, specifically Nextcloud and Immich.
