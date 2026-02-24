@@ -13,6 +13,7 @@ html {
     background 0.5s ease,
     color 0.5s ease;
   cursor: url(/src/img/cursor.png), auto;
+  
 }
 
 body {
@@ -50,7 +51,17 @@ body > *:not(.navContainer) {
   filter: blur(250px);
 }
 
+@keyframes scrollBackground {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 1000vw 1000vh;
+  }
+}
+
 .bg-layer {
+  animation: scrollBackground 300s linear infinite;
   position: fixed;
   inset: 0;
   background-image: var(--html-img);
@@ -59,14 +70,14 @@ body > *:not(.navContainer) {
   pointer-events: none;
   z-index: -1;
   -webkit-mask-image: radial-gradient(
-    circle 250px at var(--mouse-x) var(--mouse-y),
+    circle 50px at var(--mouse-x) var(--mouse-y),
     var(--html-bg),
     transparent
   );
   mask-image: radial-gradient(
-    circle 250px at var(--mouse-x) var(--mouse-y),
+    circle 50px at var(--mouse-x) var(--mouse-y),
     var(--html-bg) 10%,
-    transparent 150px
+    transparent 400px
   );
 }
 
