@@ -1,9 +1,29 @@
 - id: 1000
-  title: "sirkorgo.com Spring Site Banner"
-  image: /src/img/spring-banner.gif
-  desc: "Description here"
+  title: "Sirkorgo x Weathergirl (song) Visualization"
+  image: /src/art/weathergirl.png
 
 - id: 1001
-  title: "sampleA"
-  image: /src/img/bg.png
-  desc: "6 7"
+  title: "Sirkorgo XP Professional Wallpaper"
+  image: /src/art/sirkorgo-xp.png
+  desc: ""
+
+- id: 1002
+  title: "Widget's Waveforms (Playlist Thumbnail)"
+  image: /src/art/wget-wav.png
+  desc: ""
+
+- id: 1003
+  title: "Sirkorgo Y2K Design"
+  image: /src/art/y2k.png
+
+- id: 1004
+  title: "Sirkorgo & Friends Poster #1"
+  image: /src/art/srkgo-friends-poster.png
+
+- id: 1005
+  title: "Sirkorgo & Friends Poster #2"
+  image: /src/art/nostigala.png
+
+- id: 1006
+  title: "Spring Blossoms (sirkorgo.com 2026 Spring Banner)"
+  image: /src/img/spring-banner.gif
