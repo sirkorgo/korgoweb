@@ -13,7 +13,6 @@ html {
     background 0.5s ease,
     color 0.5s ease;
   cursor: url(/src/img/cursor.png), auto;
-  
 }
 
 body {
@@ -25,8 +24,8 @@ body {
 }
 
 body > *:not(.navContainer) {
-  animation: fadeInBlur 0.6s;
-  will-change: opacity, filter;
+  animation: zoomIn 0.18s ease-out;
+  will-change: opacity, transform;
   transition:
     background-color 0.3s ease,
     color 0.3s ease,
@@ -77,7 +76,7 @@ body > *:not(.navContainer) {
   mask-image: radial-gradient(
     circle 50px at var(--mouse-x) var(--mouse-y),
     var(--html-bg) 10%,
-    transparent 400px
+    transparent 700px
   );
 }
 
@@ -101,16 +100,14 @@ body > *:not(.navContainer) {
   }
 }
 
-@keyframes fadeInBlur {
+@keyframes zoomIn {
   from {
     opacity: 0;
-    filter: blur(10px);
-    transform: translateY(20px);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
+    transform: scale(1);
   }
 }
 
