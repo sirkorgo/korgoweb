@@ -7,3 +7,6 @@ collections:
 
 plugins:
   - jekyll-sitemap
+
+include:
+  - draft/config.yml
