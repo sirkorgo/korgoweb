@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: sirkorgo/korgoweb
+  branch: korgoweb5
+  auth_type: implicit
+  app_id: Iv23li4nTEpu1Kn4K4uA
+
+media_folder: "src/post/{{slug}}"
+public_folder: "/src/post/{{slug}}"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-01"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
