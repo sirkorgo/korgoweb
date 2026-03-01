@@ -9,9 +9,6 @@
 html {
   --mouse-x: 100px;
   --mouse-y: 100px;
-  transition:
-    background 0.5s ease,
-    color 0.5s ease;
   cursor: url(/src/img/cursor.png), auto;
 }
 
@@ -19,21 +16,20 @@ body {
   background: var(--html-bg) !important;
   background-image: none !important;
   padding-top: 100px;
-  transition: background 0.3s ease;
   margin: 0 25vw 0 25vw;
 }
 
-* {
+.theme-transition * {
   transition: all 0.2s ease;
+}
+
+.navbar, .navBtn, .navBtn.active, .navBtn:hover, .post, span {
+  transition: all 0.3s ease;
 }
 
 body > *:not(.navContainer) {
   animation: zoomIn 0.18s ease-out;
   will-change: opacity, transform;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
 }
 
 .pulse::before {
@@ -212,7 +208,7 @@ code {
 
 .navContainer > div {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   position: relative;
 }
@@ -220,11 +216,8 @@ code {
 .header {
   position: absolute;
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
-  height: auto;
   width: fit-content;
   height: 50px;
   padding: 3px 10px 3px 10px;
@@ -233,7 +226,7 @@ code {
 
 .navItems {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 90%;
   gap: 5px;
   padding: 10px 0px 10px 0px;
@@ -241,6 +234,12 @@ code {
 
 .navHeader {
   display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.mobileHeader {
+  display: none;
   align-items: center;
   height: auto;
 }
@@ -457,6 +456,32 @@ code {
 }
 
 @media (max-width: 670px) {
+  .navContainer {
+    height: auto !important;
+    margin-top: 15px;
+  }
+  .navbar {
+    position: absolute;
+    top: 0;
+  }
+
+  .mobileHeader {
+    display: flex;
+  }
+
+  .navHeader {
+    display: none;
+    align-items: center;
+    height: auto;
+  }
+
+  .navContainer > div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
+
   .bg-layer {
     -webkit-mask-image: radial-gradient(
       circle 1px at 50vw 50vh,
@@ -484,14 +509,6 @@ code {
     align-items: flex-start;
   }
 
-  .navbar.active {
-    margin-top: 200px;
-  }
-
-  .navContainer {
-    height: 100px;
-  }
-
   .navbar > div:first-child {
     width: 100%;
     display: flex;
@@ -503,19 +520,22 @@ code {
     display: flex !important;
   }
 
-  .navItems {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    margin-top: 12px;
-  }
+.navItems {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin-top: 0;
+  padding: 0;
+}
 
-  .navItems.active {
-    display: flex;
-    height: fit-content;
-    margin-top: 0px;
-  }
+.navItems.active {
+  max-height: 400px;
+  margin-top: 0px;
+}
 
   .navItems a {
     width: 100%;

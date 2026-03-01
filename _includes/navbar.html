@@ -7,19 +7,28 @@
 </head>
 <div class="navContainer">
   <div>
-    <div class="header" style="padding: 0px 20px 0px 20px">
+    <div style="padding: 0px 10px 0px 10px" class="header">
       <a href="/">
         <img
-          class="navHeader"
+          class="mobileHeader"
           src="/src/img/sitelogo.png"
-          width="64"
-          height="64"
+          width="55"
+          height="55"
         />
       </a>
     </div>
     <div
       class="header"
-      style="position: absolute; gap: 10px; right: 10px; left: auto"
+      style="
+        position: absolute;
+        gap: 10px;
+        right: 10px;
+        left: auto;
+        background: var(--nav-bg);
+        backdrop-filter: blur(5px);
+        align-items: center;
+        justify-content: center;
+      "
     >
       <script>
         const ws = new WebSocket(
@@ -36,7 +45,7 @@
       <button id="btn" class="themeToggle" onclick="setTheme()">
         <img src="/src/img/light.svg" />
       </button>
-      <p id="online">🟡 ...</p>
+      <p style="margin: 0px 5px 0px 0px" id="online">🟡 ...</p>
     </div>
     <nav class="navbar" id="nav">
       <div style="display: flex; align-items: center; justify-content: center">
@@ -45,6 +54,16 @@
         </div>
       </div>
       <div class="navItems" id="navItems">
+        <div style="padding: 0px 10px 0px 10px">
+          <a href="/">
+            <img
+              class="navHeader"
+              src="/src/img/sitelogo.png"
+              width="55"
+              height="55"
+            />
+          </a>
+        </div>
         <a href="/">
           <button
             class="navBtn index-nav {% if page.url == '/' %}active{% endif %}"
@@ -93,13 +112,15 @@
     }
 
     function setTheme() {
-      const isLight = html.classList.contains("light");
-      const newTheme = isLight ? "dark" : "light";
-      html.classList.remove("light", "dark");
-      html.classList.add(newTheme);
-      btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
-      localStorage.setItem("theme", newTheme);
-    }
+  html.classList.add("theme-transition")
+  const isLight = html.classList.contains("light");
+  const newTheme = isLight ? "dark" : "light";
+  html.classList.remove("light", "dark");
+  html.classList.add(newTheme);
+  btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
+  localStorage.setItem("theme", newTheme);
+  setTimeout(() => html.classList.remove("theme-transition"), 200);
+}
 
     // Init theme
     html.classList.remove("light");
