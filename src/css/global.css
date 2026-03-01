@@ -9,8 +9,6 @@
 html {
   --mouse-x: 100px;
   --mouse-y: 100px;
-  --bg-x: 0px;
-  --bg-y: 0px;
   transition:
     background 0.5s ease,
     color 0.5s ease;
@@ -61,12 +59,12 @@ body > *:not(.navContainer) {
   pointer-events: none;
   z-index: -1;
   -webkit-mask-image: radial-gradient(
-    circle at 50vw 50vh,
+    circle 1px at 50vw 50vh,
     var(--html-bg) 10%,
     transparent 500px
   );
   mask-image: radial-gradient(
-    circle at 50vw 50vh,
+    circle 1px at 50vw 50vh,
     var(--html-bg) 10%,
     transparent 500px
   );
@@ -79,11 +77,19 @@ body > *:not(.navContainer) {
   background-image: var(--html-img);
   background-repeat: repeat;
   background-size: 200px 200px;
-  background-position: var(--bg-x, 0px) var(--bg-y, 0px);
-  transition: background-position 0.4s ease-out;
+  animation: scrollBackground 2000s linear infinite;
 }
 
 /* Animations */
+@keyframes scrollBackground {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 10000vw 10000vh;
+  }
+}
+
 @keyframes pulse {
   0%,
   100% {
@@ -218,6 +224,7 @@ code {
   transform: translateY(-50%);
   display: flex;
   align-items: center;
+  height: auto;
   width: fit-content;
   height: 50px;
   padding: 3px 10px 3px 10px;
@@ -276,6 +283,7 @@ code {
 .err404 {
   font-family: "DM Mono" !important;
 }
+
 .err404 p {
   font-size: 12px !important;
 }
@@ -317,10 +325,10 @@ code {
 }
 
 .generic-btn:hover {
+  border-radius: 4px;
   border: 1px solid #1b6fff;
   background: linear-gradient(180deg, #0a53ff 0%, #81a7ff 100%);
   color: white;
-  transform: translateY(-2px);
 }
 
 .dropdown {
@@ -353,9 +361,9 @@ code {
 }
 
 .comicBtn:hover {
+  border-radius: 8px;
   border: 1px solid #7f00ff;
   background: linear-gradient(0deg, #e2c5ff 0%, #a54cff 100%);
-  transform: translateY(-2px);
 }
 
 .comicBtn.disabled {
@@ -410,7 +418,6 @@ code {
 
 .post:hover {
   background: var(--content-bg-hover);
-  transform: translateY(-2px);
 }
 
 .chatboxes {
@@ -431,33 +438,33 @@ code {
 }
 
 @media (max-width: 800px) {
-  body {
-    margin: 0 15vw 0 15vw;
-  }
-
   .bg-layer {
     -webkit-mask-image: radial-gradient(
-      circle at 50vw 50vh,
+      circle 1px at 50vw 50vh,
       var(--html-bg) 10%,
       transparent 300px
     );
     mask-image: radial-gradient(
-      circle at 50vw 50vh,
+      circle 1px at 50vw 50vh,
       var(--html-bg) 10%,
       transparent 300px
     );
+  }
+
+  body {
+    margin: 0 15vw 0 15vw;
   }
 }
 
 @media (max-width: 670px) {
   .bg-layer {
     -webkit-mask-image: radial-gradient(
-      circle at 50vw 50vh,
+      circle 1px at 50vw 50vh,
       var(--html-bg) 10%,
       transparent 200px
     );
     mask-image: radial-gradient(
-      circle at 50vw 50vh,
+      circle 1px at 50vw 50vh,
       var(--html-bg) 10%,
       transparent 200px
     );
@@ -480,6 +487,7 @@ code {
   .navbar.active {
     margin-top: 200px;
   }
+
   .navContainer {
     height: 100px;
   }
