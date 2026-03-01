@@ -4,6 +4,7 @@ backend:
   branch: korgoweb5
   auth_type: implicit
   app_id: Iv23li4nTEpu1Kn4K4uA
+  base_url: https://auth.sirkorgo.com
 
 media_folder: "src/post/{{slug}}"
 public_folder: "/src/post/{{slug}}"
