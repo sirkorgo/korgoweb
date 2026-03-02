@@ -1,0 +1,10 @@
+{
+  "headers": [
+    {
+      "source": "/draft/config.yml",
+      "headers": [
+        { "key": "Content-Type", "value": "text/yaml" }
+      ]
+    }
+  ]
+}
