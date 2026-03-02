@@ -17,5 +17,6 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Layout", name: "layout", widget: "string", default: "post" }
+      - { label: "Author", name: "author", widget: "string", default: "sirkorgo" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
       - { label: "Body", name: "body", widget: "markdown" }
