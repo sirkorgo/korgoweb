@@ -5,8 +5,7 @@ backend:
   base_url: https://auth.sirkorgo.com
   scope: repo
 
-media_folder: "src/post/{{slug}}"
-public_folder: "/src/post/{{slug}}"
+media_folder: "src/assets/"
 
 collections:
   - name: "blog"
@@ -19,4 +18,24 @@ collections:
       - { label: "Layout", name: "layout", widget: "string", default: "post" }
       - { label: "Author", name: "author", widget: "string", default: "sirkorgo" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "cloudspace"
+    label: "Cloudspace"
+    folder: "_comics/cloudspace"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Series", name: "series", widget: "string"}
+      - { label: "Chapter", name: "chapter", widget: "string"}
+      - { label: "Layout", name: "layout", widget: "string", default: "comic" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "meantime"
+    label: "Sirkorgo! In the Meantime..."
+    folder: "_comics/meantime"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Series", name: "series", widget: "string"}
+      - { label: "Chapter", name: "chapter", widget: "string"}
+      - { label: "Layout", name: "layout", widget: "string", default: "comic" }
       - { label: "Body", name: "body", widget: "markdown" }
