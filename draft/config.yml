@@ -23,6 +23,7 @@ collections:
     label: "Cloudspace"
     folder: "_comics/cloudspace"
     create: true
+    slug: "{{fields.chapter}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Series", name: "series", widget: "string"}
@@ -33,6 +34,7 @@ collections:
     label: "Sirkorgo! In the Meantime..."
     folder: "_comics/meantime"
     create: true
+    slug: "{{fields.chapter}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Series", name: "series", widget: "string"}
