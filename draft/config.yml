@@ -3,6 +3,7 @@ backend:
   repo: sirkorgo/korgoweb
   branch: korgoweb5
   base_url: https://auth.sirkorgo.com
+  scope: repo
 
 media_folder: "src/post/{{slug}}"
 public_folder: "/src/post/{{slug}}"
