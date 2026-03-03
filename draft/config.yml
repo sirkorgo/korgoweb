@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: sirkorgo/korgoweb
+  branch: korgoweb5
+  base_url: https://auth.sirkorgo.com
+  scope: repo
+
+media_folder: "src/assets/"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-01"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "string", default: "post" }
+      - { label: "Author", name: "author", widget: "string", default: "sirkorgo" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "cloudspace"
+    label: "Cloudspace"
+    folder: "_comics/cloudspace"
+    create: true
+    slug: "{{fields.chapter}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Series", name: "series", widget: "string"}
+      - { label: "Chapter", name: "chapter", widget: "string"}
+      - { label: "Layout", name: "layout", widget: "string", default: "comic" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "meantime"
+    label: "Sirkorgo! In the Meantime..."
+    folder: "_comics/meantime"
+    create: true
+    slug: "{{fields.chapter}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Series", name: "series", widget: "string"}
+      - { label: "Chapter", name: "chapter", widget: "string"}
+      - { label: "Layout", name: "layout", widget: "string", default: "comic" }
+      - { label: "Body", name: "body", widget: "markdown" }
