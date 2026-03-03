@@ -22,6 +22,7 @@
   width: fit-content;
   margin: 0 auto;
 }
+
 #overlay {
   display: none;
   position: fixed;
@@ -151,4 +152,17 @@
   backdrop-filter: blur(5px) !important;
   width: 90%;
   min-width: 75%;
+}
+
+#overlay.active~* .navBtn,
+#overlay.active~* .navContainer .navBtn {
+  color: white;
+}
+
+html.light body.overlay-open .navBtn,
+.header p,
+#online,
+#btn,
+.themeToggle {
+  color: white;
 }
