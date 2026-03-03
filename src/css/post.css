@@ -51,7 +51,8 @@
   flex-direction: row;
 }
 
-.comicContent {
+.comicContent,
+.comicContent p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,12 +74,16 @@ body {
 }
 
 @media (max-width: 600px) {
+
   .pageContainer,
   .page {
     width: 100% !important;
-    min-width: 0; /* or just remove min-width */
+    min-width: 0;
+    /* or just remove min-width */
   }
+
   body {
-    margin: 0 15px !important; /* also this matches main.css better */
+    margin: 0 15px !important;
+    /* also this matches main.css better */
   }
 }

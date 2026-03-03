@@ -1,25 +1,16 @@
 <head>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"
-  />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
   <link rel="stylesheet" href="/src/css/global.css" />
 </head>
 <div class="navContainer">
   <div>
     <div style="padding: 0px 10px 0px 10px" class="header">
       <a href="/">
-        <img
-          class="mobileHeader"
-          src="/src/img/sitelogo.png"
-          width="55"
-          height="55"
-        />
+        <img class="mobileHeader" src="/src/img/sitelogo.png" width="55" height="55" />
       </a>
     </div>
-    <div
-      class="header"
-      style="
+    <div class="header" style="
         position: absolute;
         gap: 10px;
         right: 10px;
@@ -28,8 +19,7 @@
         backdrop-filter: blur(5px);
         align-items: center;
         justify-content: center;
-      "
-    >
+      ">
       <script>
         const ws = new WebSocket(
           "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room",
@@ -47,6 +37,11 @@
       </button>
       <p style="margin: 0px 5px 0px 0px" id="online">🟡 ...</p>
     </div>
+    <div style="padding: 3px 10px 3px 10px">
+      <a href="/">
+        <img class="navHeader" src="/src/img/sitelogo.png" width="55" height="55" />
+      </a>
+    </div>
     <nav class="navbar" id="nav">
       <div style="display: flex; align-items: center; justify-content: center">
         <div class="menu-toggle" onclick="toggleMenu()">
@@ -54,48 +49,29 @@
         </div>
       </div>
       <div class="navItems" id="navItems">
-        <div style="padding: 0px 10px 0px 10px">
-          <a href="/">
-            <img
-              class="navHeader"
-              src="/src/img/sitelogo.png"
-              width="55"
-              height="55"
-            />
-          </a>
-        </div>
         <a href="/">
-          <button
-            class="navBtn index-nav {% if page.url == '/' %}active{% endif %}"
-          >
+          <button class="navBtn index-nav {% if page.url == '/' %}active{% endif %}">
             About
           </button>
         </a>
         <a href="/comics">
-          <button
-            class="navBtn comics-nav {% if page.url contains '/comics' %}active{% endif %}"
-          >
+          <button class="navBtn comics-nav {% if page.url contains '/comics' %}active{% endif %}">
             Webcomics
           </button>
         </a>
         <a href="/art">
-          <button
-            class="navBtn canvas-nav {% if page.url contains '/art' %}active{% endif %}"
-          >
+          <button class="navBtn canvas-nav {% if page.url contains '/art' %}active{% endif %}">
             Art
           </button>
         </a>
         <a href="/blog">
           <button
-            class="navBtn blog-nav {% if page.url contains '/blog' or page.url contains '/202' %}active{% endif %}"
-          >
+            class="navBtn blog-nav {% if page.url contains '/blog' or page.url contains '/202' %}active{% endif %}">
             Blog
           </button>
         </a>
         <a href="/guestbook">
-          <button
-            class="navBtn guestbook-nav {% if page.url contains '/guestbook' %}active{% endif %}"
-          >
+          <button class="navBtn guestbook-nav {% if page.url contains '/guestbook' %}active{% endif %}">
             Guestbook
           </button>
         </a>
@@ -112,15 +88,15 @@
     }
 
     function setTheme() {
-  html.classList.add("theme-transition")
-  const isLight = html.classList.contains("light");
-  const newTheme = isLight ? "dark" : "light";
-  html.classList.remove("light", "dark");
-  html.classList.add(newTheme);
-  btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
-  localStorage.setItem("theme", newTheme);
-  setTimeout(() => html.classList.remove("theme-transition"), 200);
-}
+      html.classList.add("theme-transition");
+      const isLight = html.classList.contains("light");
+      const newTheme = isLight ? "dark" : "light";
+      html.classList.remove("light", "dark");
+      html.classList.add(newTheme);
+      btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
+      localStorage.setItem("theme", newTheme);
+      setTimeout(() => html.classList.remove("theme-transition"), 200);
+    }
 
     // Init theme
     html.classList.remove("light");
@@ -128,10 +104,35 @@
     const saved = localStorage.getItem("theme");
     const theme =
       saved ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     html.classList.add(theme);
     btn.innerHTML = `<img src="/src/img/${theme}.svg">`;
+
+    // Scroll hide/show
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const nav = document.getElementById("nav");
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+            nav.style.opacity = "0";
+            nav.style.pointerEvents = "none";
+            nav.style.transform = "translateY(-20px)";
+          } else {
+            nav.style.opacity = "1";
+            nav.style.pointerEvents = "auto";
+            nav.style.transform = "translateY(0)";
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
   </script>
 </div>

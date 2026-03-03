@@ -23,11 +23,16 @@ body {
   transition: all 0.2s ease;
 }
 
-.navbar, .navBtn, .navBtn.active, .navBtn:hover, .post, span {
+.navbar,
+.navBtn,
+.navBtn.active,
+.navBtn:hover,
+.post,
+span {
   transition: all 0.3s ease;
 }
 
-body > *:not(.navContainer) {
+body>*:not(.navContainer) {
   animation: zoomIn 0.18s ease-out;
   will-change: opacity, transform;
 }
@@ -38,11 +43,9 @@ body > *:not(.navContainer) {
   width: 100%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle at center,
-    var(--accent) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: radial-gradient(circle at center,
+      var(--accent) 0%,
+      rgba(255, 255, 255, 0) 100%);
   animation: pulse 7s ease-in-out infinite;
   z-index: -1;
   border-radius: 50%;
@@ -54,16 +57,12 @@ body > *:not(.navContainer) {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  -webkit-mask-image: radial-gradient(
-    circle 1px at 50vw 50vh,
-    var(--html-bg) 10%,
-    transparent 500px
-  );
-  mask-image: radial-gradient(
-    circle 1px at 50vw 50vh,
-    var(--html-bg) 10%,
-    transparent 500px
-  );
+  -webkit-mask-image: radial-gradient(circle 1px at 50vw 50vh,
+      var(--html-bg) 10%,
+      transparent 500px);
+  mask-image: radial-gradient(circle 1px at 50vw 50vh,
+      var(--html-bg) 10%,
+      transparent 500px);
 }
 
 .bg-layer::before {
@@ -81,16 +80,19 @@ body > *:not(.navContainer) {
   from {
     background-position: 0% 0%;
   }
+
   to {
     background-position: 10000vw 10000vh;
   }
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(0.95);
   }
+
   50% {
     transform: scale(1.08);
   }
@@ -101,6 +103,7 @@ body > *:not(.navContainer) {
     opacity: 0;
     transform: scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -193,7 +196,7 @@ code {
 }
 
 .navContainer {
-  
+
   position: fixed;
   top: 5px;
   left: 0;
@@ -205,7 +208,7 @@ code {
   align-items: center;
 }
 
-.navContainer > div {
+.navContainer>div {
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -303,6 +306,7 @@ code {
 .ad-left {
   left: 0;
 }
+
 .ad-right {
   right: 0;
 }
@@ -437,16 +441,12 @@ code {
 
 @media (max-width: 800px) {
   .bg-layer {
-    -webkit-mask-image: radial-gradient(
-      circle 1px at 50vw 50vh,
-      var(--html-bg) 10%,
-      transparent 300px
-    );
-    mask-image: radial-gradient(
-      circle 1px at 50vw 50vh,
-      var(--html-bg) 10%,
-      transparent 300px
-    );
+    -webkit-mask-image: radial-gradient(circle 1px at 50vw 50vh,
+        var(--html-bg) 10%,
+        transparent 300px);
+    mask-image: radial-gradient(circle 1px at 50vw 50vh,
+        var(--html-bg) 10%,
+        transparent 300px);
   }
 
   body {
@@ -459,9 +459,12 @@ code {
     height: auto !important;
     margin-top: 15px;
   }
+
   .navbar {
     position: absolute;
     top: 0;
+    backdrop-filter: blur(5px);
+    background-color: var(--nav-bg);
   }
 
   .mobileHeader {
@@ -474,7 +477,7 @@ code {
     height: auto;
   }
 
-  .navContainer > div {
+  .navContainer>div {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -482,16 +485,12 @@ code {
   }
 
   .bg-layer {
-    -webkit-mask-image: radial-gradient(
-      circle 1px at 50vw 50vh,
-      var(--html-bg) 10%,
-      transparent 200px
-    );
-    mask-image: radial-gradient(
-      circle 1px at 50vw 50vh,
-      var(--html-bg) 10%,
-      transparent 200px
-    );
+    -webkit-mask-image: radial-gradient(circle 1px at 50vw 50vh,
+        var(--html-bg) 10%,
+        transparent 200px);
+    mask-image: radial-gradient(circle 1px at 50vw 50vh,
+        var(--html-bg) 10%,
+        transparent 200px);
   }
 
   .ad-left,
@@ -508,7 +507,7 @@ code {
     align-items: flex-start;
   }
 
-  .navbar > div:first-child {
+  .navbar>div:first-child {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -519,22 +518,22 @@ code {
     display: flex !important;
   }
 
-.navItems {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  height: auto;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  margin-top: 0;
-  padding: 0;
-}
+  .navItems {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 0;
+    padding: 0;
+  }
 
-.navItems.active {
-  max-height: 400px;
-  margin-top: 0px;
-}
+  .navItems.active {
+    max-height: 400px;
+    margin-top: 0px;
+  }
 
   .navItems a {
     width: 100%;
@@ -542,16 +541,11 @@ code {
   }
 
   .navBtn {
-    text-shadow: 2px 2px 4px #888888;
     width: 100%;
     height: 45px;
     padding: 12px;
     margin-bottom: 5px;
     justify-content: flex-start;
-  }
-
-  .navBtn button {
-    text-shadow: 2px 2px 4px #888888;
   }
 
   .navBtn.active,
@@ -582,11 +576,9 @@ code {
 
   #warn {
     display: flex;
-    background: linear-gradient(
-      2deg,
-      rgba(255, 249, 232, 1) 0%,
-      rgba(255, 242, 145, 1) 100%
-    );
+    background: linear-gradient(2deg,
+        rgba(255, 249, 232, 1) 0%,
+        rgba(255, 242, 145, 1) 100%);
     border: 1px solid #c3af00;
     border-radius: 10px;
     margin-bottom: 10px;
