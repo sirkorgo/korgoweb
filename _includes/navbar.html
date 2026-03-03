@@ -1,116 +1,191 @@
 <head>
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"
-    />
-    <link rel="stylesheet" href="/src/css/global.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+  <link rel="stylesheet" href="/src/css/global.css" />
 </head>
 <div class="navContainer">
-    <div>
-        <div class="header" style="padding: 0px 20px 0px 20px">
-            <a href="/">
-                <img
-                    class="navHeader"
-                    src="/src/img/sitelogo.png"
-                    width="64"
-                    height="64"
-                />
-            </a>
-        </div>
-        <div
-            class="header"
-            style="position: absolute; gap: 10px; right: 10px; left: auto"
-        >
-            <script>
-                const ws = new WebSocket(
-                    "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room",
-                );
-
-                ws.onmessage = (event) => {
-                    const data = JSON.parse(event.data);
-                    if (data.type === "users") {
-                        document.getElementById("online").innerHTML =
-                            "🟢 " + data.count;
-                    }
-                };
-            </script>
-            <button id="btn" class="themeToggle" onclick="setTheme()">
-                <img src="/src/img/light.svg" />
-            </button>
-            <p id="online">🟡 ...</p>
-        </div>
-        <nav class="navbar" id="nav">
-            <div
-                style="
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                "
-            >
-                <div class="menu-toggle" onclick="toggleMenu()">
-                    <span class="material-symbols-outlined"> menu </span>
-                </div>
-            </div>
-            <div class="navItems" id="navItems">
-                <a href="/">
-                    <button
-                        class="navBtn index-nav {% if page.url == '/' %}active{% endif %}"
-                    >
-                        About
-                    </button>
-                </a>
-                <a href="/comics">
-                    <button
-                        class="navBtn comics-nav {% if page.url contains '/comics' %}active{% endif %}"
-                    >
-                        Webcomics
-                    </button>
-                </a>
-                <a href="/blog">
-                    <button
-                        class="navBtn blog-nav {% if page.url contains '/blog' or page.url contains '/202' %}active{% endif %}"
-                    >
-                        Blog
-                    </button>
-                </a>
-                <a href="/canvas">
-                    <button
-                        class="navBtn canvas-nav {% if page.url contains '/canvas' %}active{% endif %}"
-                    >
-                        Canvas
-                    </button>
-                </a>
-            </div>
-        </nav>
+  <div>
+    <div style="padding: 0px 10px 0px 10px" class="header">
+      <a href="/">
+        <img class="mobileHeader" src="/src/img/sitelogo.png" width="55" height="55" />
+      </a>
     </div>
-    <script>
-        const html = document.getElementById("html");
-        const btn = document.getElementById("btn");
+    <div class="header" style="
+        position: absolute;
+        gap: 10px;
+        right: 10px;
+        left: auto;
+        background: var(--nav-bg);
+        backdrop-filter: blur(5px);
+        align-items: center;
+        justify-content: center;
+      ">
+      <script>
+        const ws = new WebSocket(
+          "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room",
+        );
 
-        function toggleMenu() {
-            document.getElementById("navItems").classList.toggle("active");
-            document.getElementById("nav").classList.toggle("active");
+        ws.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          if (data.type === "users") {
+            document.getElementById("online").innerHTML = "🟢 " + data.count;
+          }
+        };
+      </script>
+      <button id="btn" class="themeToggle" onclick="setTheme()">
+        <img src="/src/img/light.svg" />
+      </button>
+      <p style="margin: 0px 0px 0px 0px" id="online">🟡 ⋯</p>
+      <p style="margin: 0px 5px 0px 0px"> • #<span id="visitor-count">⋯</span></p>
+    </div>
+    <div style="padding: 3px 10px 3px 10px">
+      <a href="/">
+        <img class="navHeader" src="/src/img/sitelogo.png" width="55" height="55" />
+      </a>
+    </div>
+    <nav class="navbar" id="nav">
+      <div style="display: flex; align-items: center; justify-content: center">
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <span class="material-symbols-outlined"> menu </span>
+        </div>
+      </div>
+      <div class="navItems" id="navItems">
+        <a href="/">
+          <button class="navBtn index-nav {% if page.url == '/' %}active{% endif %}">
+            About
+          </button>
+        </a>
+        <a href="/comics">
+          <button class="navBtn comics-nav {% if page.url contains '/comics' %}active{% endif %}">
+            Webcomics
+          </button>
+        </a>
+        <a href="/art">
+          <button class="navBtn canvas-nav {% if page.url contains '/art' %}active{% endif %}">
+            Art
+          </button>
+        </a>
+        <a href="/blog">
+          <button
+            class="navBtn blog-nav {% if page.url contains '/blog' or page.url contains '/202' %}active{% endif %}">
+            Blog
+          </button>
+        </a>
+        <a href="/guestbook">
+          <button class="navBtn guestbook-nav {% if page.url contains '/guestbook' %}active{% endif %}">
+            Guestbook
+          </button>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <script>
+    const html = document.getElementById("html");
+    const btn = document.getElementById("btn");
+
+    function toggleMenu() {
+      document.getElementById("navItems").classList.toggle("active");
+      document.getElementById("nav").classList.toggle("active");
+    }
+
+    function setTheme() {
+      html.classList.add("theme-transition");
+      const isLight = html.classList.contains("light");
+      const newTheme = isLight ? "dark" : "light";
+      html.classList.remove("light", "dark");
+      html.classList.add(newTheme);
+      btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
+      localStorage.setItem("theme", newTheme);
+      setTimeout(() => html.classList.remove("theme-transition"), 200);
+    }
+
+    // Init theme
+    html.classList.remove("light");
+    html.classList.remove("dark");
+    const saved = localStorage.getItem("theme");
+    const theme =
+      saved ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    html.classList.add(theme);
+    btn.innerHTML = `<img src="/src/img/${theme}.svg">`;
+
+    // Scroll hide/show
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const nav = document.getElementById("nav");
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+            nav.style.opacity = "0";
+            nav.style.pointerEvents = "none";
+            nav.style.transform = "translateY(-20px)";
+          } else {
+            nav.style.opacity = "1";
+            nav.style.pointerEvents = "auto";
+            nav.style.transform = "translateY(0)";
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  </script>
+
+  <script>
+    (function () {
+      const domain = encodeURIComponent(window.location.hostname);
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const page_path = window.location.pathname;
+      const page_title = document.title;
+      const referrer = document.referrer;
+
+      // Extract search query if coming from a search engine
+      let search_query = "";
+      if (referrer) {
+        try {
+          const url = new URL(referrer);
+          if (url.hostname.includes("google.com")) {
+            search_query = url.searchParams.get("q") || "";
+          } else if (url.hostname.includes("bing.com")) {
+            search_query = url.searchParams.get("q") || "";
+          } else if (url.hostname.includes("yahoo.com")) {
+            search_query = url.searchParams.get("p") || "";
+          } else if (url.hostname.includes("duckduckgo.com")) {
+            search_query = url.searchParams.get("q") || "";
+          }
+        } catch (e) {
+          // Invalid URL, ignore
         }
+      }
 
-        function setTheme() {
-            const isLight = html.classList.contains("light");
-            const newTheme = isLight ? "dark" : "light";
-            html.classList.remove("light", "dark");
-            html.classList.add(newTheme);
-            btn.innerHTML = `<img src="/src/img/${newTheme}.svg">`;
-            localStorage.setItem("theme", newTheme);
-        }
-
-        // Init theme
-        html.classList.remove("light");
-        html.classList.remove("dark");
-        const saved = localStorage.getItem("theme");
-        const theme =
-            saved ||
-            (window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light");
-        html.classList.add(theme);
-        btn.innerHTML = `<img src="/src/img/${theme}.svg">`;
-    </script>
+      fetch("https://visitor.6developer.com/visit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          domain,
+          timezone,
+          page_path,
+          page_title,
+          referrer,
+          search_query,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Visitor count:", data);
+          // You can display the count on your page
+          if (document.getElementById("visitor-count")) {
+            document.getElementById("visitor-count").textContent =
+              data.totalCount;
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    })();
+  </script>
 </div>

@@ -1,86 +1,25 @@
 <!doctype html>
 <html id="html" class="{{page.colors}} dark" lang="en-US">
-  <head>
-    <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title | default: "sirkorgo.com" }}</title>
-    <link rel="stylesheet" href="/src/css/global.css" />
-    <meta property="og:title" content="sirkorgo.com" />
-    <meta
-      property="og:description"
-      content="Heyo! I'm Sirkorgo. Sirkorgo is my shapeshifting fox OC. This is my website, the home of Sirkorgo and his friends!"
-    />
-    <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
-    <meta
-      property="og:image"
-      content="https://www.sirkorgo.com/src/img/srkgo_meet.png"
-    />
-  </head>
-  <body>
-    <div class="bg-layer"></div>
-    {% include navbar.html %}
 
-    <main id="content">{{ content }} {% include footer.html %}</main>
-    <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+<head>
+  <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title | default: "sirkorgo.com" }}</title>
+  <link rel="stylesheet" href="/src/css/global.css" />
+  <meta property="og:title" content="sirkorgo.com" />
+  <meta property="og:description"
+    content="Heyo! I'm Sirkorgo. Sirkorgo is my shapeshifting fox OC. This is my website, the home of Sirkorgo and his friends!" />
+  <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
+  <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.png" />
+</head>
 
-    <script>
-      document.addEventListener("mousemove", (e) => {
-        document.body.style.setProperty("--mouse-x", e.clientX + "px");
-        document.body.style.setProperty("--mouse-y", e.clientY + "px");
-      });
-    </script>
+<body>
+  <div class="bg-layer"></div>
+  {% include navbar.html %}
 
-    <script>
-      (function () {
-        const domain = encodeURIComponent(window.location.hostname);
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const page_path = window.location.pathname;
-        const page_title = document.title;
-        const referrer = document.referrer;
+  <main id="content">{{ content }} {% include footer.html %}</main>
+  <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+</body>
 
-        // Extract search query if coming from a search engine
-        let search_query = "";
-        if (referrer) {
-          try {
-            const url = new URL(referrer);
-            if (url.hostname.includes("google.com")) {
-              search_query = url.searchParams.get("q") || "";
-            } else if (url.hostname.includes("bing.com")) {
-              search_query = url.searchParams.get("q") || "";
-            } else if (url.hostname.includes("yahoo.com")) {
-              search_query = url.searchParams.get("p") || "";
-            } else if (url.hostname.includes("duckduckgo.com")) {
-              search_query = url.searchParams.get("q") || "";
-            }
-          } catch (e) {
-            // Invalid URL, ignore
-          }
-        }
-
-        fetch("https://visitor.6developer.com/visit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            domain,
-            timezone,
-            page_path,
-            page_title,
-            referrer,
-            search_query,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Visitor count:", data);
-            // You can display the count on your page
-            if (document.getElementById("visitor-count")) {
-              document.getElementById("visitor-count").textContent =
-                data.totalCount;
-            }
-          })
-          .catch((error) => console.error("Error:", error));
-      })();
-    </script>
-  </body>
 </html>

@@ -4,6 +4,9 @@ collections:
   comics:
     output: true
     permalink: /comics/:path/
+  art:
+    output: true
+    permalink: /art/:path/
 
 plugins:
   - jekyll-sitemap
