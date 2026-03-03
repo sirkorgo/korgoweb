@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/src/css/global.css" />
   <link rel="stylesheet" href="/src/css/post.css" />
-  <title>{{ page.title - sirkorgo.com | default: "sirkorgo.com" }}</title>
+  <title>{{ page.title | default: "sirkorgo.com" }}</title>
   <meta property="og:title" content="A post about {{ page.title }} on sirkorgo.com" />
   <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 150 }}" />
   <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
