@@ -73,7 +73,7 @@ body {
   margin: 0 10vw 0 10vw !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 670px) {
 
   .pageContainer,
   .page {
@@ -81,6 +81,12 @@ body {
     min-width: 0;
     /* or just remove min-width */
   }
+
+  .comicContent img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
 
   body {
     margin: 0 15px !important;
