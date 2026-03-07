@@ -27,7 +27,7 @@ body {
 .navBtn,
 .navBtn.active,
 .navBtn:hover,
-.post,
+.post, .index-nav, .navHeader,
 span {
   transition: all 0.3s ease;
 }
@@ -237,7 +237,6 @@ code {
 .navHeader {
   display: flex;
   align-items: center;
-  height: auto;
 }
 
 .mobileHeader {
@@ -254,7 +253,6 @@ code {
   font-weight: 500;
   font-size: 15px;
   color: var(--font);
-  border-radius: 25px;
   text-align: center;
   padding: 0 13px;
   cursor: pointer;
@@ -262,6 +260,7 @@ code {
   display: flex;
   align-items: center !important;
   justify-content: center !important;
+  border-radius: 25px;
 }
 
 /* Error Page */

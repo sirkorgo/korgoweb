@@ -18,7 +18,24 @@ html.guestbook {
   --accent: #c5386e;
 }
 
-.index-nav.active {
+.post {
+  background: var(--content-bg);
+  display: flex;
+  text-align: left;
+  padding: 10px;
+  flex: 1;
+  height: 95%;
+  border-radius: 15px;
+  backdrop-filter: blur(5px) !important;
+}
+
+.index-nav img {
+  width: 64px !important;
+  height: 52px !important;
+}
+
+
+.about-nav.active {
   color: white;
   border: 2px solid #0080d5;
   background: linear-gradient(180deg, var(--accent) 0%, #81a7ff 100%);
@@ -27,7 +44,7 @@ html.guestbook {
   min-width: 80px;
 }
 
-.index-nav:hover {
+.about-nav:hover {
   background: rgba(0, 128, 213, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none !important;

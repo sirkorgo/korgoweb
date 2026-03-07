@@ -37,8 +37,8 @@
       <p style="margin: 0px 5px 0px 0px"> • #<span id="visitor-count">⋯</span></p>
     </div>
     <div style="padding: 3px 10px 3px 10px">
-      <a href="/">
-        <img class="navHeader" src="/src/img/sitelogo.png" width="55" height="55" />
+      <a href="/" class="index-nav {% if page.url == '/' %}active{% endif %}">
+        <img class="navHeader" src="/src/img/sitelogo.png" width="55px" height="55px" />
       </a>
     </div>
     <nav class="navbar" id="nav">
@@ -48,8 +48,8 @@
         </div>
       </div>
       <div class="navItems" id="navItems">
-        <a href="/">
-          <button class="navBtn index-nav {% if page.url == '/' %}active{% endif %}">
+        <a href="/about">
+          <button class="navBtn about-nav {% if page.url contains '/about' %}active{% endif %}">
             About
           </button>
         </a>

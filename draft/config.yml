@@ -30,6 +30,7 @@ collections:
       - { label: "Chapter", name: "chapter", widget: "string"}
       - { label: "Layout", name: "layout", widget: "string", default: "comic" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
   - name: "meantime"
     label: "Sirkorgo! In the Meantime..."
     folder: "_comics/meantime"
@@ -41,3 +42,4 @@ collections:
       - { label: "Chapter", name: "chapter", widget: "string"}
       - { label: "Layout", name: "layout", widget: "string", default: "comic" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
