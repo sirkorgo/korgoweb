@@ -1,11 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
-/* Layout */
+
+/* layout */
 .container {
-  margin-bottom: 0px;
-  margin-right: 15%;
-  margin-left: 15%;
   display: flex;
   flex-direction: column;
+  margin: 0 15%;
 }
 
 .content {
@@ -17,17 +16,17 @@
   flex: 1.5;
 }
 
-/* Marquee */
+/* marquee */
 marquee {
   position: relative;
-  top: 0px;
+  top: 0;
 }
 
 .stickers {
   display: flex;
   width: 408px;
   height: 116px;
-  padding: 101px 250px 111px 250px;
+  padding: 101px 250px 111px;
   justify-content: center;
   align-items: center;
   gap: 3px;
@@ -36,19 +35,20 @@ marquee {
   box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
+/* mood bubble */
 .mood {
   font-family: "Cabin";
   font-weight: 400;
   font-size: 15px;
-  position: inherit;
   color: black;
   background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
   border: 2px solid #7195b0;
   border-radius: 150px;
   padding: 10px;
-  bottom: 5px;
   text-align: center;
   width: 45%;
+  position: inherit;
+  bottom: 5px;
 }
 
 .sirkorgo-img {
@@ -56,7 +56,3 @@ marquee {
   justify-content: center;
   align-items: center;
 }
-
-/* .changelog {
-  background: rgba(255, 255, 255, 0.5);
-} */

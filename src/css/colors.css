@@ -1,40 +1,45 @@
-html.blog {
-  --accent: #479878;
+/* page accent colors */
+html.blog      { --accent: #479878; }
+html.canvas    { --accent: #ff4e65; }
+html.comics    { --accent: #c081ff; }
+html.index     { --accent: #005dff; }
+html.guestbook { --accent: #c5386e; }
+
+/* light theme */
+html.light {
+  --html-bg:          #eaeaea;
+  --font:             #000000;
+  --content-bg:       rgba(255, 255, 255, 0.5);
+  --content-bg-hover: rgba(255, 255, 255, 0.75);
+  --html-img:         url(/src/img/bg.png);
+  --nav-bg:           rgba(234, 234, 234, 0.5);
+  --page-bg:          #ffffff;
+  --btn-bg:           linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
+  --btn-border:       1px solid #a9a9a9;
+  --link:             #0869fa;
 }
 
-html.canvas {
-  --accent: #ff4e65;
+/* dark theme */
+html.dark {
+  --html-bg:          #1b1b1b;
+  --font:             #ffffff;
+  --content-bg:       rgba(82, 82, 82, 0.19);
+  --content-bg-hover: rgba(255, 255, 255, 0.145);
+  --html-img:         url(/src/img/bg-dark.png);
+  --nav-bg:           rgba(27, 27, 27, 0.5);
+  --page-bg:          #000000;
+  --btn-bg:           linear-gradient(180deg, #444 0%, #000 100%);
+  --btn-border:       1px solid #2e2e2e;
+  --link:             #a4d6ff;
 }
 
-html.comics {
-  --accent: #c081ff;
-}
-
-html.index {
-  --accent: #005dff;
-}
-
-html.guestbook {
-  --accent: #c5386e;
-}
-
-.post {
-  background: var(--content-bg);
-  display: flex;
-  text-align: left;
-  padding: 10px;
-  flex: 1;
-  height: 95%;
-  border-radius: 15px;
-  backdrop-filter: blur(5px) !important;
-}
-
+/* index nav logo size */
 .index-nav img {
-  width: 64px !important;
-  height: 52px !important;
+  width: 64px;
+  height: 52px;
 }
 
-
+/* nav active + hover states */
 .about-nav.active {
   color: white;
   border: 2px solid #0080d5;
@@ -43,13 +48,11 @@ html.guestbook {
   padding: 0 12px;
   min-width: 80px;
 }
-
 .about-nav:hover {
   background: rgba(0, 128, 213, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border: none !important;
-  color: white !important;
-  color: rgb(255, 255, 255);
+  border: none;
+  color: white;
 }
 
 .guestbook-nav.active {
@@ -60,13 +63,11 @@ html.guestbook {
   padding: 0 12px;
   min-width: 80px;
 }
-
 .guestbook-nav:hover {
   background: rgba(186, 11, 98, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border: none !important;
-  color: white !important;
-  color: rgb(255, 255, 255);
+  border: none;
+  color: white;
 }
 
 .comics-nav.active {
@@ -77,13 +78,11 @@ html.guestbook {
   padding: 0 12px;
   min-width: 80px;
 }
-
 .comics-nav:hover {
   background: rgba(149, 43, 255, 0.7);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border: none !important;
-  color: white !important;
-  color: rgb(255, 255, 255);
+  border: none;
+  color: white;
 }
 
 .blog-nav.active {
@@ -94,13 +93,11 @@ html.guestbook {
   padding: 0 12px;
   min-width: 80px;
 }
-
 .blog-nav:hover {
   background: rgba(11, 158, 97, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border: none !important;
-  color: white !important;
-  color: rgb(255, 255, 255);
+  border: none;
+  color: white;
 }
 
 .canvas-nav.active {
@@ -111,37 +108,9 @@ html.guestbook {
   padding: 0 12px;
   min-width: 80px;
 }
-
 .canvas-nav:hover {
   background: rgba(255, 78, 101, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border: none !important;
-  color: white !important;
-  color: rgb(255, 255, 255);
-}
-
-html.light {
-  --html-bg: #eaeaea;
-  --font: #000000;
-  --content-bg: rgba(255, 255, 255, 0.5);
-  --content-bg-hover: rgba(255, 255, 255, 0.75);
-  --html-img: url(/src/img/bg.png);
-  --nav-bg: rgba(234, 234, 234, 0.5);
-  --page-bg: #ffffff;
-  --btn-bg: linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
-  --btn-border: 1px solid #a9a9a9;
-  --link: #0869fa;
-}
-
-html.dark {
-  --html-bg: #1b1b1b;
-  --content-bg: rgba(82, 82, 82, 0.19);
-  --content-bg-hover: rgba(255, 255, 255, 0.145);
-  --font: #ffffff;
-  --nav-bg: rgba(27, 27, 27, 0.5);
-  --html-img: url(/src/img/bg-dark.png);
-  --page-bg: #000000;
-  --btn-bg: linear-gradient(180deg, #444 0%, #000 100%);
-  --btn-border: 1px solid #2e2e2e;
-  --link: #a4d6ff;
+  border: none;
+  color: white;
 }

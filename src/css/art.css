@@ -1,3 +1,14 @@
+/* thumbnail grid */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
+  width: fit-content;
+  margin: 0 auto;
+}
+
 .thumb {
   width: 200px;
   height: 200px;
@@ -14,22 +25,13 @@
   object-fit: cover;
 }
 
-.grid {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: fit-content;
-  margin: 0 auto;
-}
+
+/* overlay backdrop */
 
 #overlay {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
+  inset: 0;
   padding-top: 80px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(2px);
@@ -37,14 +39,15 @@
   align-items: center;
   z-index: 1000;
   opacity: 0;
-  transition:
-    opacity 0.3s,
-    backdrop-filter 0.3s;
+  transition: opacity 0.3s, backdrop-filter 0.3s;
 }
 
 #overlay.active {
   opacity: 1;
 }
+
+
+/* art content */
 
 #art-content {
   max-width: 97%;
@@ -67,16 +70,16 @@
   border-radius: 15px;
 }
 
+
+/* toolbar */
+
 #toolbar {
   display: flex;
-  margin-left: 25px;
   gap: 5px;
-  margin-bottom: 15px;
+  margin: 0 0 15px 25px;
   opacity: 0;
   transform: translateY(-10px);
-  transition:
-    opacity 0.3s 0.1s,
-    transform 0.3s 0.1s;
+  transition: opacity 0.3s 0.1s, transform 0.3s 0.1s;
 }
 
 #overlay.active #toolbar {
@@ -84,81 +87,72 @@
   transform: translateY(0);
 }
 
-.closeButton {
-  border-radius: 100px;
-  border: none;
-  padding: 10px;
-  margin: 0;
-  min-width: 40px;
-  max-width: 40px;
-  max-height: 40px;
-  min-height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  backdrop-filter: blur(5px);
-  cursor: pointer;
-}
 
-.closeButton:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
+/* toolbar buttons */
 
-#title {
-  border-radius: 100px;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  margin: 0;
-  backdrop-filter: blur(5px);
-  min-width: fit-content;
-  padding: 10px;
-}
-
-#title:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
+.closeButton,
 .swap {
   border: none;
   padding: 10px;
   margin: 0;
   min-width: 40px;
   max-width: 40px;
-  max-height: 40px;
   min-height: 40px;
+  max-height: 40px;
   background: rgba(255, 255, 255, 0.1);
   color: white;
   backdrop-filter: blur(5px);
   cursor: pointer;
 }
 
+.closeButton:hover,
 .swap:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
-#backward {
-  border-radius: 0px 100px 100px 0px;
+.closeButton {
+  border-radius: 100px;
 }
 
-#forward {
-  border-radius: 100px 0px 0px 100px;
+#backward { border-radius: 0 100px 100px 0; }
+#forward  { border-radius: 100px 0 0 100px; }
+
+
+/* title pill */
+
+#title {
+  border: none;
+  border-radius: 100px;
+  padding: 10px;
+  margin: 0;
+  min-width: fit-content;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(5px);
 }
+
+#title:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+/* context box */
 
 .context {
-  background: var(--content-bg);
-  text-align: left;
-  padding: 10px;
-  border-radius: 15px;
-  backdrop-filter: blur(5px) !important;
   width: 90%;
   min-width: 75%;
+  padding: 10px;
+  border-radius: 15px;
+  background: var(--content-bg);
+  backdrop-filter: blur(5px);
+  text-align: left;
 }
 
-#overlay.active~* .navBtn,
-#overlay.active~* .navContainer .navBtn {
-  color: white;
-}
 
+/* nav overrides when overlay is open */
+
+#overlay.active ~ * .navBtn,
+#overlay.active ~ * .navContainer .navBtn,
 html.light body.overlay-open .navBtn,
 .header p,
 #online,
