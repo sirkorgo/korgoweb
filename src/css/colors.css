@@ -33,10 +33,41 @@ html.dark {
   --link:             #a4d6ff;
 }
 
-/* index nav logo size */
+/* index nav */
 .index-nav img {
-  width: 64px;
-  height: 52px;
+  width: 49px;
+  height: 40px;
+}
+
+.index-nav {
+  padding: 4px 9px;
+  width: fit-content;
+  display: block;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.index-nav.active {
+  width: fit-content;
+  display: block;
+  background: linear-gradient(90deg, 
+    rgba(0, 93, 255, 0.80) 11.9%, 
+    rgba(46, 178, 126, 0.80) 35.39%, 
+    rgba(255, 78, 101, 0.80) 71.2%, 
+    rgba(167, 84, 250, 0.80) 97.55%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
+}
+.index-nav:hover {
+  background: linear-gradient(90deg, rgba(0, 93, 255, 0.50) 11.9%, rgba(46, 178, 126, 0.50) 35.39%, rgba(255, 78, 101, 0.50) 71.2%, rgba(167, 84, 250, 0.50) 97.55%);
+  animation: gradientShift 20s ease infinite;
 }
 
 /* nav active + hover states */
