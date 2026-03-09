@@ -4,8 +4,10 @@ backend:
   branch: korgoweb5
   base_url: https://auth.sirkorgo.com
   scope: repo
+  squash_merges: true
 
 media_folder: "src/assets/"
+publish_mode: editorial_workflow
 
 collections:
   - name: "blog"
