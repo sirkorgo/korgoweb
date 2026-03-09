@@ -133,6 +133,15 @@ a {
   color: var(--link);
 }
 
+small {
+    font-family: "Cabin";
+  font-weight: normal;
+  font-size: 13px;
+  color: var(--font);
+  margin: 0 0 5px;
+  line-height: 20px;
+}
+
 code {
   font-family: "DM Mono";
   font-size: 15px;
