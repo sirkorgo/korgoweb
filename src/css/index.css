@@ -42,17 +42,19 @@ marquee {
   font-size: 15px;
   color: black;
   background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
-  border: 2px solid #7195b0;
+  border: 2.5px solid #96d2ff;
   border-radius: 150px;
   padding: 10px;
   text-align: center;
-  width: 45%;
+  width: 300px;
   position: inherit;
   bottom: 5px;
+  animation: float 4s ease-in-out infinite;
 }
 
 .sirkorgo-img {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: float 4s ease-in-out infinite;
 }

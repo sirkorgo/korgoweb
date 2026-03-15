@@ -41,6 +41,30 @@ body > *:not(.navContainer) {
   will-change: opacity, transform;
 }
 
+#box {
+  transition: transform 0.15s ease-out;
+}
+
+/* subtle hover anim */
+@keyframes drift-x {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(10px); }
+}
+
+@keyframes drift-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
+}
+
+/* Wrapper handles X, inner element handles Y */
+.float-x {
+  animation: drift-x 5s ease-in-out infinite;
+  width: fit-content;
+}
+.float-y {
+  animation: drift-y 5s ease-in-out infinite;
+  height: fit-content;
+}
 /* accent pulse glow */
 .pulse::before {
   content: "";

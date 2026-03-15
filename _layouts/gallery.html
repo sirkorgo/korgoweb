@@ -87,5 +87,17 @@
         document.body.style.setProperty("--mouse-y", e.clientY + "px");
       });
     </script>
+      <script>
+    const box = document.getElementById('box');
+    const strength = 16;
+
+    window.addEventListener('mousemove', (e) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx;
+      const dy = (e.clientY - cy) / cy;
+      box.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
+    });
+  </script>
   </body>
 </html>
