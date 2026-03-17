@@ -1,18 +1,14 @@
 <head>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"
-  />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
   <link rel="stylesheet" href="/src/css/global.css" />
 </head>
 <nav class="navbar">
   <div>
     <div class="header">
       <a href="/">
-        <img
-          class="navHeader"
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDvFTOHpj67eCDdConbIzZdhw64xeoF8ZvCUhENhj9uabgLGqZvEiQ0XW4z0TBIv77br4At538a93T2NKU8zpMBt4Kb2ZYuHU-YvqpiKIqJmEe1-fmser4n5uv5onr6kM0E28PiNjrQ4edilWPr9j_OB3pUuHEeiPMguqLoce3u63CZbo-xAoygPMl36s/s320/logo.png"
-        />
+        <img class="navHeader"
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDvFTOHpj67eCDdConbIzZdhw64xeoF8ZvCUhENhj9uabgLGqZvEiQ0XW4z0TBIv77br4At538a93T2NKU8zpMBt4Kb2ZYuHU-YvqpiKIqJmEe1-fmser4n5uv5onr6kM0E28PiNjrQ4edilWPr9j_OB3pUuHEeiPMguqLoce3u63CZbo-xAoygPMl36s/s320/logo.png" />
       </a>
     </div>
     <div class="menu-toggle" onclick="toggleMenu()">
@@ -26,28 +22,29 @@
       </button>
     </a>
     <a href="/blog">
-      <button
-        class="navBtn {% if page.url contains '/blog' %}active{% endif %}"
-      >
+      <button class="navBtn {% if page.url contains '/blog' %}active{% endif %}">
         Blog
       </button>
     </a>
     <a href="/chat">
-      <button
-        class="navBtn {% if page.url contains '/chat' %}active{% endif %}"
-      >
+      <button class="navBtn {% if page.url contains '/chat' %}active{% endif %}">
         Chat
       </button>
     </a>
     <a href="/guestbook">
-      <button
-        class="navBtn {% if page.url contains '/guestbook' %}active{% endif %}"
-      >
+      <button class="navBtn {% if page.url contains '/guestbook' %}active{% endif %}">
         Guestbook
       </button>
     </a>
   </div>
 </nav>
+<span style="width: 100%; height: fit-content; display: flex; align-items: center; justify-content: center ;">
+  <span
+    style="display: flex; align-self: center; width: fit-content; text-align: center; padding-left: 15px; padding-right: 15px; height: fit-content; border-radius: 5px; background: linear-gradient(180deg, #f9f9f9 0%, #cee7ff 100%); box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.25);">
+    <p>This site is outdated! Visit the <a href="https://www.sirkorgo.com">new sirkorgo.com</a>, or view an <a
+        href="https://sirkorgo.blogspot.com">older</a> one!</p>
+  </span>
+</span>
 
 <script>
   function toggleMenu() {
