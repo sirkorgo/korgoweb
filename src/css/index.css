@@ -46,10 +46,13 @@ marquee {
   border-radius: 150px;
   padding: 10px;
   text-align: center;
-  width: 300px;
+  width: fit-content;
   position: inherit;
   bottom: 5px;
   animation: float 4s ease-in-out infinite;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .sirkorgo-img {
