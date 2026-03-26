@@ -30,12 +30,16 @@
           }
         };
       </script>
+      <span class="hideOnScroll thisThing">
+      <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#3076f0', 'T6T61WP8KV');kofiwidget2.draw();</script> 
+      </span>
       <button id="btn" class="themeToggle" onclick="setTheme()">
         <img src="/src/img/light.svg" />
       </button>
       <p style="margin: 0px 0px 0px 0px" id="online">🟡 ⋯</p>
       <p style="margin: 0px 5px 0px 0px"> • #<span id="visitor-count">⋯</span></p>
     </div>
+
     <div style="padding: 3px 10px 3px 10px">
       <span class="index-nav {% if page.url == '/' %}active{% endif %}">
         <a href="/">
@@ -49,7 +53,7 @@
           <span class="material-symbols-outlined"> menu </span>
         </div>
       </div>
-      <div class="navItems" id="navItems">
+      <div class="navItems hideOnScroll" id="navItems">
         <a href="/about">
           <button class="navBtn about-nav {% if page.url contains '/about' %}active{% endif %}">
             About
@@ -76,6 +80,8 @@
             Guestbook
           </button>
         </a>
+        <span style="margin-left: 10px;">
+        </span>
       </div>
     </nav>
   </div>
@@ -110,31 +116,40 @@
     btn.innerHTML = `<img src="/src/img/${theme}.svg">`;
 
     // Scroll hide/show
-    let lastScrollY = window.scrollY;
-    let ticking = false;
+let lastScrollY = window.scrollY;
+let ticking = false;
 
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const nav = document.getElementById("nav");
-          const currentScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      // Selects every element with the .hideOnScroll class
+      const targets = document.querySelectorAll(".hideOnScroll");
+      const currentScrollY = window.scrollY;
 
-          if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-            nav.style.opacity = "0";
-            nav.style.pointerEvents = "none";
-            nav.style.transform = "translateY(-20px)";
-          } else {
-            nav.style.opacity = "1";
-            nav.style.pointerEvents = "auto";
-            nav.style.transform = "translateY(0)";
-          }
+      targets.forEach(el => {
+        // Ensure transition is set for smooth movement
+        el.style.transition = "all 0.3s ease"; 
 
-          lastScrollY = currentScrollY;
-          ticking = false;
-        });
-        ticking = true;
-      }
+        if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+          // Hiding
+          el.style.opacity = "0";
+          el.style.pointerEvents = "none";
+          el.style.transform = "translateY(-20px)";
+        } else {
+          // Showing
+          el.style.opacity = "1";
+          el.style.pointerEvents = "auto";
+          el.style.transform = "translateY(0)";
+        }
+      });
+
+      lastScrollY = currentScrollY;
+      ticking = false;
     });
+    ticking = true;
+  }
+});
+
   </script>
 
   <script>

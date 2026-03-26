@@ -158,12 +158,7 @@ a {
 }
 
 small {
-    font-family: "Cabin";
-  font-weight: normal;
-  font-size: 13px;
-  color: var(--font);
-  margin: 0 0 5px;
-  line-height: 20px;
+  font-size: 11px !important;
 }
 
 code {
@@ -220,6 +215,10 @@ code {
   gap: 5px;
   padding: 10px 0;
 }
+
+  .mobileSupportBtn {
+    display: none;
+  }
 
 .navHeader {
   display: flex;
@@ -312,15 +311,16 @@ code {
 }
 
 .comicBtn {
-  font-family: "Google Sans", sans-serif;
+  font-family: "Google Sans", sans-serif !important;
   display: flex;
   width: fit-content;
   height: fit-content;
   padding: 10px 15px;
-  flex-direction: column;
+  text-align: center;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 3px;
   border-radius: 8px;
   border: 1px solid #952bff;
   background: linear-gradient(0deg, #a851ff 0%, #e2c5ff 100%);
@@ -415,6 +415,17 @@ code {
     flex-direction: column;
     gap: 10px;
   }
+    .thisThing {
+  display: none;
+  }
+    .mobileSupportBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-top: 10px;
+  }
+
 }
 
 @media (max-width: 800px) {
