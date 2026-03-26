@@ -3,7 +3,7 @@ html.blog      { --accent: #479878; }
 html.canvas    { --accent: #ff4e65; }
 html.comics    { --accent: #c081ff; }
 html.index     { --accent: #005dff; }
-html.guestbook { --accent: #c5386e; }
+html.guestbook { --accent: #ff8630; }
 
 /* light theme */
 html.light {
@@ -88,14 +88,14 @@ html.dark {
 
 .guestbook-nav.active {
   color: white;
-  border: 2px solid #920754;
-  background: linear-gradient(180deg, var(--accent) 0%, #ff81c6 100%);
+  border: 2px solid #a76d2b;
+  background: linear-gradient(180deg, var(--accent) 0%, #ffbe81 100%);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   padding: 0 12px;
   min-width: 80px;
 }
 .guestbook-nav:hover {
-  background: rgba(186, 11, 98, 0.5);
+  background: rgba(255, 92, 22, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
@@ -144,4 +144,10 @@ html.dark {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
+}
+
+.donate-nav:hover {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: none;
 }

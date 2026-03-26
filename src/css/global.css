@@ -221,6 +221,10 @@ code {
   padding: 10px 0;
 }
 
+  .mobileSupportBtn {
+    display: none;
+  }
+
 .navHeader {
   display: flex;
   align-items: center;
@@ -415,6 +419,17 @@ code {
     flex-direction: column;
     gap: 10px;
   }
+    .thisThing {
+  display: none;
+  }
+    .mobileSupportBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-top: 10px;
+  }
+
 }
 
 @media (max-width: 800px) {
