@@ -9,40 +9,52 @@ title: Comics
     <h1>Webcomics</h1>
     <div style="display: flex; flex-direction: column; gap: 15px">
 
-      <a href="/comics/cloudspace/01">
-        <div class="post" style="display: flex; flex-direction: column">
-          <span style="display: flex; gap: 10px">
-            <span style="width: 100%">
-              <h3 style="margin: 3px 0 5px">Cloudspace</h3>
-              <p>
-                Cloudspace, It’s a world atop clouds powered by a physics-defying energy core that also causes a lot of
-                issues called Anomalies. In other words, paranormal ‘glitches’ in Cloudspace that cause havoc. See how
-                the Anomaly Containment
-                & Refinement crew that keep Cloudspace safe with Sirkorgo, Widget,
-                Rabbo, Pip and many others.
-              </p>
-            </span>
-            <img src="/src/comic/cloudspace/thumb.gif" width="128" height="128" style="border-radius: 10px" />
+      <div class="post" style="display: flex; flex-direction: column">
+        <span style="display: flex; gap: 10px">
+          <span style="width: 100%">
+            <h3 style="margin: 3px 0 5px">Cloudspace</h3>
+            <p>
+              Cloudspace, It’s a world atop clouds powered by a physics-defying energy core that also causes a lot of
+              issues called Anomalies. In other words, paranormal ‘glitches’ in Cloudspace that cause havoc. See how
+              the Anomaly Containment
+              & Refinement crew that keep Cloudspace safe with Sirkorgo, Widget,
+              Rabbo, Pip and many others.
+            </p>
           </span>
-          <button class="comicBtn">Read Now</button>
-        </div>
-      </a>
+          <img src="/src/comic/cloudspace/thumb.gif" width="128" height="128" style="border-radius: 10px" />
+        </span>
+        <span style="display: flex; gap: 5px;">
+          <a href="/comics/cloudspace/01">
+            <button class="comicBtn">Read Chapter 1</button>
+          </a>
+          {% assign latest = site.comics | where: "series", "Cloudspace" | sort: "chapter" | last %}
+          <a href="{{ latest.url }}">
+            <button class="comicBtn">Read Latest Chapter <small> — Chapter {{latest.chapter}}</small></button>
+          </a>
+        </span>
+      </div>
 
-      <a href="/comics/meantime/01">
-        <div class="post" style="display: flex; flex-direction: column">
-          <span style="display: flex; gap: 10px">
-            <span style="width: 100%">
-              <h3 style="margin: 3px 0 5px">Sirkorgo! In the Meantime...</h3>
-              <p>
-                See what Sirkorgo and his friends do when they're off the clock! Check out what life is like in
-                Cloudspace, and what it has to offer! (not canon unless i say so)
-              </p>
-            </span>
-            <img src="/src/comic/meantime/thumb.gif" width="128" height="128" style="border-radius: 10px" />
+      <div class="post" style="display: flex; flex-direction: column">
+        <span style="display: flex; gap: 10px">
+          <span style="width: 100%">
+            <h3 style="margin: 3px 0 5px">Sirkorgo! In the Meantime...</h3>
+            <p>
+              See what Sirkorgo and his friends do when they're off the clock! Check out what life is like in
+              Cloudspace, and what it has to offer! (not canon unless i say so)
+            </p>
           </span>
-          <button class="comicBtn">Read Now</button>
-        </div>
-      </a>
+          <img src="/src/comic/meantime/thumb.gif" width="128" height="128" style="border-radius: 10px" />
+        </span>
+        <span style="display: flex; gap: 5px;">
+          <a href="/comics/meantime/01">
+            <button class="comicBtn">Read Chapter 1</button>
+          </a>
+          {% assign latest = site.comics | where: "series", "Sirkorgo! In the Meantime..." | sort: "chapter" | last %}
+          <a href="{{ latest.url }}">
+            <button class="comicBtn">Read Latest Chapter <small> — Chapter {{latest.chapter}}</small></button>
+          </a>
+        </span>
+      </div>
 
     </div>
 
