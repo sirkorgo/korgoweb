@@ -30,6 +30,11 @@
   date: 2025-12-14
 
 - id: 1006
-  title: "Spring Blossoms (sirkorgo.com 2026 Spring Banner)"
+  title: "Spring Blossoms Site Banner"
   image: /src/img/spring-banner.gif
   date: 2026-03-03
+
+- id: 1007
+  title: "Miku Expo 2026 Site Banner"
+  image: /src/img/mikuexpo-banner.png
+  date: 2026-04-03
