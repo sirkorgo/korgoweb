@@ -11,13 +11,19 @@ html {
   --mouse-x: 100px;
   --mouse-y: 100px;
   cursor: url(/src/img/cursor.png), auto;
+  min-height: 100%;
 }
 
 body {
   background: var(--html-bg) !important;
   background-image: none !important;
-  padding-top: 100px;
-  margin: 0 25vw;
+  margin: 0;
+  position: relative;
+}
+
+main {
+  padding-top: 65px;
+  margin: 0 10vw;
 }
 
 /* transitions */
@@ -422,17 +428,12 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    margin-top: 10px;
+    margin-top: 70px;
   }
 
 }
 
 @media (max-width: 800px) {
-  body {
-    margin: 0 15vw;
-  }
-
   .bg-layer {
     -webkit-mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 10%, transparent 300px);
     mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 10%, transparent 300px);
@@ -513,13 +514,6 @@ code {
   .bg-layer {
     -webkit-mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 10%, transparent 200px);
     mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 10%, transparent 200px);
-  }
-}
-
-@media (max-width: 600px) {
-  body {
-    padding-top: 67px !important;
-    margin: 15px !important;
   }
 }
 
