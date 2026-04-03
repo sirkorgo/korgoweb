@@ -10,7 +10,7 @@
 html {
   --mouse-x: 100px;
   --mouse-y: 100px;
-  cursor: url(/src/img/cursor.png), auto;
+  cursor: url(/src/img/cursor.webp), auto;
   min-height: 100%;
 }
 

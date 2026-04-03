@@ -1,32 +1,32 @@
 - id: 1000
   title: "Sirkorgo x Weathergirl (song) Visualization"
-  image: /src/art/weathergirl.png
+  image: /src/art/weathergirl.webp
   date: 2026-1-30
 
 - id: 1001
   title: "Sirkorgo XP Professional Wallpaper"
-  image: /src/art/sirkorgo-xp.png
+  image: /src/art/sirkorgo-xp.webp
   desc: ""
   date: 2025-12-5
 
 - id: 1002
   title: "Widget's Waveforms (Playlist Thumbnail)"
-  image: /src/art/wget-wav.png
+  image: /src/art/wget-wav.webp
   desc: ""
   date: 2025-10-7
 
 - id: 1003
   title: "Sirkorgo Y2K Design"
-  image: /src/art/y2k.png
+  image: /src/art/y2k.webp
   date: 2025-5-10
 
 - id: 1004
   title: "Sirkorgo & Friends Poster #1"
-  image: /src/art/srkgo-friends-poster.png
+  image: /src/art/srkgo-friends-poster.webp
 
 - id: 1005
   title: "Sirkorgo & Friends Poster #2"
-  image: /src/art/nostigala.png
+  image: /src/art/nostigala.webp
   date: 2025-12-14
 
 - id: 1006
