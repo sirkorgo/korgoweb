@@ -1,97 +1,79 @@
 <!doctype html>
 <html id="html" class="{{page.colors}}" lang="en-US">
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back_ios"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward_ios"
-    />
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close"
-    />
-    <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{page.title}} (sirkorgo.com)</title>
-    <link rel="stylesheet" href="/src/css/global.css" />
-    <meta property="og:title" content="sirkorgo.com" />
-    <meta
-      property="og:description"
-      content="Heyo! I'm Sirkorgo. Sirkorgo is my shapeshifting fox OC. This is my website, the home of Sirkorgo and his friends!"
-    />
-    <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
-    <meta
-      property="og:image"
-      content="https://www.sirkorgo.com/src/img/srkgo_meet.png"
-    />
-  </head>
+<head>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back_ios" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward_ios" />
 
-  <body>
-    <div id="overlay">
-      <div id="toolbar">
-        <button class="closeButton" onclick="closeArt()">
-          <span
-            class="material-symbols-outlined"
-            style="text-align: center; font-size: 20px"
-          >
-            &#xe5cd;
-          </span>
-        </button>
-        <p id="title"></p>
-        <span
-          style="
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />
+  <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{page.title}} (sirkorgo.com)</title>
+  <link rel="stylesheet" href="/src/css/global.css" />
+  <meta property="og:title" content="sirkorgo.com" />
+  <meta property="og:description"
+    content="Heyo! I'm Sirkorgo. Sirkorgo is my shapeshifting fox OC. This is my website, the home of Sirkorgo and his friends!" />
+  <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
+  <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
+</head>
+
+<body>
+  <div id="overlay">
+    <div id="toolbar">
+      <button class="closeButton" onclick="closeArt()">
+        <span class="material-symbols-outlined" style="text-align: center; font-size: 20px">
+          &#xe5cd;
+        </span>
+      </button>
+      <p id="title"></p>
+      <span style="
             width: 100%;
             display: flex;
             align-self: stretch;
             align-items: end;
             justify-content: end;
             margin-right: 25px;
-          "
-        >
-          <button class="swap" id="forward" onclick="prevArt()">
-            <span
-              style="font-size: 20px !important; text-align: center"
-              class="material-symbols-outlined"
-            >
-              &#xe5e0;
-            </span>
-          </button>
-          <button class="swap" id="backward" onclick="nextArt()">
-            <span
-              style="font-size: 20px !important; text-align: center"
-              class="material-symbols-outlined"
-            >
-              &#xe5e1;
-            </span>
-          </button>
-        </span>
-      </div>
-      <div id="art-content">
-        <div id="context" class="context"></div>
-      </div>
+          ">
+        <button class="swap" id="forward" onclick="prevArt()">
+          <span style="font-size: 20px !important; text-align: center" class="material-symbols-outlined">
+            &#xe5e0;
+          </span>
+        </button>
+        <button class="swap" id="backward" onclick="nextArt()">
+          <span style="font-size: 20px !important; text-align: center" class="material-symbols-outlined">
+            &#xe5e1;
+          </span>
+        </button>
+      </span>
     </div>
-    <div class="bg-layer"></div>
-    {% include navbar.html %}
+    <div id="art-content">
+      <div id="context" class="context"></div>
+    </div>
+  </div>
+  <div class="bg-layer"></div>
+  {% include navbar.html %}
 
-    <main>
-      <span class="mobileSupportBtn">
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#3076f0', 'T6T61WP8KV');kofiwidget2.draw();</script>
-    </span> 
-      {{ content }} {% include footer.html %}</main>
-    <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+  <main>
+    <span class="mobileSupportBtn">
+      <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+      <script
+        type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#3076f0', 'T6T61WP8KV'); kofiwidget2.draw();</script>
+    </span>
+    {{ content }} {% include footer.html %}
+  </main>
+  <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
 
-    <script>
-      document.addEventListener("mousemove", (e) => {
-        document.body.style.setProperty("--mouse-x", e.clientX + "px");
-        document.body.style.setProperty("--mouse-y", e.clientY + "px");
-      });
-    </script>
-      <script>
+  <script>
+    document.addEventListener("mousemove", (e) => {
+      document.body.style.setProperty("--mouse-x", e.clientX + "px");
+      document.body.style.setProperty("--mouse-y", e.clientY + "px");
+    });
+  </script>
+  <script>
     const box = document.getElementById('box');
     const strength = 16;
 
@@ -103,5 +85,6 @@
       box.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
     });
   </script>
-  </body>
+</body>
+
 </html>
