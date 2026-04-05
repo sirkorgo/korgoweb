@@ -7,12 +7,6 @@ collections:
   art:
     output: true
     permalink: /art/:path/
-  pages:
-    output: true
-    permalink: /:path
-  legal:
-    output: true
-    permalink: /:path
   
   changelogs:
     output: false

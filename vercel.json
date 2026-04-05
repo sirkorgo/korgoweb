@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "script-src 'self' 'unsafe-inline' https://cursor-party.sirkorgo.partykit.dev https://webtiles.kicya.net https://challenges.cloudflare.com https://umm.kicya.net https://storage.ko-fi.com"
+        }
+      ]
+    }
+  ]
+}
