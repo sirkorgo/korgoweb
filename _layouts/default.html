@@ -13,8 +13,9 @@
   </title>
   <link rel="stylesheet" href="/src/css/global.css" />
   <meta property="og:title" content="sirkorgo.com" />
+  <meta name="description" content="Home of Sirkorgo, a shapeshifting corgi, and his friends. Read comics about the world he lives in, Cloudspace, and read blog posts from the creator.">
   <meta property="og:description"
-    content="Heyo! I'm Sirkorgo. Sirkorgo is my shapeshifting fox OC. This is my website, the home of Sirkorgo and his friends!" />
+    content="Home of Sirkorgo, a shapeshifting corgi, and his friends. Read comics about the world he lives in, Cloudspace, and read blog posts from the creator." />
   <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
   <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
 </head>
@@ -32,19 +33,6 @@
     {{ content }}
     {% include footer.html %}
   </main>
-  <script>
-    const box = document.getElementById('box');
-    const strength = 8;
-
-    window.addEventListener('mousemove', (e) => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      const dx = (e.clientX - cx) / cx;
-      const dy = (e.clientY - cy) / cy;
-      box.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
-    });
-  </script>
-  <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
 </body>
 
 </html>

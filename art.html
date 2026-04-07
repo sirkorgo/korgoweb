@@ -15,7 +15,7 @@ colors: canvas
       <div class="grid">
         {% for piece in site.data.art %}
         <div class="thumb" onclick="openArt({{ piece.id }})">
-          <img src="{{ piece.image }}" class="thumb" alt="{{piece.title}}" />
+          <img src="{{ piece.image }}" class="thumb" alt="{{piece.title}}" loading="lazy" decoding="async" />
         </div>
         {% endfor %}
       </div>
@@ -36,8 +36,8 @@ colors: canvas
     </p>
   </div>
   <div id="warn">
-    <img src="/src/img/srkgo-dizzy.webp" width="64px" height="64px" alt="Sirkorgo dizzy" /><span
-      style="padding-top: 6px; padding-left: 8px">
+    <img src="/src/img/srkgo-dizzy.webp" width="64px" height="64px" alt="Sirkorgo dizzy" loading="lazy"
+      decoding="async" /><span style="padding-top: 6px; padding-left: 8px">
       <p>
         Sorry! Korgosketch isn't available on smaller screens. there is NO. WAY.
         your screen is THIS small.
@@ -55,7 +55,7 @@ colors: canvas
       function openArt(id) {
         const piece = art.find(p => p.id === id);
         document.getElementById('title').innerHTML = `${piece.title}`;
-        document.getElementById('art-content').innerHTML = `<img src="${piece.image}" alt="${piece.title}">`;
+        document.getElementById('art-content').innerHTML = `<img loading="lazy" decoding="async" src="${piece.image}" alt="${piece.title}">`;
         const overlay = document.getElementById('overlay');
         overlay.style.display = 'block';
         setTimeout(() => overlay.classList.add('active'), 10);

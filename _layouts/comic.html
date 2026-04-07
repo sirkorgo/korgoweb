@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="/src/css/global.css" />
   <link rel="stylesheet" href="/src/css/post.css" />
   <title>{{ page.title | default: "sirkorgo.com" }}</title>
+  <meta name="description" content="{{ page.title }}, a comic on sirkorgo.com">
   <meta property="og:title" content="{{ page.title }} on sirkorgo.com" />
-  <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 150 }}" />
+  <meta property="og:description" content="{{ page.title }}, a comic on sirkorgo.com" />
   <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
   <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
 </head>
