@@ -155,17 +155,19 @@
 
   </script>
   <script>
+    const site = location.hostname.replace(/^www\./, '');
+
     fetch('https://stats.sirkorgo.com/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        site: location.hostname,
+        site,
         page: location.pathname,
         referrer: document.referrer
       })
     });
 
-    fetch('https://stats.sirkorgo.com/count?site=' + location.hostname)
+    fetch('https://stats.sirkorgo.com/count?site=' + site)
       .then(r => r.json())
       .then(d => document.getElementById('visitors').innerHTML = '# ' + d.count);
   </script>
