@@ -38,7 +38,9 @@
       <button id="btn" class="themeToggle" onclick="setTheme()">
         <img src="/src/img/light.svg" alt="Theme Toggle" />
       </button>
-      <p style="margin: 0px 0px 0px 0px" id="online">🟡 ⋯</p>
+      <p style="margin: 0px 0px 0px 0px" id="online">🟡</p>
+      <p style="margin: 0px 0px 0px 0px">•</p>
+      <p style="margin: 0px 0px 0px 0px" id="visitors">#⋯</p>
     </div>
 
     <div style="padding: 3px 10px 3px 10px">
@@ -151,5 +153,21 @@
       }
     });
 
+  </script>
+  <script>
+    fetch('https://stats.sirkorgo.com/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        site: location.hostname,
+        page: location.pathname,
+        referrer: document.referrer
+      })
+    });
+  </script>
+  <script>
+    fetch('https://stats.sirkorgo.com/count')
+      .then(r => r.json())
+      .then(d => document.getElementById('visitors').innerHTML = "# " + d.count);
   </script>
 </div>
