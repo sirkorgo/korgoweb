@@ -8,6 +8,11 @@ backend:
 
 media_folder: "src/assets/"
 publish_mode: editorial_workflow
+site_url: https://www.sirkorgo.com
+display_url: https://sirkorgo.com
+logo:
+    src: /src/img/everyone.webp
+    show_in_header: true
 
 collections:
   - name: "blog"
@@ -30,9 +35,9 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Series", name: "series", widget: "string"}
       - { label: "Chapter", name: "chapter", widget: "string"}
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
       - { label: "Layout", name: "layout", widget: "string", default: "comic" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
   - name: "meantime"
     label: "Sirkorgo! In the Meantime..."
     folder: "_comics/meantime"
@@ -42,6 +47,6 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Series", name: "series", widget: "string"}
       - { label: "Chapter", name: "chapter", widget: "string"}
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
       - { label: "Layout", name: "layout", widget: "string", default: "comic" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
