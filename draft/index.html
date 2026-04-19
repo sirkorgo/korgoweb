@@ -14,7 +14,17 @@ sitemap: false
 
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>window.CMS_CONFIG_PATH = '/draft/config.yml';</script>
+  <script>
+    window.CMS_CONFIG_PATH = '/draft/config.yml';
+    CMS.registerAdditionalLink({
+      id: 'analytics',
+      title: 'Analytics',
+      data: 'https://stats.sirkorgo.com',
+      options: {
+        icon: 'chart',
+      }
+    });
+  </script>
 </body>
 
 </html>
