@@ -164,10 +164,9 @@
         referrer: document.referrer
       })
     });
-  </script>
-  <script>
-    fetch('https://stats.sirkorgo.com/count')
+
+    fetch('https://stats.sirkorgo.com/count?site=' + location.hostname)
       .then(r => r.json())
-      .then(d => document.getElementById('visitors').innerHTML = "# " + d.count);
+      .then(d => document.getElementById('visitors').innerHTML = '# ' + d.count);
   </script>
 </div>
