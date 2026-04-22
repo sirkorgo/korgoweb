@@ -38,3 +38,8 @@
   title: "Miku Expo 2026 Site Banner"
   image: /src/img/mikuexpo-banner.png
   date: 2026-04-03
+
+- id: 1008
+  title: "The Sirkorgo & Friends Remix"
+  image: /src/art/srkgo-friends-remix.webp
+  date: 2026-04-20
