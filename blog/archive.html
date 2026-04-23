@@ -1,0 +1,41 @@
+---
+layout: default
+title: "Blog Archive"
+colors: blog
+---
+
+{% assign postsByYear = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" %}
+<span class="heading"><h1 style="margin: 0; min-width: fit-content;">Blog Archives</h1><a href="/blog" style="width: 100%; display: flex; justify-content: flex-end;"><button class="generic-btn">← Go Back</button></a></span>
+<div class="shelf">
+{% for month in postsByYear %}
+  <h3 style="margin-bottom: 10px; margin-top: 0; padding-bottom: 5px; border-bottom: solid 1px grey;">{{ month.items.first.date | date: "%b %Y" }}</h3>
+  <div class="archiveShelf">
+    {% for post in month.items %}
+            <div class="post">
+        <a class="" href="{{ post.url }}">
+          <div style="display: flex; flex-direction: row-reverse; align-items: center; gap: 10px;">
+            <span>
+              <p style="margin-bottom: 0px">
+                {{ post.date | date: "%b %-d, %Y" }}
+              </p>
+              {{post.title}}
+              <p style="margin-top: 5px">{{ post.excerpt | truncatewords: 30 }}</p>
+            </span>
+            {% assign first_image = post.content | split: '<img ' | slice: 1 |
+            first | split: 'src="' | slice: 1 | first | split: '"' | first %} {%
+            if first_image %}
+            <img
+              src="{{ first_image }}"
+              alt="{{ post.title }}"
+              loading="lazy" 
+              decoding="async"
+              style="width: 100px; height: 100px; object-fit: cover"
+            />
+            {% endif %}
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+      </div>
+{% endfor %}
+</div>

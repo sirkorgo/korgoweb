@@ -73,14 +73,59 @@ body {
   }
 }
 @media (max-width: 670px) {
+  .post-header {
+    flex-wrap: wrap;
+  }
+
   .pageContainer,
   .page {
     min-width: 0;
     margin: 5px;
   }
 
+  .postTitle {
+    white-space: normal !important;
+    word-break: break-word;
+    flex: 1;
+  }
+
+  .postDate {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+
+
   .comicContent img {
     width: 100%;
     height: 100%;
   }
+}
+
+.archiveShelf {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.postTitle {
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.postDate {
+  margin-bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
