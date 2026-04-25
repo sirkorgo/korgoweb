@@ -1,5 +1,5 @@
 /* imports */
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Cabin:ital,wght@0,400..700;1,400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 @import url(/src/css/colors.css);
 @import url(/src/css/post.css);
 
@@ -121,14 +121,14 @@ body > *:not(.navContainer) {
 
 /* typography */
 h1 {
-  font-family: "Outfit";
+  font-family: "Cabin Condensed";
   font-weight: 800;
   font-size: 30px;
   color: var(--font);
 }
 
 h2 {
-  font-family: "Outfit";
+  font-family: "Cabin Condensed";
   font-weight: 800;
   font-size: 25px;
   color: var(--font);
@@ -136,7 +136,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Outfit";
+  font-family: "Cabin Condensed";
   font-weight: 600;
   font-size: 20px;
   color: var(--font);
@@ -331,7 +331,7 @@ code {
 }
 
 .comicBtn {
-  font-family: "Google Sans", sans-serif !important;
+  font-family: "Cabin", sans-serif !important;
   display: flex;
   width: fit-content;
   height: fit-content;
