@@ -1,13 +1,13 @@
 /* page accent colors */
-html.blog      { --accent: #479878; }
-html.canvas    { --accent: #ff4e65; }
-html.comics    { --accent: #c081ff; }
-html.index     { --accent: #005dff; }
-html.guestbook { --accent: #ff8630; }
+html.blog      { --accent: #479878; --accent-bg-light: #d1ffed; --accent-bg-dark: #132f24;}
+html.canvas    { --accent: #ff4e65; --accent-bg-light: #ffd1d1; --accent-bg-dark: #2f1313;}
+html.comics    { --accent: #c081ff; --accent-bg-light: #d1c0fb; --accent-bg-dark: #2a1843;}
+html.index     { --accent: #005dff; --accent-bg-light: #b5caff; --accent-bg-dark: #13192f;}
+html.guestbook { --accent: #ff8630; --accent-bg-light: #ffe5d1; --accent-bg-dark: #422816;}
 
 /* light theme */
 html.light {
-  --html-bg:          #eaeaea;
+  --html-bg:          var(--accent-bg-light);
   --font:             #000000;
   --content-bg:       rgba(255, 255, 255, 0.5);
   --content-bg-hover: rgba(255, 255, 255, 0.75);
@@ -21,7 +21,7 @@ html.light {
 
 /* dark theme */
 html.dark {
-  --html-bg:          #1b1b1b;
+  --html-bg:          var(--accent-bg-dark);
   --font:             #ffffff;
   --content-bg:       rgba(82, 82, 82, 0.19);
   --content-bg-hover: rgba(255, 255, 255, 0.145);
