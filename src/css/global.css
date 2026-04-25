@@ -507,6 +507,9 @@ code {
     transition: max-height 0.3s ease;
     margin-top: 0;
     padding: 0;
+    background: none;
+    backdrop-filter: none;
+    border-radius: 0;
   }
 
   .navItems.active {
