@@ -13,7 +13,7 @@ colors: default
 {% endfor %}
 </ul>
 
-<h2>Posts</h2>
+<h2>Blog Posts</h2>
 <ul>
 {% for post in site.posts %}
   <li><a href="{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%b %d, %Y" }}</li>
@@ -21,11 +21,15 @@ colors: default
 </ul>
 
 <h2>Comics</h2>
-<ul>
-{% for post in site.comics %}
-  <li><a href="{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%b %d, %Y" }}</li>
+{% assign by_series = site.comics | group_by: "series" %}
+{% for series in by_series %}
+  <h3>{{ series.name }}</h3>
+  <ul>
+  {% for comic in series.items %}
+    <li><a href="{{ comic.url }}">{{ comic.title }}</a> — {{ comic.date | date: "%b %d, %Y" }}</li>
+  {% endfor %}
+  </ul>
 {% endfor %}
-</ul>
 
 <h2>Artworks</h2>
 <ul>
