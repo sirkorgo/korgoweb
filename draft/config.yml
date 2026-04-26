@@ -20,7 +20,6 @@ collections:
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-01"
-    media_folder: "/src/assets"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Layout", name: "layout", widget: "string", default: "post" }
@@ -32,7 +31,6 @@ collections:
     folder: "_comics/cloudspace"
     create: true
     slug: "{{fields.chapter}}"
-    media_folder: "/src/comic/cloudspace"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Series", name: "series", widget: "string"}
