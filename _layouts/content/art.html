@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/src/css/post.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{{ page.excerpt | strip_html | truncate: 150 }}" />
-    <meta property="og:title" content="A post about {{ page.title }} on sirkorgo.com" />
+    <meta property="og:title" content="An artwork by sirkorgo: {{page.title}}" />
     <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 150 }}" />
     <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
-    <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
+    <meta property="og:image" content="{{page.image}}" />
 
     <style>
       .artPage {

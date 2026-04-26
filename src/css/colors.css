@@ -117,7 +117,7 @@ html.dark {
   min-width: 80px;
 }
 .about-nav:hover {
-  background: rgba(0, 128, 213, 0.5);
+  background: rgba(0, 115, 255, 0.75);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
@@ -132,7 +132,7 @@ html.dark {
   min-width: 80px;
 }
 .guestbook-nav:hover {
-  background: rgba(255, 92, 22, 0.5);
+  background: rgba(255, 77, 0, 0.75);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
@@ -147,7 +147,7 @@ html.dark {
   min-width: 80px;
 }
 .comics-nav:hover {
-  background: rgba(149, 43, 255, 0.7);
+  background: rgba(149, 43, 255, 0.75);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
@@ -162,7 +162,7 @@ html.dark {
   min-width: 80px;
 }
 .blog-nav:hover {
-  background: rgba(11, 158, 97, 0.5);
+  background: rgba(14, 165, 102, 0.75);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
@@ -177,7 +177,7 @@ html.dark {
   min-width: 80px;
 }
 .canvas-nav:hover {
-  background: rgba(255, 78, 101, 0.5);
+  background: rgba(255, 22, 53, 0.75);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: white;

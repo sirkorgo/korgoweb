@@ -12,10 +12,12 @@
     {% endif %}
   </title>
   <link rel="stylesheet" href="/src/css/global.css" />
+
+  {% assign desc = page.desc | default: "Home of Sirkorgo, a shapeshifting corgi, and his friends. Read comics about the world he lives in, Cloudspace, and read blog posts from the creator." %}
+
   <meta property="og:title" content="sirkorgo.com" />
-  <meta name="description" content="Home of Sirkorgo, a shapeshifting corgi, and his friends. Read comics about the world he lives in, Cloudspace, and read blog posts from the creator.">
-  <meta property="og:description"
-    content="Home of Sirkorgo, a shapeshifting corgi, and his friends. Read comics about the world he lives in, Cloudspace, and read blog posts from the creator." />
+  <meta name="description" content="{{ desc }}" />
+  <meta property="og:description" content="{{ desc }}" />
   <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
   <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
 </head>
