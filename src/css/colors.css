@@ -4,6 +4,7 @@ html.canvas    { --accent: #ff4e65; --accent-bg-light: #ffd1d1; --accent-bg-dark
 html.comics    { --accent: #c081ff; --accent-bg-light: #d1c0fb; --accent-bg-dark: #2a1843;}
 html.index     { --accent: #005dff; --accent-bg-light: #b5caff; --accent-bg-dark: #13192f;}
 html.guestbook { --accent: #ff8630; --accent-bg-light: #ffe5d1; --accent-bg-dark: #422816;}
+html.fourofour {--accent-bg-light: #eaeaea; --accent-bg-dark: #131313;}
 
 /* light theme */
 html.light {
@@ -12,7 +13,7 @@ html.light {
   --content-bg:       rgba(255, 255, 255, 0.5);
   --content-bg-hover: rgba(255, 255, 255, 0.75);
   --html-img:         url(/src/img/bg.webp);
-  --nav-bg:           rgba(234, 234, 234, 0.5);
+  --nav-bg:           rgba(255, 255, 255, 0.5);
   --page-bg:          #ffffff;
   --btn-bg:           linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
   --btn-border:       1px solid #a9a9a9;
@@ -26,7 +27,7 @@ html.dark {
   --content-bg:       rgba(82, 82, 82, 0.19);
   --content-bg-hover: rgba(255, 255, 255, 0.145);
   --html-img:         url(/src/img/bg-dark.webp);
-  --nav-bg:           rgba(27, 27, 27, 0.5);
+  --nav-bg:           rgba(27, 27, 27, 0.3);
   --page-bg:          #000000;
   --btn-bg:           linear-gradient(180deg, #444 0%, #000 100%);
   --btn-border:       1px solid #2e2e2e;
