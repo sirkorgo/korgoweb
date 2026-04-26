@@ -7,7 +7,6 @@ collections:
   art:
     output: true
     permalink: /art/:path/
-  
   changelogs:
     output: false
 
@@ -16,4 +15,3 @@ plugins:
 
 include:
   - draft/config.yml
-

@@ -1,0 +1,91 @@
+<!doctype html>
+<html id="html" class="default">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/src/img/favicon.ico" />
+    <meta charset="utf-8" />
+    <title>{{ page.title | default: "sirkorgo.com" }}</title>
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/post.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 150 }}" />
+    <meta property="og:title" content="A post about {{ page.title }} on sirkorgo.com" />
+    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 150 }}" />
+    <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
+    <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
+
+    <style>
+      .artPage {
+        text-align: right; display: flex; width: 100%; justify-content: center;
+      }
+
+      @media (max-width: 670px) {
+        .artPage {flex-direction: column; align-items: center; text-align: center; }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include navbar.html %}
+    <span class="mobileSupportBtn">
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+      <script type="text/javascript">
+        kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
+        kofiwidget2.draw();
+      </script>
+    </span>
+
+    {% assign all_art = site.art | sort: "date" %}
+    {% for piece in all_art %}
+      {% if piece.url == page.url %}
+        {% assign current = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+    {% assign prev_index = current | minus: 1 %}
+    {% assign next_index = current | plus: 1 %}
+
+    {% if prev_index < 0 %}
+      {% assign prev = all_art.last %}
+    {% else %}
+      {% assign prev = all_art[prev_index] %}
+    {% endif %}
+
+    {% assign next = all_art[next_index] %}
+    {% unless next %}
+      {% assign next = all_art.first %}
+    {% endunless %}
+
+    <div class="page" style="min-height: fit-content;">
+      <section class="pageHeader">
+        <a href="/art"><button class="generic-btn">← Go Back</button></a>
+        <p><b>{{page.title}}</b></p>
+        <span style="display: flex; gap: 0;">
+          <a href="{{ prev.url }}" style="margin-left: 5px;">
+            <button style="border-radius: 4px 0px 0px 4px !important; border-right: none;" class="generic-btn">←</button>
+          </a>
+          <a href="{{ next.url }}">
+            <button style="border-radius: 0px 4px 4px 0px !important; border-left: none;" class="generic-btn">→</button>
+          </a>
+        </span>
+      </section>
+      <hr />
+      <section class="artPage">
+        <div id="art-content">
+          <img src="{{ page.image }}" />
+        </div>
+        <span style="display: flex; flex-direction: row; justify-content: flex-end; align-items: top; min-width: 25%;">
+          <span>
+            <h2>{{page.title}}</h2>
+            <p>Created on {{ page.date | date: "%b %-d, %Y" }}</p>
+            <br>
+            {{ content }}
+          </span>
+        </span>
+      </section>
+    </div>
+
+    <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+    {% include footer.html %}
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8562550888898510" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,37 +1,60 @@
 /* page accent colors */
-html.blog      { --accent: #479878; --accent-bg-light: #d1ffed; --accent-bg-dark: #132f24;}
-html.canvas    { --accent: #ff4e65; --accent-bg-light: #ffd1d1; --accent-bg-dark: #2f1313;}
-html.comics    { --accent: #c081ff; --accent-bg-light: #d1c0fb; --accent-bg-dark: #2a1843;}
-html.index     { --accent: #005dff; --accent-bg-light: #b5caff; --accent-bg-dark: #13192f;}
-html.guestbook { --accent: #ff8630; --accent-bg-light: #ffe5d1; --accent-bg-dark: #422816;}
-html.fourofour {--accent-bg-light: #eaeaea; --accent-bg-dark: #131313;}
+html.blog {
+  --accent: #479878;
+  --accent-bg-light: #d1ffed;
+  --accent-bg-dark: #132f24;
+}
+html.canvas {
+  --accent: #ff4e65;
+  --accent-bg-light: #ffd1d1;
+  --accent-bg-dark: #2f1313;
+}
+html.comics {
+  --accent: #c081ff;
+  --accent-bg-light: #d1c0fb;
+  --accent-bg-dark: #2a1843;
+}
+html.index {
+  --accent: #005dff;
+  --accent-bg-light: #b5caff;
+  --accent-bg-dark: #13192f;
+}
+html.guestbook {
+  --accent: #ff8630;
+  --accent-bg-light: #ffe5d1;
+  --accent-bg-dark: #422816;
+}
+html.default {
+  --accent-bg-light: #eaeaea;
+  --accent-bg-dark: #131313;
+}
 
 /* light theme */
 html.light {
-  --html-bg:          var(--accent-bg-light);
-  --font:             #000000;
-  --content-bg:       rgba(255, 255, 255, 0.5);
+  --html-bg: var(--accent-bg-light);
+  --font: #000000;
+  --content-bg: rgba(255, 255, 255, 0.5);
   --content-bg-hover: rgba(255, 255, 255, 0.75);
-  --html-img:         url(/src/img/bg.webp);
-  --nav-bg:           rgba(255, 255, 255, 0.5);
-  --page-bg:          #ffffff;
-  --btn-bg:           linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
-  --btn-border:       1px solid #a9a9a9;
-  --link:             #0869fa;
+  --html-img: url(/src/img/bg.webp);
+  --nav-bg: rgba(255, 255, 255, 0.5);
+  --page-bg: #ffffff;
+  --btn-bg: linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
+  --btn-border: 1px solid #a9a9a9;
+  --link: #0869fa;
 }
 
 /* dark theme */
 html.dark {
-  --html-bg:          var(--accent-bg-dark);
-  --font:             #ffffff;
-  --content-bg:       rgba(82, 82, 82, 0.19);
+  --html-bg: var(--accent-bg-dark);
+  --font: #ffffff;
+  --content-bg: rgba(82, 82, 82, 0.19);
   --content-bg-hover: rgba(255, 255, 255, 0.145);
-  --html-img:         url(/src/img/bg-dark.webp);
-  --nav-bg:           rgba(27, 27, 27, 0.3);
-  --page-bg:          #000000;
-  --btn-bg:           linear-gradient(180deg, #444 0%, #000 100%);
-  --btn-border:       1px solid #2e2e2e;
-  --link:             #a4d6ff;
+  --html-img: url(/src/img/bg-dark.webp);
+  --nav-bg: rgba(27, 27, 27, 0.3);
+  --page-bg: #000000;
+  --btn-bg: linear-gradient(180deg, #444 0%, #000 100%);
+  --btn-border: 1px solid #2e2e2e;
+  --link: #a4d6ff;
 }
 
 /* index nav */
@@ -49,25 +72,38 @@ html.dark {
 }
 
 @keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .index-nav.active {
   width: fit-content;
   display: block;
-  background: linear-gradient(90deg, 
-    rgba(0, 93, 255, 0.80) 11.9%, 
-    rgba(46, 178, 126, 0.80) 35.39%, 
-    rgba(255, 78, 101, 0.80) 71.2%, 
-    rgba(167, 84, 250, 0.80) 97.55%
+  background: linear-gradient(
+    90deg,
+    rgba(0, 93, 255, 0.8) 11.9%,
+    rgba(46, 178, 126, 0.8) 35.39%,
+    rgba(255, 78, 101, 0.8) 71.2%,
+    rgba(167, 84, 250, 0.8) 97.55%
   );
   background-size: 200% 200%;
   animation: gradientShift 20s ease infinite;
 }
 .index-nav:hover {
-  background: linear-gradient(90deg, rgba(0, 93, 255, 0.50) 11.9%, rgba(46, 178, 126, 0.50) 35.39%, rgba(255, 78, 101, 0.50) 71.2%, rgba(167, 84, 250, 0.50) 97.55%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 93, 255, 0.5) 11.9%,
+    rgba(46, 178, 126, 0.5) 35.39%,
+    rgba(255, 78, 101, 0.5) 71.2%,
+    rgba(167, 84, 250, 0.5) 97.55%
+  );
   animation: gradientShift 20s ease infinite;
 }
 

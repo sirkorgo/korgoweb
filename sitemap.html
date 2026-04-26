@@ -1,6 +1,7 @@
 ---
 sitemap: false
 layout: default
+colors: default
 ---
 <h1>Sitemap</h1>
 <h2>Pages</h2>
@@ -23,5 +24,12 @@ layout: default
 <ul>
 {% for post in site.comics %}
   <li><a href="{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%b %d, %Y" }}</li>
+{% endfor %}
+</ul>
+
+<h2>Artworks</h2>
+<ul>
+{% for art in site.art %}
+  <li><a href="{{ art.url }}">{{ art.title }}</a> — {{ art.date | date: "%b %d, %Y" }}</li>
 {% endfor %}
 </ul>
