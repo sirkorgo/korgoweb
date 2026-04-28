@@ -17,7 +17,7 @@ plugins:
   - jekyll-feed
 
 feed:
-  path: "/rss.xml"
+  path: "/blog/rss.xml"
   excerpt_only: true
   collections:
     comics:
