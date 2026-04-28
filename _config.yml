@@ -13,6 +13,15 @@ collections:
 
 plugins:
   - jekyll-sitemap
+  - jekyll-feed
+
+feed:
+  path: "/blog/rss.xml"
+  collections:
+    comics:
+      path: "/comics/rss.xml"
+    art:
+      path: "/art/rss.xml"
 
 include:
   - draft/config.yml
