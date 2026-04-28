@@ -16,8 +16,8 @@ plugins:
   - jekyll-feed
 
 feed:
-  path: "/blog/rss.xml"
-  title: "Blog posts on sirkorgo.com"
+  path: "/rss.xml"
+  title: "sirkorgo.com"
   excerpt_only: true
   collections:
     comics:
