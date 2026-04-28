@@ -1,4 +1,5 @@
 url: "https://www.sirkorgo.com"
+title: "sirkorgo.com"
 permalink: pretty
 
 collections:
@@ -17,16 +18,13 @@ plugins:
 
 feed:
   path: "/rss.xml"
-  title: "sirkorgo.com"
   excerpt_only: true
   collections:
     comics:
       path: "/comics/rss.xml"
-      title: "Comics on sirkorgo.com"
       excerpt_only: true
     art:
       path: "/art/rss.xml"
-      title: "Artworks on sirkorgo.com"
       excerpt_only: true
 
 include:
