@@ -17,11 +17,17 @@ plugins:
 
 feed:
   path: "/blog/rss.xml"
+  title: "Blog posts on sirkorgo.com"
+  excerpt_only: true
   collections:
     comics:
       path: "/comics/rss.xml"
+      title: "Comics on sirkorgo.com"
+      excerpt_only: true
     art:
       path: "/art/rss.xml"
+      title: "Artworks on sirkorgo.com"
+      excerpt_only: true
 
 include:
   - draft/config.yml
