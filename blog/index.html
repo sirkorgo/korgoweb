@@ -6,7 +6,7 @@ colors: blog
 
 <div class="container pulse">
   <div class="content">
-    <span class="heading"><h1 style="text-align: left; margin: 0;">Blog</h1><a href="/blog/archive" style="width: 100%; display: flex; justify-content: flex-end;"><button class="generic-btn">View Archives</button></a></span>
+    <span class="heading"><h1 style="text-align: left; margin: 0;">Blog</h1><span style="display: flex; width: 100%; justify-content: flex-end; gap: 5px;"><a href="https://blogtrottr.com/?subscribe=https://www.sirkorgo.com/blog/rss.xml"><button class="generic-btn">Subscribe</button></a><a href="/blog/archive"><button class="generic-btn">View Archives</button></a></span></span>
     <section class="shelf">
       {% for post in site.posts limit:4 %}
           <div class="blogpost">
