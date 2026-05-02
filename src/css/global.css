@@ -515,6 +515,11 @@ code {
 }
 
 @media (max-width: 670px) {
+
+  .artSidebar {
+    max-width: none;
+  }
+
   .navContainer {
     height: auto;
     margin-top: 15px;
@@ -672,4 +677,9 @@ code {
   max-height: 80vh;
   object-fit: contain;
   border-radius: 15px;
+}
+
+
+.artSidebar {
+  display: flex; flex-direction: row; justify-content: flex-end; align-items: top; max-width: 25%;
 }

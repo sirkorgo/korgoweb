@@ -11,8 +11,8 @@ publish_mode: editorial_workflow
 site_url: https://www.sirkorgo.com
 display_url: https://sirkorgo.com
 logo:
-    src: /src/img/everyone.webp
-    show_in_header: true
+  src: /src/img/everyone.webp
+  show_in_header: true
 
 collections:
   - name: "art"
@@ -22,10 +22,21 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-01"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "string", default: "content/art" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "string",
+          default: "content/art",
+        }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+        }
       - { label: "Description", name: "body", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "string"}
+      - { label: "Image", name: "image", widget: "string" }
   - name: "blog"
     label: "Blog"
     folder: "_posts"
@@ -33,9 +44,25 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-01"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "string", default: "content/art" }
-      - { label: "Author", name: "author", widget: "string", default: "sirkorgo" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "string",
+          default: "content/blog",
+        }
+      - {
+          label: "Author",
+          name: "author",
+          widget: "string",
+          default: "sirkorgo",
+        }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+        }
       - { label: "Body", name: "body", widget: "markdown" }
   - name: "cloudspace"
     label: "Cloudspace"
@@ -44,10 +71,26 @@ collections:
     slug: "{{fields.chapter}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Series", name: "series", widget: "string", default: "Cloudspace"}
-      - { label: "Chapter", name: "chapter", widget: "string"}
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - { label: "Layout", name: "layout", widget: "string", default: "content/comic" }
+      - {
+          label: "Series",
+          name: "series",
+          widget: "string",
+          default: "Cloudspace",
+        }
+      - { label: "Chapter", name: "chapter", widget: "string" }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+        }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "string",
+          default: "content/comic",
+        }
       - { label: "Body", name: "body", widget: "markdown" }
   - name: "meantime"
     label: "Sirkorgo! In the Meantime..."
@@ -56,8 +99,24 @@ collections:
     slug: "{{fields.chapter}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Series", name: "series", widget: "string", default: "Sirkorgo! In the Meantime..."}
-      - { label: "Chapter", name: "chapter", widget: "string"}
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - { label: "Layout", name: "layout", widget: "string", default: "content/comic" }
+      - {
+          label: "Series",
+          name: "series",
+          widget: "string",
+          default: "Sirkorgo! In the Meantime...",
+        }
+      - { label: "Chapter", name: "chapter", widget: "string" }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+        }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "string",
+          default: "content/comic",
+        }
       - { label: "Body", name: "body", widget: "markdown" }

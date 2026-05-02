@@ -68,11 +68,11 @@
         </span>
       </section>
       <hr />
-      <section class="artPage">
+      <section class="artPage" style="gap: 15px;">
         <div id="art-content">
           <img src="{{ page.image }}" />
         </div>
-        <span style="display: flex; flex-direction: row; justify-content: flex-end; align-items: top; min-width: 25%;">
+        <span class="sidebar">
           <span>
             <h2>{{page.title}}</h2>
             <p>Created on {{ page.date | date: "%b %-d, %Y" }}</p>
