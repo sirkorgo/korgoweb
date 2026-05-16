@@ -11,9 +11,7 @@ colors: index
 
 <div class="container">
   {% include banner.html %}
-  {% include marquee.html %}
   {% include changelog.html %}
-  
   <h3>Add my Button!</h3>
   <span style="text-align: center;">
   <a href="https://www.sirkorgo.com" target="_blank">
@@ -22,6 +20,8 @@ colors: index
   <code>&lt;a href="https://www.sirkorgo.com" target="_blank"&gt;&lt;img
           src="https://www.sirkorgo.com/src/img/bumper.gif"&gt;&lt;/a&gt;</code>
   </span>
+  <br style="margin-bottom: 10px;">
+  {% include marquee.html %}
   <span style="display: flex; gap: 5px; justify-content: center; align-items: center; margin-top: 15px;">
     <!-- <iframe src="https://webtiles.kicya.net/e/www.sirkorgo.com" width="250" height="250" frameborder="0"></iframe> -->
     <iframe style="height: 270px; border: none; width: 250px"
