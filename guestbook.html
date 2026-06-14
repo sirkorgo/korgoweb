@@ -24,13 +24,14 @@ desc: "Sign the guestbook!"
     try {
       const res = await fetch('/api/guestbook');
       const { blocked } = await res.json();
-      if (blocked) {
+      if (true) { // forcing blocked message to test
         document.getElementById('guestbook-wrapper').innerHTML = `
-          <p style="text-align:center;">⛔ You've been blocked from signing this guestbook.</p>
+          <p style="text-align:center;">Something went wrong. Please try again later.</p>
         `;
       }
     } catch (e) {
-      console.log(e);
+      console.log('error:', e);
     }
   });
 </script>
+
