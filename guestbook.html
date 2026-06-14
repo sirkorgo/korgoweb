@@ -8,30 +8,35 @@ desc: "Sign the guestbook!"
 <div class="container pulse">
   <div class="content">
     <span class="heading"><h1 style="text-align: left; margin: 0;">Guestbook</h1></span>
-    <div id="guestbook-wrapper">
-      <iframe
-        src="https://sirkorgo.atabook.org"
-        width="100%"
-        height="700px"
-        style="border: none; border-radius: 15px"
-      ></iframe>
-    </div>
+    <div id="guestbook-wrapper"></div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', async function() {
-    try {
-      const res = await fetch('/api/guestbook');
-      const { blocked } = await res.json();
-      if (blocked) { // forcing blocked message to test
-        document.getElementById('guestbook-wrapper').innerHTML = `
-          <p style="text-align:center;">Something went wrong. Please try again later.</p>
-        `;
+  async function getSocialService(service) {
+    if (service === 'guestbook') {
+      try {
+        const res = await fetch('/api/socialServices');
+        const { blocked } = await res.json();
+        if (blocked) {
+          document.getElementById('guestbook-wrapper').innerHTML = `
+            <p style="text-align:center;">⛔ You've been blocked from signing this guestbook.</p>
+          `;
+        } else {
+          document.getElementById('guestbook-wrapper').innerHTML = `
+            <iframe
+              src="https://sirkorgo.atabook.org"
+              width="100%"
+              height="700px"
+              style="border: none; border-radius: 15px"
+            ></iframe>
+          `;
+        }
+      } catch (e) {
+        console.log('socialServices error:', e);
       }
-    } catch (e) {
-      console.log('error:', e);
     }
-  });
-</script>
+  }
 
+  document.addEventListener('DOMContentLoaded', () => getSocialService('guestbook'));
+</script>
