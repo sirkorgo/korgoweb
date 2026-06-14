@@ -16,11 +16,17 @@ desc: "Sign the guestbook!"
   async function getSocialService(service) {
     if (service === 'guestbook') {
       try {
-        const res = await fetch('/api/socialServices');
+        const res = await fetch('https://www.sirkorgo.com/api/socialServices');
         const { blocked } = await res.json();
         if (blocked) {
           document.getElementById('guestbook-wrapper').innerHTML = `
-            <p style="text-align:center;">⛔ You've been blocked from signing this guestbook.</p>
+            <span style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="/src/img/wget-dead.webp" width="200px" height="200px">
+  <span style="max-width: 50% ;">
+    <h2>Service Unavailable</h2>
+    <p><b>You can't sign the guestbook right now. </b>Unfortunately, someone on your current network was misusing the guestbook, resulting in a permanent IP ban.<br>To appeal this ban, please contact sirkorgo from the About page.</p>
+  </span>
+</span>
           `;
         } else {
           document.getElementById('guestbook-wrapper').innerHTML = `
