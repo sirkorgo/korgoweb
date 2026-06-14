@@ -1,4 +1,4 @@
-const BLOCKED_IPS = [];
+const BLOCKED_IPS = ['76.176.19.211'];
 
 export default function handler(req, res) {
   const forwarded = req.headers['x-forwarded-for'];
