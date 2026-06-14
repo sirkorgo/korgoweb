@@ -20,16 +20,17 @@ desc: "Sign the guestbook!"
 </div>
 
 <script>
-  async function checkBlocked() {
+  document.addEventListener('DOMContentLoaded', async function() {
     try {
-      const res = await fetch('/api/check-guestbook');
+      const res = await fetch('/api/guestbook');
       const { blocked } = await res.json();
       if (blocked) {
         document.getElementById('guestbook-wrapper').innerHTML = `
           <p style="text-align:center;">⛔ You've been blocked from signing this guestbook.</p>
         `;
       }
-    } catch (e) {}
-  }
-  checkBlocked();
+    } catch (e) {
+      console.log(e);
+    }
+  });
 </script>
