@@ -41,6 +41,8 @@ html.light {
   --btn-bg: linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
   --btn-border: 1px solid #a9a9a9;
   --link: #0869fa;
+
+  --alt-bg: #f9f9f9;
 }
 
 /* dark theme */
@@ -55,6 +57,7 @@ html.dark {
   --btn-bg: linear-gradient(180deg, #444 0%, #000 100%);
   --btn-border: 1px solid #2e2e2e;
   --link: #a4d6ff;
+  --alt-bg: #171717;
 }
 
 /* index nav */
