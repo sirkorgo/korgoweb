@@ -1,67 +1,56 @@
 import { neon } from '@neondatabase/serverless';
-import { BLOCKED_IPS } from './blacklist.js';
+import { BLOCKED_IP_HASHES } from './blacklist.js';
+import crypto from 'crypto';
+
+// Hash function to anonymize the incoming client IP
+function hashIP(ip) {
+  const salt = process.env.IP_SALT || 'fallback-local-salt-string';
+  return crypto
+    .createHmac('sha256', salt)
+    .update(ip)
+    .digest('hex');
+}
 
 export default async function handler(req, res) {
-  // 1. Strictly enforce POST requests
+  // Only accept POST requests for comment submissions
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
-
-  // 2. Extract and normalize incoming IP address
-  const forwarded = req.headers['x-forwarded-for'];
-  const ip = forwarded ? forwarded.split(',')[0].trim() : req.socket.remoteAddress;
-  const normalizedIp = ip.replace(/^::ffff:/, '');
-
-  // 3. Reject blocked IPs instantly before running database queries
-  if (BLOCKED_IPS.includes(normalizedIp)) {
-    return res.status(403).json({ error: '403 Forbidden' });
-  }
-
-  const { pageUrl, username, message } = req.body;
-
-  // 4. Validate payload presence
-  if (!pageUrl || !username || !message) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  // 5. Enforce safety character limits to prevent database payload flooding
-  if (message.length > 250 || username.length > 50) {
-    return res.status(400).json({ error: 'Character limit exceeded' });
-  }
-
-  // 6. Strip any trailing slash from the incoming page URL
-  const sanitizedPageUrl = pageUrl.replace(/\/$/, '');
 
   try {
+    // 1. Extract and clean the incoming client IP
+    const rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+    const cleanIp = rawIp.split(',')[0].trim();
+    
+    // 2. Hash the IP instantly
+    const clientIpHash = hashIP(cleanIp);
+
+    // 3. Firewall enforcement checkpoint
+    if (BLOCKED_IP_HASHES.includes(clientIpHash)) {
+      return res.status(403).json({ error: "Access Denied" });
+    }
+
+    // 4. Initialize Neon and extract data payload
     const sql = neon(process.env.DATABASE_URL);
-    const createdAt = new Date().toISOString();
+    const { pageUrl, username, message } = req.body;
 
-    // Pack the parameters together into a secure JSON string
-    const newCommentString = JSON.stringify({ 
-      username, 
-      message, 
-      createdAt 
-    });
+    // Validate payload presence before database insertion
+    if (!pageUrl || !username || !message) {
+      return res.status(400).json({ error: "Missing required comment parameters" });
+    }
 
-    // 7. Execute the atomic JSONB update/insert engine inside Neon
+    // 5. Insert rows safely using Neon tagged template literals (prevents SQL injection)
     await sql`
-      INSERT INTO page_data (page_url, payload)
-      VALUES (
-        ${sanitizedPageUrl}, 
-        jsonb_build_object('comments', jsonb_build_array(${newCommentString}::jsonb), 'reactions', '{}'::jsonb)
-      )
-      ON CONFLICT (page_url) 
-      DO UPDATE SET payload = jsonb_set(
-        page_data.payload, 
-        '{comments}', 
-        (page_data.payload->'comments') || ${newCommentString}::jsonb
-      );
+      INSERT INTO page_data (page_url, username, message, user_ip, created_at) 
+      VALUES (${pageUrl}, ${username}, ${message}, ${clientIpHash}, NOW())
     `;
 
-    return res.status(201).json({ success: true });
+    // Everything succeeded!
+    return res.status(200).json({ success: true });
 
-  } catch (error) {
-    console.error("Database Engine Error:", error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+  } catch (err) {
+    console.error("Write pipeline execution failure: ", err);
+    // Returning a non-403 error status triggers your compact "Something went wrong" (SUBMIT_FAIL) subtext block!
+    return res.status(500).json({ error: "Something went wrong" });
   }
 }

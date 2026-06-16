@@ -1,32 +1,28 @@
 import { neon } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  // 1. Grab the page parameter and strip any trailing slash
-  const rawPage = req.query.page || '';
-  const page = rawPage.replace(/\/$/, ''); 
-
   try {
     const sql = neon(process.env.DATABASE_URL);
     
-    // 2. Use the cleaned 'page' variable here
-    const result = await sql`
-      SELECT payload->'comments' AS comments 
-      FROM page_data 
-      WHERE page_url = ${page}
-    `;
+    // CHANGE THIS: Destructure 'page' from the query instead of 'pageUrl'
+    const { page } = req.query;
 
-    if (result.length === 0) {
-      return res.status(200).json([]);
+    if (!page) {
+      return res.status(400).json({ error: "Missing page query parameter" });
     }
 
-    return res.status(200).json(result[0].comments || []);
+    // Use the 'page' variable down here in your query
+    const rows = await sql`
+      SELECT username, message, created_at 
+      FROM page_data 
+      WHERE page_url = ${page}
+      ORDER BY created_at ASC
+    `;
 
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(200).json(rows);
+
+  } catch (err) {
+    console.error("Read pipeline execution failure: ", err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 }
