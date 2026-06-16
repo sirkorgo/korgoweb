@@ -1,9 +1,6 @@
 // api/social/blocked.js
 
 export const BLOCKED_IPS = [
-  '127.0.0.1',
-  '::1',
-  '76.50.241.95',
   '2601:5cc:4801:d60:a14c:bd66:f217:f4b0',
   '2603:6000:aff0:4b60:d87a:192f:f44c:14b9',
   '2601:5cc:4801:d60:98cf:5550:7eaf:f3ac',
