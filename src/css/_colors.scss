@@ -60,20 +60,6 @@ html.dark {
   --alt-bg: #171717;
 }
 
-/* index nav */
-.index-nav img {
-  width: 49px;
-  height: 40px;
-}
-
-.index-nav {
-  padding: 4px 9px;
-  width: fit-content;
-  display: block;
-  border-radius: 30px;
-  transition: all 0.2s ease;
-}
-
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -84,6 +70,10 @@ html.dark {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.index-nav {
+  height: 100%;
 }
 
 .index-nav.active {
@@ -107,6 +97,7 @@ html.dark {
     rgba(255, 78, 101, 0.5) 71.2%,
     rgba(167, 84, 250, 0.5) 97.55%
   );
+  background-size: 200% 200%;
   animation: gradientShift 20s ease infinite;
 }
 

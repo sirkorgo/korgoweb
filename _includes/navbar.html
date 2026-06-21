@@ -5,45 +5,42 @@
 
 <section class="nav-wrapper">
   <img src="/src/img/banner.png" width="100%" height="100%" style="margin-top: 15px; border-radius: 15px 15px 0px 0px; {% if page.layout contains 'content'  %}display: none;{% endif %}">
-  <nav>
-    <span class="index-nav {% if page.url == '/' %}active{% endif %}">
-        <a href="/">
-          <img class="navHeader" src="/src/img/sitelogo.webp" alt="Site Logo" width="55px" height="55px" />
-        </a>
-    </span>
-    <span id="links" style="display: flex;">
-      <a href="/about">
-          <button class="navBtn about-nav {% if page.url contains '/about' %}active{% endif %}">
-            About
-          </button>
+  <nav id="nav">
+    <div class="nav-left">
+      <a href="/">
+      <button class="index-nav navBtn {% if page.url == '/' %}active{% endif %}">
+          <img src="/src/img/sitelogo.webp" width="49px" height="40px" alt="Site Logo"/>
+      </button>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      
+      <span id="links" class="nav-links">
+        <a href="/about">
+          <button class="navBtn about-nav {% if page.url contains '/about' %}active{% endif %}">About</button>
         </a>
         <a href="/comics">
-          <button class="navBtn comics-nav {% if page.url contains '/comics' %}active{% endif %}">
-            Webcomics
-          </button>
+          <button class="navBtn comics-nav {% if page.url contains '/comics' %}active{% endif %}">Webcomics</button>
         </a>
         <a href="/art">
-          <button class="navBtn canvas-nav {% if page.url contains '/art' %}active{% endif %}">
-            Art
-          </button>
+          <button class="navBtn canvas-nav {% if page.url contains '/art' %}active{% endif %}">Art</button>
         </a>
         <a href="/blog">
-          <button
-            class="navBtn blog-nav {% if page.url contains '/blog' or page.layout contains 'post' %}active{% endif %}">
-            Blog
-          </button>
+          <button class="navBtn blog-nav {% if page.url contains '/blog' or page.layout contains 'post' %}active{% endif %}">Blog</button>
         </a>
         <a href="/guestbook">
-          <button class="navBtn guestbook-nav {% if page.url contains '/guestbook' %}active{% endif %}">
-            Guestbook
-          </button>
+          <button class="navBtn guestbook-nav {% if page.url contains '/guestbook' %}active{% endif %}">Guestbook</button>
         </a>
-    </span>
-    <span style="display: flex; flex-direction: row-reverse; width: 100%; gap: 5px;">
+      </span>
+    </div>
+
+    <span class="nav-right-stats">
       <button id="btn" class="themeToggle" onclick="setTheme()">
         <img src="/src/img/light.svg" alt="Theme Toggle" />
       </button>
-      <span style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+      <span class="stats-counter">
         <p style="margin: 0px 0px 0px 0px" id="online">🟡</p>
         <p style="margin: 0px 0px 0px 0px">•</p>
         <p style="margin: 0px 0px 0px 0px" id="visitors">#⋯</p>
@@ -51,13 +48,5 @@
     </span>
   </nav>
 </section>
-<span style="display: flex; width: 100%; height: fit-content !important; background: linear-gradient(2deg,rgba(255, 249, 232, 1) 0%, rgba(255, 242, 145, 1) 100%); border: 1px solid #c3af00; border-radius: 10px; margin-bottom: 10px; padding: 5px; color: black !important;">
-<img src="/src/img/srkgo-dizzy.webp" width="64px" height="64px" alt="Sirkorgo dizzy" loading="lazy" decoding="async"/>
-<span style="padding-top: 6px; padding-left: 8px">
-      <p>
-        <b>Mobile support is currently broken.</b> i accidentally pushed a build of the site without working mobile support, and am too tired to finish it now because its 2 AM as of writing this. so... Sorry to any mobile users visting right now ❤️<br>
-        - the shapeshifting, web developing, anomaly hunting, ate playdoh-as-a-child corgi, sirkorgo
-      </p>
-</span>
-</span>
+
 <script src="/src/js/navbar.js"></script>

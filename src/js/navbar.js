@@ -20,7 +20,18 @@
     btn.innerHTML = `<img src="/src/img/${theme}.svg" alt="Theme Toggle">`;
 
     // Mobile Support
-    
+  document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("links");
+  const navbar = document.getElementById("nav");
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+      navbar.classList.toggle("combinedNav");
+    });
+  }
+});    
 
     // init online counter
     const ws = new WebSocket(
