@@ -1,0 +1,28 @@
+/* special buttons */
+/* comic buttons */
+.comicBtn {
+  font-family: "Cabin", sans-serif !important;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 15px;
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  border-radius: 8px;
+  border: 1px solid #952bff;
+  background: linear-gradient(0deg, #a851ff 0%, #e2c5ff 100%);
+  color: white;
+}
+
+.comicBtn:hover {
+  border: 1px solid #7f00ff;
+  background: linear-gradient(0deg, #e2c5ff 0%, #a54cff 100%);
+}
+
+.comicBtn.disabled {
+  background: linear-gradient(0deg, #e8dff0 0%, #b89dd1 100%);
+  border: 1px solid #837491;
+}

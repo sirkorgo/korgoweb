@@ -1,0 +1,63 @@
+#count {
+  font-family: "Cabin";
+  font-style: italic;
+}
+
+.comment {
+  border-left: 3px solid var(--accent); 
+  display: flex; 
+  gap: 5px;
+  padding-left: 5px;
+  min-width: 0; 
+  border-radius: 5px;
+}
+
+.comment:hover {
+  background-color: var(--content-bg-hover);
+}
+
+.comment p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  margin: 0;
+  width: 100%;
+}
+
+.write {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--alt-bg);
+  padding: 15px;
+  border-radius: 10px;
+  border: var(--btn-border);
+}
+
+.write.textbox {
+  padding: 10px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid grey;
+  background-color: none;
+  font-family: "Cabin";
+  color: var(--font);
+}
+
+#box {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  width: 100%;
+  min-width: 0; 
+}
+
+.page {
+  min-width: 400px;
+  height: fit-content;
+  min-height: 1000px;
+  padding: 10px 20px;
+  border-radius: 14px;
+  background: var(--page-bg);
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.3);
+  margin: 7vw 5vw 30px ;
+}

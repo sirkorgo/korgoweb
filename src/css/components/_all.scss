@@ -1,0 +1,11 @@
+// 1. Load your global variables so the components below can see them
+@use "../colors" as *;
+
+// 2. Forward your components out
+@forward "art";
+@forward "blog";
+@forward "buttons";
+@forward "comments";
+@forward "error";
+@forward "nav";
+@forward "post";
