@@ -8,3 +8,4 @@ docker-compose.yml
 .vercel
 .env*
 node_modules/
+.DS_Store
