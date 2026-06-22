@@ -72,13 +72,13 @@ body > *:not(.navContainer) {
   z-index: -1;
   -webkit-mask-image: radial-gradient(
     circle 1px at 50vw 50vh,
-    var(--html-bg) 10%,
+    var(--html-bg) 50%,
     transparent 500px
   );
   mask-image: radial-gradient(
     circle 1px at 50vw 50vh,
-    var(--html-bg) 10%,
-    transparent 500px
+    var(--html-bg) 0%,
+    transparent 700px
   );
 }
 
@@ -89,8 +89,16 @@ body > *:not(.navContainer) {
   background-image: var(--html-img);
   background-repeat: repeat;
   background-size: 200px 200px;
+  filter: blur(1.5px);
+  opacity: 0.7;
   animation: scrollBackground 2000s linear infinite;
 }
+
+body.is-index .bg-layer::before {
+  filter: none;
+  opacity: 1;
+}
+
 
 /* animations */
 @keyframes scrollBackground {

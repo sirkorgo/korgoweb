@@ -11,7 +11,7 @@ colors: blog
   <h3 style="margin-bottom: 10px; margin-top: 0; padding-bottom: 5px; border-bottom: solid 1px grey;">{{ month.items.first.date | date: "%b %Y" }}</h3>
   <div class="archiveShelf">
     {% for post in month.items %}
-            <div class="post">
+            <div>
         <a class="" href="{{ post.url }}">
           <div style="display: flex; flex-direction: row-reverse; align-items: center; gap: 10px;">
             <span>

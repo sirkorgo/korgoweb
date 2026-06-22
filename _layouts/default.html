@@ -22,7 +22,7 @@
   <meta property="og:image" content="https://www.sirkorgo.com/src/img/srkgo_meet.webp" />
 </head>
 
-<body>
+<body class="{% if page.title == 'Index' %}is-index{% endif %}">
   <div class="bg-layer"></div>
   <main>
     {% include navbar.html %}
