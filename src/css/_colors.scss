@@ -36,7 +36,7 @@ html.light {
   --content-bg: rgba(255, 255, 255, 0.5);
   --content-bg-hover: rgba(255, 255, 255, 0.75);
   --html-img: url(/src/img/bg.webp);
-  --nav-bg: rgba(255, 255, 255, 0.5);
+  --nav-bg: rgba(255, 255, 255, 0.8);
   --page-bg: #ffffff;
   --btn-bg: linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
   --btn-border: 1px solid #a9a9a9;
@@ -52,7 +52,7 @@ html.dark {
   --content-bg: rgba(82, 82, 82, 0.19);
   --content-bg-hover: rgba(255, 255, 255, 0.145);
   --html-img: url(/src/img/bg-dark.webp);
-  --nav-bg: rgba(27, 27, 27, 0.3);
+  --nav-bg: rgba(27, 27, 27, 0.8);
   --page-bg: #000000;
   --btn-bg: linear-gradient(180deg, #444 0%, #000 100%);
   --btn-border: 1px solid #2e2e2e;
