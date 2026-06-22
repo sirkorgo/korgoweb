@@ -12,4 +12,54 @@ desc: "Sign the guestbook!"
   </div>
 </div>
 
-<script src="/src/js/guetbook.js">
+<script>
+    async function getSocialService(service) {
+    if (service === 'guestbook') {
+      try {
+        const res = await fetch('/api/social/moderator');
+        
+        if (!res.ok) throw new Error(`Moderator check returned status ${res.status}`);
+        
+        const { blocked } = await res.json();
+        if (blocked) {
+          document.getElementById('guestbook-wrapper').innerHTML = `
+            <span style="display: flex; gap: 10px; justify-content: center; align-items: center; padding: 20px 0;">
+              <img src="/src/img/wget-dead.webp" width="200px" height="200px">
+              <span style="max-width: 50%;">
+                <h2>Service Unavailable</h2>
+                <p><b>You can't sign the guestbook right now.</b> Unfortunately, someone on your current network was misusing the guestbook and/or comment section, resulting in a permanent IP ban.<br>To appeal this ban, please contact sirkorgo from the About page.<br>
+                <small style="color: gray;"><i>Reference Code: ACCESS_RESTRICTED</i></small>
+                </p>
+              </span>
+            </span>
+          `;
+        } else {
+          document.getElementById('guestbook-wrapper').innerHTML = `
+            <iframe
+              src="https://sirkorgo.atabook.org"
+              width="100%"
+              height="700px"
+              style="border: none; border-radius: 15px"
+            ></iframe>
+          `;
+        }
+      } catch (e) {
+        console.log('socialServices error:', e);
+        // FALLBACK: Uniform "Something went wrong" block if the moderator engine fails to reply
+        document.getElementById('guestbook-wrapper').innerHTML = `
+          <span style="display: flex; gap: 10px; justify-content: center; align-items: center; padding: 20px 0;">
+            <img src="/src/img/srkgo-dizzy.webp" width="200px" height="200px">
+            <span style="max-width: 50%;">
+              <h2>Something went wrong.</h2>
+              <p><b>You can't sign the guestbook right now.</b>Your device couldn't be verified. This may be because the moderation service is experiencing disruptions.<br>If this error persists, please contact Sirkorgo from the About page.<br>
+              <small style="color: gray;"><i>Reference Code: MODERATION_FAIL</i></small>
+              </p>
+            </span>
+          </span>
+        `;
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => getSocialService('guestbook'));
+</script>
