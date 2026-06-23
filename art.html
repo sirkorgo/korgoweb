@@ -12,7 +12,7 @@ desc: "Humanmade digital art collection of Sirkorgo and his friends."
     >
     <div>
       <div class="grid">
-        {% for art in site.art %}
+        {% for art in site.art reversed %}
         <a class="thumb" href="{{art.url}}">
           <img
             src="{{ art.image }}"
