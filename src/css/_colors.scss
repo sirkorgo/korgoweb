@@ -6,7 +6,7 @@ html.blog {
 }
 html.canvas {
   --accent: #ff4e65;
-  --accent-bg-light: #ffd1d1;
+  --accent-bg-light: #fdb3b3;
   --accent-bg-dark: #2f1313;
 }
 html.comics {
@@ -49,7 +49,7 @@ html.light {
 html.dark {
   --html-bg: var(--accent-bg-dark);
   --font: #ffffff;
-  --content-bg: background: linear-gradient(to bottom, rgba(193, 231, 251, 1) 0%,rgba(242, 242, 242, 1) 100%);
+  --content-bg: linear-gradient(to bottom, var(--accent) 0%,rgba(30, 30, 30, 0.465) 75%);
   --content-bg-hover: rgba(255, 255, 255, 0.145);
   --html-img: url(/src/img/bg-dark.webp);
   --nav-bg: rgba(27, 27, 27, 0.8);
