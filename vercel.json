@@ -1,7 +1,15 @@
 {
+  "cleanUrls": true,
   "headers": [
     {
-      "source": "/.well-known/matrix/(.*)",
+      "source": "/.well-known/matrix/client",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "source": "/.well-known/matrix/server",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Content-Type", "value": "application/json" }
