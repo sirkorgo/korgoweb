@@ -309,15 +309,5 @@ code {
 
   #warn {
     display: flex;
-    background: linear-gradient(
-      2deg,
-      rgba(255, 249, 232, 1) 0%,
-      rgba(255, 242, 145, 1) 100%
-    );
-    border: 1px solid #c3af00;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    color: black !important;
   }
 }
