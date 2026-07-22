@@ -1,6 +1,22 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/art",
+      "destination": "/portfolio",
+      "permanent": true
+    }
+  ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://stats.sirkorgo.com; connect-src 'self' https://stats.sirkorgo.com;"
+        }
+      ]
+    },
     {
       "source": "/.well-known/matrix/client",
       "headers": [

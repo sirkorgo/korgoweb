@@ -1,5 +1,6 @@
 ---
 ---
+
 // 1. Load your global color variables for the global scope
 @use "colors" as *;
 
@@ -24,6 +25,12 @@ body {
 main {
   padding-top: 0;
   margin: 0 20%;
+}
+
+.content {
+  background: var(--container-bg);
+  padding: 15px;
+  border-radius: 0 0 10px 10px;
 }
 
 /* transitions */
@@ -98,7 +105,6 @@ body.is-index .bg-layer::before {
   filter: none;
   opacity: 1;
 }
-
 
 /* animations */
 @keyframes scrollBackground {
@@ -250,14 +256,14 @@ code {
     align-items: center;
     margin-top: 70px;
   }
-    main {
-    margin: 15px !important;
+  main {
+    margin: 0px !important;
   }
 }
 
 @media (max-width: 1200px) {
   main {
-    margin: 0px 10%;
+    margin: 0px 0%;
   }
 }
 

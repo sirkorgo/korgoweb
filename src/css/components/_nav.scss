@@ -5,7 +5,6 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  margin-bottom: 20px;
 }
 
 nav {
@@ -14,12 +13,11 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border-radius: 0px 0px 15px 15px;
   background: var(--nav-bg);
   height: 48px;
   padding: 0 5px;
   box-sizing: border-box;
-  position: relative; 
+  position: relative;
 }
 
 .nav-left {
@@ -28,6 +26,7 @@ nav {
   align-items: center;
   gap: 10px;
   height: 100%;
+  width: 100%;
 }
 
 .nav-links {
@@ -35,7 +34,8 @@ nav {
   flex-direction: row;
   gap: 5px;
   height: 80%;
-  justify-content: start;
+  width: 100%;
+  justify-content: center;
   align-items: center;
 }
 
@@ -68,6 +68,7 @@ nav {
   flex-direction: row-reverse;
   align-items: center;
   gap: 5px;
+  min-width: fit-content;
 }
 
 .stats-counter {
@@ -97,7 +98,7 @@ nav {
 }
 
 .combinedNav {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 .menu-toggle {
@@ -115,14 +116,14 @@ nav {
 
 @media (max-width: 750px) {
   .menu-toggle {
-    display: block; 
+    display: block;
   }
 
   .nav-links {
-    display: none; 
+    display: none;
     flex-direction: column;
     position: absolute;
-    top: 100%; 
+    top: 100%;
     left: 0;
     width: 100%;
     height: auto !important;
@@ -148,7 +149,7 @@ nav {
   .navBtn {
     width: 100%;
     height: 44px;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     padding: 0 15px;
   }
 }
