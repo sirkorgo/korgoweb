@@ -12,8 +12,8 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://stats.sirkorgo.com; connect-src 'self' https://stats.sirkorgo.com; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline';"
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://stats.sirkorgo.com"
         }
       ]
     },
