@@ -8,7 +8,14 @@ colors: index
   <div class="content">
     {% include banner.html %} {% include changelog.html %}
     <h3>Add my Button!</h3>
-    <span style="text-align: center">
+    <span
+      style="
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      "
+    >
       <a href="https://www.sirkorgo.com" target="_blank">
         <img
           src="/src/img/bumper.gif"
@@ -21,6 +28,7 @@ colors: index
         >&lt;a href="https://www.sirkorgo.com" target="_blank"&gt;&lt;img
         src="https://www.sirkorgo.com/src/img/bumper.gif"&gt;&lt;/a&gt;</code
       >
+      <p style="margin-bottom: 0"><small>hotlinking recommended!</small></p>
     </span>
     <br style="margin-bottom: 10px" />
     {% include marquee.html %}
