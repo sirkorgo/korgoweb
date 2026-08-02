@@ -23,6 +23,20 @@
   object-fit: cover;
 }
 
+@media (max-width: 800px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
+
 /* image */
 #art-content img {
   max-width: 100%;
