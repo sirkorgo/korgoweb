@@ -6,32 +6,61 @@ colors: index
 
 <div class="container">
   <div class="content">
-    {% include banner.html %} {% include changelog.html %}
-    <h3>Add my Button!</h3>
-    <span
-      style="
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      "
-    >
-      <a href="https://www.sirkorgo.com" target="_blank">
-        <img
-          src="/src/img/bumper.gif"
-          alt="sirkorgo.com Site Bumper"
-          loading="lazy"
-          decoding="async"
-      /></a>
-      <br />
-      <code
-        >&lt;a href="https://www.sirkorgo.com" target="_blank"&gt;&lt;img
-        src="https://www.sirkorgo.com/src/img/bumper.gif"&gt;&lt;/a&gt;</code
-      >
-      <p style="margin-bottom: 0"><small>hotlinking recommended!</small></p>
-    </span>
+    <section style="display: flex">
+      <span style="width: 90%">
+        {% include banner.html %}
+        <div class="welcome">
+          <span class="heading"
+            ><h3 style="margin: 0">Welcome to sirkorgo.com!</h3></span
+          >
+          <div style="display: flex">
+            <img width="200px" src="/src/img/thegang.png" />
+            <span>
+              <p>
+                Hi there! Welcome to sirkorgo.com, the home of Sirkorgo, Widget,
+                Mono, and their friends! You can view my artworks in the
+                Portfolio, read comics about my OCs in the Comics page, read my
+                blog posts, or sign the guestbook! I hope you have fun while
+                you're here!
+              </p>
+              <a href="/about"
+                ><button class="generic-btn">Learn More</button></a
+              >
+            </span>
+          </div>
+        </div>
+      </span>
+      <span style="width: 25%">
+        <h3>Add my Button!</h3>
+        <span
+          style="
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          "
+        >
+          <a href="https://www.sirkorgo.com" target="_blank">
+            <img
+              src="/src/img/bumper.gif"
+              alt="sirkorgo.com Site Bumper"
+              loading="lazy"
+              decoding="async"
+          /></a>
+          <br />
+          <code
+            >&lt;a href="https://www.sirkorgo.com" target="_blank"&gt;&lt;img
+            src="https://www.sirkorgo.com/src/img/bumper.gif"&gt;&lt;/a&gt;</code
+          >
+          <p style="margin-bottom: 0"><small>hotlinking recommended!</small></p>
+        </span>
+
+        <br style="margin-bottom: 10px" />
+        {% include marquee.html %}
+      </span>
+    </section>
     <br style="margin-bottom: 10px" />
-    {% include marquee.html %}
+    {% include changelog.html %}
     <span
       style="
         display: flex;

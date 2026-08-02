@@ -225,6 +225,28 @@ code {
 }
 
 /* index.html mood bubble stuff */
+.mood-wrapper {
+  position: relative;
+}
+
+.mood-title {
+  font-family: "Cabin";
+  font-weight: 400;
+  font-size: 11px;
+  color: black;
+  background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
+  border: 2px solid #96d2ff;
+  border-radius: 150px;
+  padding: 4px 10px;
+  text-align: center;
+  width: fit-content;
+  white-space: nowrap;
+  position: absolute;
+  top: -14px;
+  left: 0; // was left: 50% + transform
+  z-index: 1;
+}
+
 .mood {
   font-family: "Cabin";
   font-weight: 400;
@@ -236,8 +258,7 @@ code {
   padding: 10px;
   text-align: center;
   width: fit-content;
-  position: inherit;
-  bottom: 5px;
+  position: relative; // was `inherit` — see note below
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -310,4 +331,16 @@ code {
   #warn {
     display: flex;
   }
+}
+
+.status-widget {
+  padding: 0 !important;
+}
+
+.welcome {
+  height: fit-content;
+  padding: 10px 10px;
+  border-radius: 14px;
+  background: var(--page-bg-welcome);
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.3);
 }

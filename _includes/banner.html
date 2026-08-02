@@ -1,31 +1,21 @@
-<div class="pulse">
+<div style="width: 90%">
   <div style="display: flex; justify-content: center; align-items: center">
     <span
       style="
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 5px;
       "
     >
-      <div class="mood">
-        <b>sirkorgo is feeling:</b>
-        <a href="https://www.imood.com/users/sirkorgo"
-          ><img
-            src="https://moods.imood.com/display/uname-sirkorgo/trans-1/imood.gif"
-            alt="Neutral"
-            border="0"
-        /></a>
+      <img width="75px" src="/src/img/srkgo_bubble.png" />
+      <div class="mood-wrapper">
+        <div class="mood-title"><b>what's sirkorgo up to?</b></div>
+        <div class="mood">
+          <ws-widget type="status" iid="595"></ws-widget>
+        </div>
       </div>
-      <span
-        class="mood"
-        style="height: 8px; width: 8px; margin-right: 20px"
-      ></span>
-      <span
-        class="mood"
-        style="height: 0.1px; width: 0.1px; margin-left: 15px"
-      ></span>
     </span>
   </div>
   <br />
@@ -34,6 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       width: 100%;
     "
   >
@@ -42,21 +33,21 @@
       alt="sirkorgo.com site banner"
       loading="lazy"
       decoding="async"
-      width="500"
+      width="400px"
       style="max-width: 100%; height: auto; margin-top: 10px"
       alt="spring banner"
     />
+    <p
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      "
+    >
+      <small><i>Theme: The Beach Episode</i></small>
+    </p>
   </span>
 </div>
 <br />
-<p
-  style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  "
->
-  <small><i>Theme: The Beach Episode</i></small>
-</p>
 <span style="padding-bottom: 10px"></span>
