@@ -15,6 +15,12 @@ html {
   min-height: 100%;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--html-bg) !important;
   background-image: none !important;
@@ -186,7 +192,8 @@ code {
   font-family: "DM Mono";
   font-size: 15px;
   color: var(--font);
-  overflow-x: scroll;
+  overflow-wrap: break-word;
+  word-break: break-all; /* forces breaks even mid-URL if needed */
 }
 
 .heading {
@@ -233,9 +240,13 @@ code {
   font-family: "Cabin";
   font-weight: 400;
   font-size: 11px;
-  color: black;
-  background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
-  border: 2px solid #96d2ff;
+  color: white;
+  background: linear-gradient(
+    0deg,
+    rgb(126, 210, 255) 0%,
+    rgb(31, 147, 255) 88%
+  );
+  border: 1.5px solid #aeddff;
   border-radius: 150px;
   padding: 4px 10px;
   text-align: center;
@@ -247,18 +258,29 @@ code {
   z-index: 1;
 }
 
+.mood-tiny {
+  background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
+  border: 1.5px solid #96d2ff;
+  border-radius: 150px;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding: 3px;
+  justify-content: center;
+}
+
 .mood {
   font-family: "Cabin";
   font-weight: 400;
   font-size: 15px;
-  color: black;
-  background: linear-gradient(180deg, #ddf0ff 0%, #b4deff 100%);
-  border: 2.5px solid #96d2ff;
+  color: white;
+  background: linear-gradient(0deg, rgb(46, 182, 255) 0%, rgb(0, 106, 255) 88%);
+  border: 2px solid #0579ed;
   border-radius: 150px;
   padding: 10px;
   text-align: center;
   width: fit-content;
-  position: relative; // was `inherit` — see note below
+  position: relative;
   display: flex;
   gap: 10px;
   justify-content: center;
