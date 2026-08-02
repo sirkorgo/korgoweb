@@ -50,7 +50,6 @@ span {
 /* page enter animation */
 body > *:not(.navContainer) {
   animation: zoomIn 0.18s ease-out;
-  will-change: opacity, transform;
 }
 
 /* accent pulse glow */
@@ -187,6 +186,7 @@ code {
   font-family: "DM Mono";
   font-size: 15px;
   color: var(--font);
+  overflow-x: scroll;
 }
 
 .heading {
@@ -305,6 +305,14 @@ code {
     max-width: none;
   }
 
+  .welcome {
+    display: none;
+  }
+
+  .subwelcome {
+    flex-direction: column;
+  }
+
   main {
     margin: 0px !important;
   }
@@ -343,4 +351,36 @@ code {
   border-radius: 14px;
   background: var(--page-bg-welcome);
   box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.3);
+  min-height: 170px;
+}
+
+.index-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* roughly matches your old 90/25 split, normalized */
+  grid-template-areas:
+    "main button"
+    "main marquee";
+  gap: 15px;
+}
+
+.index-main {
+  grid-area: main;
+}
+
+.index-button {
+  grid-area: button;
+}
+
+.index-marquee {
+  grid-area: marquee;
+}
+
+@media (max-width: 800px) {
+  .index-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "main"
+      "button"
+      "marquee";
+  }
 }

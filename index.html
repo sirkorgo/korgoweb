@@ -6,15 +6,23 @@ colors: index
 
 <div class="container">
   <div class="content">
-    <section style="display: flex">
-      <span style="width: 90%">
+    <section class="index-grid">
+      <div class="index-main">
         {% include banner.html %}
         <div class="welcome">
           <span class="heading"
             ><h3 style="margin: 0">Welcome to sirkorgo.com!</h3></span
           >
-          <div style="display: flex">
-            <img width="200px" src="/src/img/thegang.png" />
+          <div class="subwelcome" style="display: flex">
+            <span
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img width="200px" height="200px" src="/src/img/thegang.png" />
+            </span>
             <span>
               <p>
                 Hi there! Welcome to sirkorgo.com, the home of Sirkorgo, Widget,
@@ -29,8 +37,9 @@ colors: index
             </span>
           </div>
         </div>
-      </span>
-      <span style="width: 25%">
+      </div>
+
+      <div class="index-button">
         <h3>Add my Button!</h3>
         <span
           style="
@@ -54,11 +63,11 @@ colors: index
           >
           <p style="margin-bottom: 0"><small>hotlinking recommended!</small></p>
         </span>
+      </div>
 
-        <br style="margin-bottom: 10px" />
-        {% include marquee.html %}
-      </span>
+      <div class="index-marquee">{% include marquee.html %}</div>
     </section>
+
     <br style="margin-bottom: 10px" />
     {% include changelog.html %}
     <span
@@ -70,14 +79,11 @@ colors: index
         margin-top: 15px;
       "
     >
-      <!-- <iframe src="https://webtiles.kicya.net/e/www.sirkorgo.com" width="250" height="250" frameborder="0"></iframe> -->
       <iframe
         style="height: 270px; border: none; width: 250px"
         src="https://neocities.jeith.com/wii-webring.html?site=https://www.sirkorgo.com&variant=standard"
       >
       </iframe>
-      <!--here for when the thing DOES get approved-->
-      <!-- <script src="http://maddycha.com/rhythm-ring/js/rhythmring.js" type="text/javascript"></script> -->
     </span>
   </div>
 </div>
