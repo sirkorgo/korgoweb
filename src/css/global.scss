@@ -251,7 +251,6 @@ code {
     rgb(126, 210, 255) 0%,
     rgb(31, 147, 255) 88%
   );
-  border: 1.5px solid #aeddff;
   border-radius: 150px;
   padding: 4px 10px;
   text-align: center;
@@ -261,6 +260,8 @@ code {
   top: -14px;
   left: 0; // was left: 50% + transform
   z-index: 1;
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.3);
+  
 }
 
 .mood-tiny {
@@ -280,7 +281,6 @@ code {
   font-size: 15px;
   color: white;
   background: linear-gradient(0deg, rgb(46, 182, 255) 0%, rgb(0, 106, 255) 88%);
-  border: 2px solid #0579ed;
   border-radius: 150px;
   padding: 10px;
   text-align: center;
