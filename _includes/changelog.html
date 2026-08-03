@@ -8,7 +8,11 @@
 <h3 style="margin: 0; padding: 0;">What's New?</h3>
 <section class="changelog">
 <div class="changelog-track" id="changelog-track">
-      {% for entry in all_liquid %}
+  <div class="changelog-col">
+    {% for entry in all_liquid %}
+      {% assign idx = forloop.index0 %}
+      {% assign parity = idx | modulo: 2 %}
+      {% if parity == 0 %}
         {% if entry.collection == 'comics' %}
           {% assign entry_type = 'Comic' %}
           {% if entry.series == 'Cloudspace' %}
@@ -48,19 +52,76 @@
           {% endif %}
         </a>
         {% endif %}
-      {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="changelog-col">
+    {% for entry in all_liquid %}
+      {% assign idx = forloop.index0 %}
+      {% assign parity = idx | modulo: 2 %}
+      {% if parity == 1 %}
+        {% if entry.collection == 'comics' %}
+          {% assign entry_type = 'Comic' %}
+          {% if entry.series == 'Cloudspace' %}
+            {% assign thumb = '/src/comic/cloudspace/thumb.gif' %}
+          {% elsif entry.series == 'Sirkorgo! In the Meantime...' %}
+            {% assign thumb = '/src/comic/meantime/thumb.gif' %}
+          {% else %}
+            {% assign thumb = '' %}
+          {% endif %}
+        {% elsif entry.collection == 'art' %}
+          {% assign entry_type = 'Art' %}
+          {% assign thumb = entry.image %}
+        {% elsif entry.collection == 'changelogs' %}
+          {% assign entry_type = 'Update' %}
+          {% assign thumb = '' %}
+        {% else %}
+          {% assign entry_type = 'Post' %}
+          {% assign thumb = entry.content | split: '<img ' | slice: 1 | first | split: 'src="' | slice: 1 | first | split: '"' | first %}
+        {% endif %}
+        {% if entry.collection == 'changelogs' %}
+        <div class="changelog-item changelog-item--Update"
+          data-date="{{ entry.date | date: '%Y-%m-%d' }}">
+          <p style="margin: 0; font-size: 16px;">Update</p>
+          <span class="changelog-date"><p style="margin: 0;"><b>{{ entry.date | date: "%b %d, %Y" }}</b></p></span>
+          <span class="changelog-title"><p>{{ entry.title }}</p></span>
+          <div class="changelog-content">{{ entry.content }}</div>
+        </div>
+        {% else %}
+        <a class="changelog-item changelog-item--{{ entry_type }}"
+          href="{{ entry.url | relative_url }}"
+          data-date="{{ entry.date | date: '%Y-%m-%d' }}">
+          <p style="margin: 0; font-size: 16px;">{{ entry_type }}</p>
+          <span class="changelog-date"><b>{{ entry.date | date: "%b %d, %Y" }}</b></span>
+          <span class="changelog-title"><p>{{ entry.title }}</p></span>
+          {% if thumb != '' and thumb %}
+            <img class="changelog-thumb" src="{{ thumb }}" alt="{{ entry.title }}" />
+          {% endif %}
+        </a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>
 </section>
 </div>
+
 <style>
 .changelog {
   width: 100%;
-  align-items: center;
 }
 .changelog-track {
-  column-count: 2;
-  column-gap: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
   padding: 1rem 0;
+  align-items: flex-start;
+}
+.changelog-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
 }
 .changelog-item {
   box-sizing: border-box;
@@ -71,13 +132,11 @@
   color: var(--font);
   width: 100%;
   padding: 10px;
-  margin-bottom: 0.75rem;
   transition: opacity 0.15s;
   background: var(--content-bg);
   border-radius: 15px;
   backdrop-filter: blur(5px) !important;
   overflow: hidden;
-  break-inside: avoid;
 }
 .changelog-thumb {
   width: 100%;
