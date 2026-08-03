@@ -190,10 +190,15 @@ small {
 
 code {
   font-family: "DM Mono";
-  font-size: 15px;
+  font-size: 9.5px;
+  line-height: normal;
   color: var(--font);
+  text-align: left !important;
   overflow-wrap: break-word;
   word-break: break-all; /* forces breaks even mid-URL if needed */
+  background: var(--container-bg);
+  padding: 3px;
+  border-radius: 10px;
 }
 
 .heading {
