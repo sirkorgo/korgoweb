@@ -65,11 +65,7 @@ body > *:not(.navContainer) {
   width: 100%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle at center,
-    var(--accent) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: radial-gradient(circle at center, var(--accent) 0%, rgba(255, 255, 255, 0) 100%);
   animation: none;
   z-index: -2;
   border-radius: 50%;
@@ -81,17 +77,13 @@ body > *:not(.navContainer) {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
+  z-index: -2;
   -webkit-mask-image: radial-gradient(
     circle 1px at 50vw 50vh,
     var(--html-bg) 50%,
     transparent 500px
   );
-  mask-image: radial-gradient(
-    circle 1px at 50vw 50vh,
-    var(--html-bg) 0%,
-    transparent 700px
-  );
+  mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 0%, transparent 700px);
 }
 
 .bg-layer::before {
@@ -246,11 +238,7 @@ code {
   font-weight: 400;
   font-size: 11px;
   color: white;
-  background: linear-gradient(
-    0deg,
-    rgb(126, 210, 255) 0%,
-    rgb(31, 147, 255) 88%
-  );
+  background: linear-gradient(0deg, rgb(126, 210, 255) 0%, rgb(31, 147, 255) 88%);
   border-radius: 150px;
   padding: 4px 10px;
   text-align: center;
@@ -321,11 +309,7 @@ code {
       var(--html-bg) 10%,
       transparent 300px
     );
-    mask-image: radial-gradient(
-      circle 1px at 50vw 50vh,
-      var(--html-bg) 10%,
-      transparent 300px
-    );
+    mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 10%, transparent 300px);
   }
 }
 
@@ -348,11 +332,7 @@ code {
       var(--html-bg) 10%,
       transparent 200px
     );
-    mask-image: radial-gradient(
-      circle 1px at 50vw 50vh,
-      var(--html-bg) 10%,
-      transparent 200px
-    );
+    mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 10%, transparent 200px);
   }
 }
 
