@@ -2,6 +2,7 @@
 layout: default
 tite: Terms of Service
 desc: "sirkorgo.com Terms of Service"
+sitemap: false
 ---
 
 Terms of Service & Privacy Statement

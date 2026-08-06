@@ -2,6 +2,7 @@
 layout: default
 title: Privacy Policy
 desc: "sirkorgo.com Privacy Policy"
+sitemap: false
 ---
 
 Effective Date: February 23, 2026
