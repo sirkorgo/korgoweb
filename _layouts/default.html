@@ -6,31 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://u.widget.st/ar.js"></script>
     <title>
-      {% if page.title == "Index" %} sirkorgo.com {% else %} {{page.title}}
-      (sirkorgo.com) {% endif %}
+      {% if page.title == "Index" %} sirkorgo.com {% else %} {{page.title}} (sirkorgo.com) {% endif
+      %}
     </title>
     <link rel="stylesheet" href="/src/css/global.css" />
 
-    {% assign desc = page.desc | default: "Home of Sirkorgo, a shapeshifting
-    corgi, and his friends. Read comics about the world he lives in, Cloudspace,
-    and read blog posts from the creator." %}
+    {% assign desc = page.desc | default: "Home of Sirkorgo, a shapeshifting corgi, and his friends.
+    Read comics about the world he lives in, Cloudspace, and read blog posts from the creator." %}
 
     <meta property="og:title" content="sirkorgo.com" />
     <meta name="description" content="{{ desc }}" />
     <meta property="og:description" content="{{ desc }}" />
     <meta property="og:url" content="https://www.sirkorgo.com{{ page.url }}" />
-    <meta
-      property="og:image"
-      content="https://www.sirkorgo.com/src/img/srkgo_meet.webp"
-    />
+    <meta property="og:image" content="https://www.sirkorgo.com/src/img/thegang.png" />
   </head>
 
   <body>
     <img class="field" src="/src/img/bg-field.png" />
     <div class="bg-layer"></div>
-    <main>
-      {% include navbar.html %} {{ content }} {% include footer.html %}
-    </main>
+    <main>{% include navbar.html %} {{ content }} {% include footer.html %}</main>
   </body>
   <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
 </html>
