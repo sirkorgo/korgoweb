@@ -71,7 +71,7 @@ body > *:not(.navContainer) {
     rgba(255, 255, 255, 0) 100%
   );
   animation: none;
-  z-index: -1;
+  z-index: -2;
   border-radius: 50%;
   filter: blur(250px);
 }
@@ -261,7 +261,6 @@ code {
   left: 0; // was left: 50% + transform
   z-index: 1;
   box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.3);
-  
 }
 
 .mood-tiny {
@@ -313,6 +312,9 @@ code {
 }
 
 @media (max-width: 800px) {
+  .field {
+    display: none;
+  }
   .bg-layer {
     -webkit-mask-image: radial-gradient(
       circle 1px at 50vw 50vh,
@@ -398,6 +400,18 @@ code {
   grid-area: marquee;
 }
 
+.field {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  max-width: none;
+  object-fit: cover;
+  transform: translateY(clamp(0px, 8vw, 150px));
+
+  z-index: -1;
+}
 @media (max-width: 800px) {
   .index-grid {
     grid-template-columns: 1fr;

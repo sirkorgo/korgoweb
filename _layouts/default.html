@@ -25,7 +25,8 @@
     />
   </head>
 
-  <body class="{% if page.title == 'Index' %}is-index{% endif %}">
+  <body>
+    <img class="field" src="/src/img/bg-field.png" />
     <div class="bg-layer"></div>
     <main>
       {% include navbar.html %} {{ content }} {% include footer.html %}

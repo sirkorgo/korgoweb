@@ -65,10 +65,21 @@ colors: index
         </span>
       </div>
 
-      <div class="index-marquee">{% include marquee.html %}</div>
+      <div class="index-marquee">
+        {% include marquee.html %}
+        <span
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <iframe
+            width="90"
+            height="90"
+            style="border: none"
+            src="https://nvlk.dimden.dev/"
+            name="neolink"
+          ></iframe>
+        </span>
+      </div>
     </section>
-
-    <br style="margin-bottom: 10px" />
     {% include changelog.html %}
     <span
       style="
