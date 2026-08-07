@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/default.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const comics = await getCollection("comics");
+
+type SeriesGroup = {
+  name: string;
+  items: typeof comics;
+};
+
+const seriesMap = new Map<string, typeof comics>();
+for (const comic of comics) {
+  const s = comic.data.series;
+  if (!seriesMap.has(s)) seriesMap.set(s, []);
+  seriesMap.get(s)!.push(comic);
+}
+
+const seriesGroups: SeriesGroup[] = Array.from(seriesMap.entries()).map(([name, items]) => ({
+  name,
+  items: items.sort((a, b) => a.data.chapter - b.data.chapter),
+}));
+
+const art = await getCollection("art");
+art.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+// Dynamically pull top-level pages using each page's exported `title`
+const EXCLUDED = ["sitemap", "404", "tos", "privacy"];
+
+const pageFiles = import.meta.glob("../pages/*.astro", { eager: true });
+
+const topLevelPages = Object.entries(pageFiles)
+  .map(([path, mod]) => {
+    const slug = path.replace("./", "").replace(".astro", "");
+    return { slug, mod: mod as { title?: string } };
+  })
+  .filter(({ slug }) => !EXCLUDED.includes(slug))
+  .map(({ slug, mod }) => ({
+    url: slug === "index" ? "/" : `/${slug}`,
+    label: mod.title ?? slug,
+  }));
+
+// Blog and Blog Archive live one level deeper (src/pages/blog/) so the glob
+// above doesn't pick them up — add them manually.
+const manualPages = [
+  { url: "/blog", label: "Blog" },
+  { url: "/blog/archive", label: "Blog Archive" },
+];
+
+const allPages = [...topLevelPages, ...manualPages].sort((a, b) =>
+  a.url === "/" ? -1 : b.url === "/" ? 1 : a.url.localeCompare(b.url),
+);
+---
+
+<Layout title="Sitemap" colors="default">
+  <div class="content">
+    <h1>Sitemap</h1>
+    <h2>Pages</h2>
+    <ul>
+      {
+        allPages.map(({ url, label }) => (
+          <li>
+            <a href={url}>{label}</a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>Blog Posts</h2>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a> — {formatDate(post.data.date)}
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>Comics</h2>
+    {
+      seriesGroups.map((group) => (
+        <div>
+          <h3>{group.name}</h3>
+          <ul>
+            {group.items.map((comic) => (
+              <li>
+                <a href={`/comics/${comic.id}`}>{comic.data.title}</a> —{" "}
+                {formatDate(comic.data.date)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+
+    <h2>Artworks</h2>
+    <ul>
+      {
+        art.map((piece) => (
+          <li>
+            <a href={`/art/${piece.id}`}>{piece.data.title}</a> — {formatDate(piece.data.date)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>

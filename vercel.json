@@ -1,8 +1,19 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/src/img/bumper.gif",
+      "destination": "/img/bumper.gif"
+    }
+  ],
   "redirects": [
     {
       "source": "/art",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/art/",
       "destination": "/portfolio",
       "permanent": true
     }

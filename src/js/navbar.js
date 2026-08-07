@@ -1,26 +1,40 @@
-  function setTheme() {
-      html.classList.add("theme-transition");
-      const isLight = html.classList.contains("light");
-      const newTheme = isLight ? "dark" : "light";
-      html.classList.remove("light", "dark");
-      html.classList.add(newTheme);
-      btn.innerHTML = `<img src="/src/img/${newTheme}.svg" alt="Theme Toggle">`;
-      localStorage.setItem("theme", newTheme);
-      setTimeout(() => html.classList.remove("theme-transition"), 200);
-    }
+// Function to toggle theme
+function setTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById("btn");
 
-    // Init theme
-    html.classList.remove("light");
-    html.classList.remove("dark");
-    const saved = localStorage.getItem("theme");
-    const theme =
-      saved ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    html.classList.add(theme);
-    btn.innerHTML = `<img src="/src/img/${theme}.svg" alt="Theme Toggle">`;
+  html.classList.add("theme-transition");
+  const isLight = html.classList.contains("light");
+  const newTheme = isLight ? "dark" : "light";
 
-    // Mobile Support
-  document.addEventListener("DOMContentLoaded", () => {
+  html.classList.remove("light", "dark");
+  html.classList.add(newTheme);
+
+  if (btn) {
+    btn.innerHTML = `<img src="/img/${newTheme}.svg" alt="Theme Toggle">`;
+  }
+
+  localStorage.setItem("theme", newTheme);
+  setTimeout(() => html.classList.remove("theme-transition"), 200);
+}
+
+// Wrap DOM manipulation in DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+  const html = document.documentElement;
+  const btn = document.getElementById("btn");
+
+  // Init theme
+  html.classList.remove("light", "dark");
+  const saved = localStorage.getItem("theme");
+  const theme = saved || "light";
+  html.classList.add(theme);
+
+  if (btn) {
+    btn.innerHTML = `<img src="/img/${theme}.svg" alt="Theme Toggle">`;
+    btn.addEventListener("click", setTheme);
+  }
+
+  // Mobile Support
   const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.getElementById("links");
   const navbar = document.getElementById("nav");
@@ -28,36 +42,41 @@
   if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
       navLinks.classList.toggle("show");
-      navbar.classList.toggle("combinedNav");
+      if (navbar) navbar.classList.toggle("combinedNav");
     });
   }
-});    
 
-    // init online counter
-    const ws = new WebSocket(
-      "wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room",
-    );
+  // Stats visitor display
+  const site = location.hostname.replace(/^www\./, "");
+  const visitorsEl = document.getElementById("visitors");
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === "users") {
-        document.getElementById("online").innerHTML = "🟢 " + data.count;
-      }
-    };
+  fetch("https://stats.sirkorgo.com/count?site=" + site)
+    .then((r) => r.json())
+    .then((d) => {
+      if (visitorsEl) visitorsEl.innerHTML = "# " + d.count;
+    })
+    .catch((err) => console.error("Stats count error:", err));
+});
 
-    // get stats
-    const site = location.hostname.replace(/^www\./, '');
+// WebSocket for online counter (can safely run at module load)
+const ws = new WebSocket("wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room");
 
-    fetch('https://stats.sirkorgo.com/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        site,
-        page: location.pathname,
-        referrer: document.referrer
-      })
-    });
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  if (data.type === "users") {
+    const onlineEl = document.getElementById("online");
+    if (onlineEl) onlineEl.innerHTML = "🟢 " + data.count;
+  }
+};
 
-    fetch('https://stats.sirkorgo.com/count?site=' + site)
-      .then(r => r.json())
-      .then(d => document.getElementById('visitors').innerHTML = '# ' + d.count);
+// Analytics track call
+const site = location.hostname.replace(/^www\./, "");
+fetch("https://stats.sirkorgo.com/track", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    site,
+    page: location.pathname,
+    referrer: document.referrer,
+  }),
+}).catch((err) => console.error("Track error:", err));

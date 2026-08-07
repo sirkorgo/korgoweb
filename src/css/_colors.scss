@@ -35,7 +35,7 @@ html.light {
   --font: #000000;
   --content-bg: linear-gradient(to bottom, var(--accent-bg-light) 0%, rgba(255, 255, 255, 0.6) 50%);
   --content-bg-hover: rgba(255, 255, 255, 0.75);
-  --html-img: url(/src/img/bg.webp);
+  --html-img: url(/img/bg.webp);
   --nav-bg: rgba(255, 255, 255, 0.8);
   --page-bg: #ffffff;
   --btn-bg: linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
@@ -65,7 +65,7 @@ html.dark {
   );
   --content-bg: linear-gradient(to bottom, var(--accent) 0%, rgba(30, 30, 30, 0.465) 75%);
   --content-bg-hover: rgba(255, 255, 255, 0.145);
-  --html-img: url(/src/img/bg-dark.webp);
+  --html-img: url(/img/bg-dark.webp);
   --nav-bg: rgba(27, 27, 27, 0.8);
   --page-bg: #000000;
   --btn-bg: linear-gradient(180deg, #444 0%, #000 100%);

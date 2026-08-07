@@ -1,0 +1,165 @@
+---
+import Layout from "../layouts/default.astro";
+import { getCollection } from "astro:content";
+export const title = "Portfolio";
+
+const artEntries = await getCollection("art");
+artEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function getArtImage(img: string) {
+  if (!img) return "";
+  if (img.startsWith("/src/img/banners/")) return img.replace("/src/img/banners/", "/img/banners/");
+  if (img.startsWith("/src/img/")) return img.replace("/src/img/", "/img/banners/");
+  if (img.startsWith("/src/art/")) return img.replace("/src/art/", "/assets/");
+  if (img.startsWith("/src/assets/")) return img.replace("/src/assets/", "/assets/");
+  return img;
+}
+---
+
+<Layout
+  title={title}
+  colors="canvas"
+  desc="Collection of humanmade art, code, and other projects by Sirkorgo">
+  <div class="container pulse">
+    <div class="content">
+      <span class="heading">
+        <h1 style="text-align: left; margin: 0; min-width: fit-content">Portfolio</h1>
+        <span style="display: flex; width: 100%; justify-content: flex-end; gap: 5px"></span>
+      </span>
+
+      <h3>Projects</h3>
+      <div class="archiveShelf">
+        <div class="post">
+          <span
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              gap: 5px;
+            ">
+            <span>
+              <h3 style="margin: 0">Korgostats</h3>
+              <p>
+                A simple self-hosted analytics tool that doesn't sell your data. Powered by Node.js,
+                Express, and SQLite.
+              </p>
+            </span>
+            <span style="display: flex; gap: 5px; width: 100%">
+              <a
+                href="https://github.com/sirkorgo/korgostats"
+                target="_blank"
+                style="display: flex; justify-content: center; width: 25%">
+                <button style="border-radius: 10px; display: flex; width: 100%" class="generic-btn">
+                  GitHub
+                </button>
+              </a>
+              <a
+                target="_blank"
+                href="https://stats.sirkorgo.com"
+                style="display: flex; justify-content: center; width: 25%">
+                <button style="border-radius: 10px; display: flex; width: 100%" class="generic-btn">
+                  Website
+                </button>
+              </a>
+            </span>
+          </span>
+        </div>
+        <div class="post">
+          <span
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              gap: 5px;
+            ">
+            <span>
+              <h3 style="margin: 0">Clutter</h3>
+              <p>
+                A lightweight planner tool for school that integrates with Canvas, powered by
+                Node.js & Express.
+              </p>
+            </span>
+            <span style="display: flex; gap: 5px; width: 100%">
+              <a
+                href="https://github.com/sirkorgo/clutter"
+                target="_blank"
+                style="display: flex; justify-content: center; width: 25%">
+                <button style="border-radius: 10px; display: flex; width: 100%" class="generic-btn">
+                  GitHub
+                </button>
+              </a>
+              <a
+                target="_blank"
+                href="https://clutter.sirkorgo.com"
+                style="display: flex; justify-content: center; width: 25%">
+                <button style="border-radius: 10px; display: flex; width: 100%" class="generic-btn">
+                  Website
+                </button>
+              </a>
+              <p style="margin: 0">
+                <small><i>*In Development</i></small>
+              </p>
+            </span>
+          </span>
+        </div>
+      </div>
+      <h3>Designs</h3>
+      <div>
+        <div class="grid">
+          {
+            artEntries.map((art) => (
+              <a class="thumb" href={`/art/${art.id}`}>
+                <img
+                  src={getArtImage(art.data.image)}
+                  class="thumb"
+                  alt={art.data.title}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <h3>Canvas</h3>
+      <div class="post" id="help" style="flex-direction: column; margin-top: 10px">
+        <h3>On Computers (recommended)</h3>
+        <p>
+          Hold Left-click to draw<br />Hold Right-click to explore the canvas<br />Press C to chat
+          with use Proximity Cursor Chat
+        </p>
+        <h3>On Mobile Devices</h3>
+        <p>
+          Hold-tap the screen with one finger to draw<br />Hold and drag with two fingers to explore
+          the canvas<br />Chat has not been implemented for mobile users.
+        </p>
+      </div>
+      <div id="warn" class="warn">
+        <img
+          src="/img/emblems/srkgo-dizzy.webp"
+          width="64px"
+          height="64px"
+          alt="Sirkorgo dizzy"
+          loading="lazy"
+          decoding="async"
+        /><span style="padding-top: 6px; padding-left: 8px">
+          <p>
+            Sorry! Korgosketch isn't available on smaller screens. there is NO. WAY. your screen is
+            THIS small.
+          </p>
+        </span>
+      </div>
+      <br />
+      <iframe
+        style="border: 0; border-radius: 15px; height: 90vh"
+        id="canvas"
+        title="Canvas embed"
+        width="100%"
+        height="87vh"
+        src="/src/etc/canvas">
+      </iframe>
+    </div>
+  </div>
+</Layout>

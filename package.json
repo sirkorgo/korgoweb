@@ -1,5 +1,30 @@
 {
+  "name": "korgoweb",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "astro": "astro",
+    "cms": "decap-server",
+    "build:css": "sass src/css/global.scss public/css/global.css",
+    "build": "npm run build:css && astro build",
+    "watch:css": "sass --watch src/css/global.scss:public/css/global.css src/css/post.scss:public/css/post.css",
+    "dev:cms": "concurrently \"npm run watch:css\" \"astro dev\" \"decap-server\""
+  },
   "dependencies": {
-    "@neondatabase/serverless": "^1.1.0"
+    "@astrojs/vercel": "^11.0.5",
+    "@neondatabase/serverless": "^1.1.0",
+    "astro": "^7.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "decap-server": "^3.10.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "sass": "^1.102.0"
   }
 }

@@ -1,0 +1,78 @@
+---
+import "../../css/global.scss";
+import Navbar from "../../components/navbar.astro";
+import Footer from "../../components/footer.astro";
+import Comments from "../../components/comments.astro";
+
+interface Props {
+  title?: string;
+  date?: Date | string;
+  author?: string;
+  excerpt?: string;
+}
+
+const { title = "sirkorgo.com", date, author = "sirkorgo", excerpt = "" } = Astro.props;
+
+const pageTitle = `${title} (sirkorgo.com)`;
+const footerTitle = title;
+const formattedDate = date
+  ? new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+  : "";
+---
+
+<!doctype html>
+<html id="html" class="default blog" lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={excerpt} />
+    <meta property="og:title" content={`A post about ${title} on sirkorgo.com`} />
+    <meta property="og:description" content={excerpt} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.png" />
+    <style>
+      :global(nav) {
+        background: none !important;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <Navbar hideBanner={true} />
+    <span class="mobileSupportBtn">
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+      ></script>
+      <script type="text/javascript">
+        kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
+        kofiwidget2.draw();
+      </script>
+    </span>
+    <div class="page">
+      <section class="pageHeader">
+        <a href="/blog"><button class="generic-btn">← Go Back</button></a>
+        <p>
+          <b>{formattedDate} • {title}</b>
+        </p>
+      </section>
+      <hr />
+      <section>
+        <h2>{title}</h2>
+        <p>
+          Posted on {formattedDate}, by {author}
+        </p>
+        <br />
+        <slot />
+      </section>
+    </div>
+    <Comments />
+    <script is:inline src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+    <Footer title={footerTitle} />
+  </body>
+</html>

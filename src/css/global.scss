@@ -1,17 +1,18 @@
----
----
+@use "colors";
+@use "components/art";
+@use "components/blog";
+@use "components/buttons";
+@use "components/comments";
+@use "components/error";
+@use "components/nav";
+@use "components/post";
 
-// 1. Load your global color variables for the global scope
-@use "colors" as *;
-
-// 2. Load your bundled components explicitly pointing to the _all file
-@use "components/all";
 /* imports */
 @import url("https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Cabin:ital,wght@0,400..700;1,400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
 
 /* base */
 html {
-  cursor: url(/src/img/cursor.webp), auto;
+  cursor: url(/img/cursor.webp), auto;
   min-height: 100%;
 }
 
@@ -402,4 +403,21 @@ code {
       "button"
       "marquee";
   }
+}
+
+footer {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  text-align: center;
+  align-items: center;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background: var(--container-bg);
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
 }

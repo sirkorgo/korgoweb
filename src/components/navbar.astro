@@ -1,0 +1,88 @@
+---
+const pathname = Astro.url.pathname;
+interface Props {
+  hideBanner?: boolean;
+}
+const { hideBanner = false } = Astro.props;
+---
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"
+  />
+</head>
+
+<section class="nav-wrapper">
+  {
+    !hideBanner && (
+      <img
+        src="/img/banners/banner.png"
+        width="100%"
+        height="100%"
+        style="margin-top: 15px; border-radius: 15px 15px 0px 0px;"
+        alt="sirkorgo.com Header Banner"
+      />
+    )
+  }
+  <nav id="nav">
+    <div class="nav-left">
+      <a href="/">
+        <button class:list={["index-nav", "navBtn", { active: pathname === "/" }]}>
+          <img src="/img/sitelogo.webp" width="49px" height="40px" alt="Site Logo" />
+        </button>
+      </a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span id="links" class="nav-links">
+        <a href="/about">
+          <button class:list={["navBtn", "about-nav", { active: pathname.startsWith("/about") }]}>
+            About
+          </button>
+        </a>
+        <a href="/comics">
+          <button class:list={["navBtn", "comics-nav", { active: pathname.startsWith("/comics") }]}>
+            Webcomics
+          </button>
+        </a>
+        <a href="/portfolio">
+          <button
+            class:list={[
+              "navBtn",
+              "canvas-nav",
+              { active: pathname.startsWith("/portfolio") || pathname.startsWith("/art") },
+            ]}>
+            Portfolio
+          </button>
+        </a>
+        <a href="/blog">
+          <button class:list={["navBtn", "blog-nav", { active: pathname.startsWith("/blog") }]}>
+            Blog
+          </button>
+        </a>
+        <a href="/guestbook">
+          <button
+            class:list={["navBtn", "guestbook-nav", { active: pathname.startsWith("/guestbook") }]}>
+            Guestbook
+          </button>
+        </a>
+      </span>
+    </div>
+
+    <span class="nav-right-stats">
+      <button id="btn" class="themeToggle">
+        <img src="/img/light.svg" alt="Theme Toggle" />
+      </button>
+      <span class="stats-counter">
+        <p style="margin: 0px 0px 0px 0px" id="online">🟡</p>
+        <p style="margin: 0px 0px 0px 0px">•</p>
+        <p style="margin: 0px 0px 0px 0px" id="visitors">#⋯</p>
+      </span>
+    </span>
+  </nav>
+</section>
+
+<script>
+  import "../js/navbar.js";
+</script>
