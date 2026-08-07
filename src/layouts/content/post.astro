@@ -13,7 +13,8 @@ interface Props {
 
 const { title = "sirkorgo.com", date, author = "sirkorgo", excerpt = "" } = Astro.props;
 
-const pageTitle = title === "Index" ? "sirkorgo.com" : `${title} (sirkorgo.com)`;
+const pageTitle = `${title} (sirkorgo.com)`;
+const footerTitle = title;
 const formattedDate = date
   ? new Date(date).toLocaleDateString("en-US", {
       month: "short",
@@ -29,8 +30,6 @@ const formattedDate = date
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta charset="utf-8" />
     <title>{pageTitle}</title>
-    <link rel="stylesheet" href="/src/css/global.css" />
-    <link rel="stylesheet" href="/src/css/post.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={excerpt} />
     <meta property="og:title" content={`A post about ${title} on sirkorgo.com`} />
@@ -74,7 +73,7 @@ const formattedDate = date
     </div>
     <Comments />
     <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
-    <Footer />
+    <Footer title={footerTitle} />
 
     <script
       async

@@ -1,5 +1,11 @@
-@use "colors" as *;
-@use "components/all";
+@use "colors";
+@use "components/art";
+@use "components/blog";
+@use "components/buttons";
+@use "components/comments";
+@use "components/error";
+@use "components/nav";
+@use "components/post";
 
 /* imports */
 @import url("https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Cabin:ital,wght@0,400..700;1,400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");

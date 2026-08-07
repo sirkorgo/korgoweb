@@ -7,11 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run build:css && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "cms": "decap-server",
-    "build:css": "sass src/css/global.scss public/css/global.css && sass src/css/post.scss public/css/post.css",
+    "build:css": "sass src/css/global.scss public/css/global.css",
+    "build": "npm run build:css && astro build",
     "watch:css": "sass --watch src/css/global.scss:public/css/global.css src/css/post.scss:public/css/post.css",
     "dev:cms": "concurrently \"npm run watch:css\" \"astro dev\" \"decap-server\""
   },

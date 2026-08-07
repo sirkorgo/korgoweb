@@ -12,13 +12,14 @@ interface Props {
 }
 
 const {
-  title = "Index",
+  title = "sirkorgo.com",
   desc = "Home of Sirkorgo, a shapeshifting corgi, and his friends. Read comics about the world he lives in, Cloudspace, and read blog posts from the creator.",
   colors = "default",
   url = Astro.url.pathname,
 } = Astro.props;
 
 const pageTitle = title === "Index" ? "sirkorgo.com" : `${title} (sirkorgo.com)`;
+const footerTitle = title;
 ---
 
 <!doctype html>
@@ -35,6 +36,11 @@ const pageTitle = title === "Index" ? "sirkorgo.com" : `${title} (sirkorgo.com)`
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={`https://www.sirkorgo.com${url}`} />
     <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.png" />
+    <style>
+      :global(footer p) {
+        color: white !important;
+      }
+    </style>
   </head>
 
   <body>
@@ -43,7 +49,7 @@ const pageTitle = title === "Index" ? "sirkorgo.com" : `${title} (sirkorgo.com)`
     <main>
       <Navbar />
       <slot />
-      <Footer />
+      <Footer title={footerTitle} />
     </main>
   </body>
   <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
