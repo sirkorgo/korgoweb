@@ -71,7 +71,7 @@ const { hideBanner = false } = Astro.props;
     </div>
 
     <span class="nav-right-stats">
-      <button id="btn" class="themeToggle" onclick="setTheme()">
+      <button id="btn" class="themeToggle">
         <img src="/img/light.svg" alt="Theme Toggle" />
       </button>
       <span class="stats-counter">
@@ -83,6 +83,6 @@ const { hideBanner = false } = Astro.props;
   </nav>
 </section>
 
-<script is:inline>
+<script>
   import "../js/navbar.js";
 </script>
