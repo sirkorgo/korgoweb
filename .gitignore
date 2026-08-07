@@ -27,5 +27,3 @@ pnpm-debug.log*
 # env
 .env
 .env.local
-.aider*
-.aider.chat.history.md
