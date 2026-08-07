@@ -1,8 +1,8 @@
-import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const art = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/art' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/art" }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -12,7 +12,7 @@ const art = defineCollection({
 });
 
 const comics = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/comics' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/comics" }),
   schema: z.object({
     title: z.string(),
     series: z.string(),
@@ -23,7 +23,7 @@ const comics = defineCollection({
 });
 
 const changelogs = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/changelogs' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/changelogs" }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -31,13 +31,11 @@ const changelogs = defineCollection({
 });
 
 const posts = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
     author: z.string().optional(),
-    excerpt: z.string().optional(),
-    layout: z.string().optional(),
   }),
 });
 
