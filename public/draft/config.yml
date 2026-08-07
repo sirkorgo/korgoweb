@@ -2,7 +2,7 @@ local_backend: true
 backend:
   name: github
   repo: sirkorgo/korgoweb
-  branch: korgoweb5
+  branch: main
   base_url: https://auth.sirkorgo.com
   scope: repo
   squash_merges: true
