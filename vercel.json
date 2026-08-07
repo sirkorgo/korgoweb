@@ -11,6 +11,11 @@
       "source": "/art",
       "destination": "/portfolio",
       "permanent": true
+    },
+    {
+      "source": "/art/",
+      "destination": "/portfolio",
+      "permanent": true
     }
   ],
   "headers": [

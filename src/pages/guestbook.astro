@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/default.astro";
+export const title = "Guestbook";
 ---
 
-<Layout title="Guestbook" colors="guestbook" desc="Sign the guestbook!">
+<Layout title={title} colors="guestbook" desc="Sign the guestbook!">
   <div class="container pulse">
     <div class="content">
       <span class="heading"><h1 style="text-align: left; margin: 0;">Guestbook</h1></span>

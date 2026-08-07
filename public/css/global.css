@@ -1051,5 +1051,21 @@ code {
     grid-template-areas: "main" "button" "marquee";
   }
 }
+footer {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  text-align: center;
+  align-items: center;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background: var(--container-bg);
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
 
 /*# sourceMappingURL=global.css.map */

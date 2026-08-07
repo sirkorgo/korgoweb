@@ -1,11 +1,12 @@
 ---
-import Layout from '../layouts/default.astro';
-import Banner from '../components/banner.astro';
-import Marquee from '../components/marquee.astro';
-import Changelog from '../components/changelog.astro';
+import Layout from "../layouts/default.astro";
+import Banner from "../components/banner.astro";
+import Marquee from "../components/marquee.astro";
+import Changelog from "../components/changelog.astro";
+export const title = "Index";
 ---
 
-<Layout title="Index" colors="index">
+<Layout title={title} colors="index">
   <div class="container pulse">
     <div class="content">
       <section class="index-grid">
@@ -15,14 +16,19 @@ import Changelog from '../components/changelog.astro';
             <span class="heading"><h3 style="margin: 0">Welcome to sirkorgo.com!</h3></span>
             <div class="subwelcome" style="display: flex">
               <span style="display: flex; justify-content: center; align-items: center">
-                <img width="200px" height="200px" src="/img/emblems/thegang.png" alt="Sirkorgo and friends" />
+                <img
+                  width="200px"
+                  height="200px"
+                  src="/img/emblems/thegang.png"
+                  alt="Sirkorgo and friends"
+                />
               </span>
               <span>
                 <p>
                   Hi there! Welcome to sirkorgo.com, the home of Sirkorgo, Widget, Mono, and their
-                  friends! You can view my artworks in the Portfolio, read comics about my OCs in the
-                  Comics page, read my blog posts, or sign the guestbook! I hope you have fun while
-                  you're here!
+                  friends! You can view my artworks in the Portfolio, read comics about my OCs in
+                  the Comics page, read my blog posts, or sign the guestbook! I hope you have fun
+                  while you're here!
                 </p>
                 <a href="/about">
                   <button style="margin-bottom: 10px" class="generic-btn">Learn More</button>
@@ -62,7 +68,8 @@ import Changelog from '../components/changelog.astro';
                 src="/img/bumper.gif"
                 alt="sirkorgo.com Site Bumper"
                 loading="lazy"
-                decoding="async" />
+                decoding="async"
+              />
             </a>
             <br />
             <code style="font-size: 9.5px">
@@ -89,7 +96,8 @@ import Changelog from '../components/changelog.astro';
               style="border: none"
               src="https://nvlk.dimden.dev/"
               title="neolink"
-              name="neolink"></iframe>
+              name="neolink">
+            </iframe>
           </span>
         </div>
       </section>
@@ -106,7 +114,8 @@ import Changelog from '../components/changelog.astro';
         <iframe
           style="height: 270px; border: none; width: 250px"
           title="Wii Webring"
-          src="https://neocities.jeith.com/wii-webring.html?site=https://www.sirkorgo.com&variant=standard"></iframe>
+          src="https://neocities.jeith.com/wii-webring.html?site=https://www.sirkorgo.com&variant=standard">
+        </iframe>
       </span>
     </div>
   </div>

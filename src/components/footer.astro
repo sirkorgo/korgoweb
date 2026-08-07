@@ -6,19 +6,9 @@ interface Props {
 const { title = "an Unknown Page" } = Astro.props;
 ---
 
-<footer
-  style="
-    padding-top: 45px;
-    padding-bottom: 20px;
-    text-align: center;
-    align-items: center;
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-  ">
-  <script is:inline type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js">
-  </script>
+<footer>
+  <script is:inline type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+  ></script>
   <script is:inline type="text/javascript">
     kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
     kofiwidget2.draw();
