@@ -28,7 +28,9 @@ allArt.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 
 // Match current item by id/slug
 const currentSlug = Astro.params.slug;
-const currentIndex = allArt.findIndex((item) => item.id === currentSlug || (item as any).slug === currentSlug);
+const currentIndex = allArt.findIndex(
+  (item) => item.id === currentSlug || (item as any).slug === currentSlug,
+);
 
 // Calculate Prev/Next wrapping indices
 const prevIndex = currentIndex - 1 < 0 ? allArt.length - 1 : currentIndex - 1;
@@ -61,7 +63,7 @@ const next = allArt[nextIndex];
         justify-content: center;
       }
 
-      nav {
+      :global(nav) {
         background: none !important;
         margin-top: 10px;
       }
@@ -78,8 +80,8 @@ const next = allArt[nextIndex];
 
   <body>
     <span class="mobileSupportBtn">
-      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
-      ></script>
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js">
+      </script>
       <script type="text/javascript">
         kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
         kofiwidget2.draw();
@@ -134,7 +136,7 @@ const next = allArt[nextIndex];
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8562550888898510"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
   </body>
 </html>

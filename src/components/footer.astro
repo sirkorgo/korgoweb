@@ -17,8 +17,9 @@ const { title = "an Unknown Page" } = Astro.props;
     flex-direction: column;
     justify-content: start;
   ">
-  <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
-  <script type="text/javascript">
+  <script is:inline type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+  ></script>
+  <script is:inline type="text/javascript">
     kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
     kofiwidget2.draw();
   </script>
@@ -30,10 +31,10 @@ const { title = "an Unknown Page" } = Astro.props;
       gap: 5px;
     ">
     <a href="/is-this-site-ai">
-      <img width="130px" src="/img/notbyai.svg" />
+      <img width="130px" src="/img/buttons/notbyai.svg" />
     </a>
     <p style="text-align: left; color: white">
-      ©Sirkorgo 2026. Made with love and<a href="https://astro.build">Astro</a>by sirkorgo.
+      ©Sirkorgo 2026. Made with love and <a href="https://astro.build">Astro</a> by sirkorgo.
       <br />
       <small>
         <a href="/is-this-site-ai">AI Usage Statement •</a>

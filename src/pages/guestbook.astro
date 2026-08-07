@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/default.astro';
+import Layout from "../layouts/default.astro";
 ---
 
 <Layout title="Guestbook" colors="guestbook" desc="Sign the guestbook!">
@@ -12,14 +12,14 @@ import Layout from '../layouts/default.astro';
 
   <script>
     async function getSocialService(service: string) {
-      if (service === 'guestbook') {
-        const wrapper = document.getElementById('guestbook-wrapper');
+      if (service === "guestbook") {
+        const wrapper = document.getElementById("guestbook-wrapper");
         if (!wrapper) return;
         try {
-          const res = await fetch('/api/social/moderator');
-          
+          const res = await fetch("/api/social/moderator");
+
           if (!res.ok) throw new Error(`Moderator check returned status ${res.status}`);
-          
+
           const { blocked } = await res.json();
           if (blocked) {
             wrapper.innerHTML = `
@@ -44,7 +44,7 @@ import Layout from '../layouts/default.astro';
             `;
           }
         } catch (e) {
-          console.log('socialServices error:', e);
+          console.log("socialServices error:", e);
           wrapper.innerHTML = `
             <span style="display: flex; gap: 10px; justify-content: center; align-items: center; padding: 20px 0;">
               <img src="/img/emblems/srkgo-dizzy.webp" width="200px" height="200px">
@@ -60,6 +60,6 @@ import Layout from '../layouts/default.astro';
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => getSocialService('guestbook'));
+    document.addEventListener("DOMContentLoaded", () => getSocialService("guestbook"));
   </script>
 </Layout>

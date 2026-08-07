@@ -1,3 +1,4 @@
+local_backend: true
 backend:
   name: github
   repo: sirkorgo/korgoweb
@@ -6,28 +7,23 @@ backend:
   scope: repo
   squash_merges: true
 
-media_folder: "src/assets/"
+media_folder: "/public/assets/"
+public_folder: "/assets/"
 publish_mode: editorial_workflow
 site_url: https://www.sirkorgo.com
 display_url: https://sirkorgo.com
 logo:
-  src: /src/img/everyone.webp
+  src: /img/emblems/thegang.png
   show_in_header: true
 
 collections:
   - name: "art"
     label: "Art"
-    folder: "_art"
+    folder: "src/content/art"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-01"
+    slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - {
-          label: "Layout",
-          name: "layout",
-          widget: "string",
-          default: "content/art",
-        }
       - {
           label: "Date",
           name: "date",
@@ -35,27 +31,17 @@ collections:
           format: "YYYY-MM-DD",
           time_format: false,
         }
+      - { label: "Image", name: "image", widget: "image" }
       - { label: "Description", name: "body", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "string" }
+
   - name: "blog"
     label: "Blog"
-    folder: "_posts"
+    folder: "src/content/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-01"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - {
-          label: "Layout",
-          name: "layout",
-          widget: "string",
-          default: "content/blog",
-        }
-      - {
-          label: "Author",
-          name: "author",
-          widget: "string",
-          default: "sirkorgo",
-        }
+      - { label: "Author", name: "author", widget: "string", default: "sirkorgo" }
       - {
           label: "Date",
           name: "date",
@@ -64,19 +50,15 @@ collections:
           time_format: false,
         }
       - { label: "Body", name: "body", widget: "markdown" }
+
   - name: "cloudspace"
     label: "Cloudspace"
-    folder: "_comics/cloudspace"
+    folder: "src/content/comics/cloudspace"
     create: true
     slug: "{{fields.chapter}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - {
-          label: "Series",
-          name: "series",
-          widget: "string",
-          default: "Cloudspace",
-        }
+      - { label: "Series", name: "series", widget: "string", default: "Cloudspace" }
       - { label: "Chapter", name: "chapter", widget: "string" }
       - {
           label: "Date",
@@ -85,16 +67,11 @@ collections:
           format: "YYYY-MM-DD",
           time_format: false,
         }
-      - {
-          label: "Layout",
-          name: "layout",
-          widget: "string",
-          default: "content/comic",
-        }
       - { label: "Body", name: "body", widget: "markdown" }
+
   - name: "meantime"
     label: "Sirkorgo! In the Meantime..."
-    folder: "_comics/meantime"
+    folder: "src/content/comics/meantime"
     create: true
     slug: "{{fields.chapter}}"
     fields:
@@ -112,11 +89,5 @@ collections:
           widget: "datetime",
           format: "YYYY-MM-DD",
           time_format: false,
-        }
-      - {
-          label: "Layout",
-          name: "layout",
-          widget: "string",
-          default: "content/comic",
         }
       - { label: "Body", name: "body", widget: "markdown" }

@@ -1,5 +1,5 @@
 {
-  "name": "temp",
+  "name": "korgoweb",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -7,9 +7,13 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:css && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cms": "decap-server",
+    "build:css": "sass src/css/global.scss public/css/global.css && sass src/css/post.scss public/css/post.css",
+    "watch:css": "sass --watch src/css/global.scss:public/css/global.css src/css/post.scss:public/css/post.css",
+    "dev:cms": "concurrently \"npm run watch:css\" \"astro dev\" \"decap-server\""
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.5",
@@ -17,6 +21,8 @@
     "astro": "^7.2.0"
   },
   "devDependencies": {
+    "concurrently": "^10.0.4",
+    "decap-server": "^3.10.0",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "^1.102.0"

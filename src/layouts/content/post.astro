@@ -11,12 +11,7 @@ interface Props {
   excerpt?: string;
 }
 
-const {
-  title = "sirkorgo.com",
-  date,
-  author = "sirkorgo",
-  excerpt = "",
-} = Astro.props;
+const { title = "sirkorgo.com", date, author = "sirkorgo", excerpt = "" } = Astro.props;
 
 const pageTitle = title === "Index" ? "sirkorgo.com" : `${title} (sirkorgo.com)`;
 const formattedDate = date
@@ -43,7 +38,7 @@ const formattedDate = date
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.png" />
     <style>
-      nav {
+      :global(nav) {
         background: none !important;
         margin-top: 10px;
       }
@@ -53,7 +48,8 @@ const formattedDate = date
   <body>
     <Navbar hideBanner={true} />
     <span class="mobileSupportBtn">
-      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js">
+      </script>
       <script type="text/javascript">
         kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
         kofiwidget2.draw();
@@ -83,7 +79,7 @@ const formattedDate = date
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8562550888898510"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
   </body>
 </html>
