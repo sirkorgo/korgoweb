@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/default.astro';
+---
+
+<Layout title="404" colors="default">
+  <div class="content">
+    <div class="errContainer">
+      <img
+        src="/img/emblems/mono-what.webp"
+        width="400px"
+        height="400px"
+        loading="lazy"
+        decoding="async"
+        alt="Mono confused"
+      />
+      <div>
+        <h1 class="err404" style="font-size: 150px; margin-bottom: 0">404</h1>
+        <br />
+        <p class="err404">
+          <b
+            >There's nothing here. <br />
+            <i>Is this the void?</i></b
+          >
+        </p>
+      </div>
+    </div>
+
+    <div class="errSubtitle">
+      <p style="font-size: 25px; text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)">
+        The page you’re looking for can’t be found, or it never existed.<br /><small
+          ><i>Check the link for any typos!</i></small
+        >
+      </p>
+      <br />
+      <a href="/">
+        <p
+          style="
+            font-size: 25px;
+            color: #14bf91;
+            text-shadow: 0 4px 4px rgba(0, 0, 0, 0);
+          "
+        >
+          Back to sirkorgo.com
+        </p>
+      </a>
+    </div>
+  </div>
+</Layout>

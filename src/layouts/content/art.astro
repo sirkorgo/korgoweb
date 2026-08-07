@@ -1,0 +1,140 @@
+---
+// src/layouts/content/art.astro
+import "../../css/global.scss";
+import Navbar from "../../components/navbar.astro";
+import Footer from "../../components/footer.astro";
+import Comments from "../../components/comments.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+  title?: string;
+  date?: Date | string;
+  image?: string;
+  excerpt?: string;
+}
+
+const { title = "Art", date, image = "", excerpt = "" } = Astro.props;
+
+const pageTitle = title === "Index" ? "sirkorgo.com" : `${title} (sirkorgo.com)`;
+const formattedDate = date
+  ? new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+  : "";
+
+// Retrieve all entries from the 'art' collection
+const allArt = await getCollection("art");
+
+// Sort chronologically using schema-validated Date objects
+allArt.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+// Match current item by id/slug
+const currentSlug = Astro.params.slug;
+const currentIndex = allArt.findIndex((item) => item.id === currentSlug || (item as any).slug === currentSlug);
+
+// Calculate Prev/Next wrapping indices
+const prevIndex = currentIndex - 1 < 0 ? allArt.length - 1 : currentIndex - 1;
+const nextIndex = (currentIndex + 1) % allArt.length;
+
+const prev = allArt[prevIndex];
+const next = allArt[nextIndex];
+---
+
+<!doctype html>
+<html id="html" class="default canvas" lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/post.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={excerpt} />
+    <meta property="og:title" content={`An artwork by sirkorgo: ${title}`} />
+    <meta property="og:description" content={excerpt} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={image} />
+
+    <style>
+      .artPage {
+        text-align: right;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      nav {
+        background: none !important;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 1200px) {
+        .artPage {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <span class="mobileSupportBtn">
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+      ></script>
+      <script type="text/javascript">
+        kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
+        kofiwidget2.draw();
+      </script>
+    </span>
+
+    <Navbar hideBanner={true} />
+
+    <div class="page" style="min-height: fit-content;">
+      <section class="pageHeader">
+        <a href="/portfolio"><button class="generic-btn">← Go Back</button></a>
+        <p><b>{title}</b></p>
+        <span style="display: flex; gap: 0;">
+          <a href={next ? `/art/${next.id}` : "#"} style="margin-left: 5px;">
+            <button
+              style="border-radius: 4px 0px 0px 4px !important; border-right: none;"
+              class="generic-btn">
+              ←
+            </button>
+          </a>
+          <a href={prev ? `/art/${prev.id}` : "#"}>
+            <button
+              style="border-radius: 0px 4px 4px 0px !important; border-left: none;"
+              class="generic-btn">
+              →
+            </button>
+          </a>
+        </span>
+      </section>
+      <hr />
+      <section class="artPage" style="gap: 15px;">
+        <div id="art-content">
+          <img src={image} alt={title} />
+        </div>
+        <span class="sidebar">
+          <span>
+            <h2>{title}</h2>
+            {formattedDate && <p>Created on {formattedDate}</p>}
+            <br />
+            <slot />
+          </span>
+        </span>
+      </section>
+    </div>
+
+    <Comments />
+
+    <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+
+    <Footer />
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8562550888898510"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

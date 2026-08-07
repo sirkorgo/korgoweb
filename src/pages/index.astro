@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/default.astro';
+import Banner from '../components/banner.astro';
+import Marquee from '../components/marquee.astro';
+import Changelog from '../components/changelog.astro';
+---
+
+<Layout title="Index" colors="index">
+  <div class="container pulse">
+    <div class="content">
+      <section class="index-grid">
+        <div class="index-main">
+          <Banner />
+          <div class="welcome">
+            <span class="heading"><h3 style="margin: 0">Welcome to sirkorgo.com!</h3></span>
+            <div class="subwelcome" style="display: flex">
+              <span style="display: flex; justify-content: center; align-items: center">
+                <img width="200px" height="200px" src="/img/emblems/thegang.png" alt="Sirkorgo and friends" />
+              </span>
+              <span>
+                <p>
+                  Hi there! Welcome to sirkorgo.com, the home of Sirkorgo, Widget, Mono, and their
+                  friends! You can view my artworks in the Portfolio, read comics about my OCs in the
+                  Comics page, read my blog posts, or sign the guestbook! I hope you have fun while
+                  you're here!
+                </p>
+                <a href="/about">
+                  <button style="margin-bottom: 10px" class="generic-btn">Learn More</button>
+                </a>
+                <span
+                  style="
+                    border-radius: 10px;
+                    background: var(--container-bg);
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    padding: 5px;
+                    gap: 5px;
+                  ">
+                  <a href="/is-this-site-ai">
+                    <img width="100px" src="/img/buttons/notbyai.svg" alt="Not By AI badge" />
+                  </a>
+
+                  <a href="/is-this-site-ai"><small>View AI Usage Statement</small></a>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="index-button">
+          <h3>Add my Button!</h3>
+          <span
+            style="
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            ">
+            <a href="https://www.sirkorgo.com" target="_blank">
+              <img
+                src="/img/bumper.gif"
+                alt="sirkorgo.com Site Bumper"
+                loading="lazy"
+                decoding="async" />
+            </a>
+            <br />
+            <code style="font-size: 9.5px">
+              &lt;a href="https://www.sirkorgo.com" target="_blank"&gt;&lt;img
+              src="https://www.sirkorgo.com/img/bumper.gif"&gt;&lt;/a&gt;
+            </code>
+            <p style="margin-bottom: 0"><small>hotlinking recommended!</small></p>
+          </span>
+        </div>
+
+        <div class="index-marquee">
+          <Marquee />
+          <span
+            style="
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+              gap: 10px;
+            ">
+            <iframe
+              width="90"
+              height="90"
+              style="border: none"
+              src="https://nvlk.dimden.dev/"
+              title="neolink"
+              name="neolink"></iframe>
+          </span>
+        </div>
+      </section>
+      <br />
+      <Changelog />
+      <span
+        style="
+          display: flex;
+          gap: 5px;
+          justify-content: center;
+          align-items: center;
+          margin-top: 15px;
+        ">
+        <iframe
+          style="height: 270px; border: none; width: 250px"
+          title="Wii Webring"
+          src="https://neocities.jeith.com/wii-webring.html?site=https://www.sirkorgo.com&variant=standard"></iframe>
+      </span>
+    </div>
+  </div>
+  <br />
+</Layout>

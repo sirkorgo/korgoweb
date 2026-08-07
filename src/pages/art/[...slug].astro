@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArtLayout from '../../layouts/content/art.astro';
+
+export async function getStaticPaths() {
+  const art = await getCollection('art');
+  return art.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+let img = entry.data.image || '';
+if (img.startsWith('/src/img/banners/')) img = img.replace('/src/img/banners/', '/img/banners/');
+else if (img.startsWith('/src/img/')) img = img.replace('/src/img/', '/img/banners/');
+else if (img.startsWith('/src/art/')) img = img.replace('/src/art/', '/assets/');
+else if (img.startsWith('/src/assets/')) img = img.replace('/src/assets/', '/assets/');
+---
+
+<ArtLayout title={entry.data.title} date={entry.data.date} image={img}>
+  <Content />
+</ArtLayout>

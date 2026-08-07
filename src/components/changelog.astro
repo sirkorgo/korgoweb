@@ -1,0 +1,189 @@
+---
+import { getCollection, render } from 'astro:content';
+
+const comics = await getCollection('comics');
+const posts = await getCollection('posts');
+const changelogs = await getCollection('changelogs');
+const art = await getCollection('art');
+
+type FeedEntry = {
+  type: 'Comic' | 'Art' | 'Update' | 'Post';
+  date: Date;
+  title: string;
+  url: string;
+  thumb?: string;
+  ContentComponent?: any;
+};
+
+const formattedComics: FeedEntry[] = comics.map((entry) => {
+  let thumb = '';
+  if (entry.data.series === 'Cloudspace') {
+    thumb = '/img/banners/cloudspace-thumb.gif';
+  } else if (entry.data.series === 'Sirkorgo! In the Meantime...') {
+    thumb = '/img/banners/meantime-thumb.gif';
+  }
+  return {
+    type: 'Comic',
+    date: entry.data.date,
+    title: entry.data.title,
+    url: `/comics/${entry.id}`,
+    thumb,
+  };
+});
+
+const formattedArt: FeedEntry[] = art.map((entry) => {
+  let img = entry.data.image || '';
+  if (img.startsWith('/src/img/banners/')) img = img.replace('/src/img/banners/', '/img/banners/');
+  else if (img.startsWith('/src/img/')) img = img.replace('/src/img/', '/img/banners/');
+  else if (img.startsWith('/src/art/')) img = img.replace('/src/art/', '/assets/');
+  else if (img.startsWith('/src/assets/')) img = img.replace('/src/assets/', '/assets/');
+
+  return {
+    type: 'Art',
+    date: entry.data.date,
+    title: entry.data.title,
+    url: `/art/${entry.id}`,
+    thumb: img,
+  };
+});
+
+const formattedPosts: FeedEntry[] = posts.map((entry) => {
+  const match = entry.body?.match(/<img[^>]+src=["']([^"']+)["']/i);
+  let thumb = match ? match[1] : '';
+  if (thumb.startsWith('/src/img/')) thumb = thumb.replace('/src/img/', '/img/');
+  else if (thumb.startsWith('/src/assets/')) thumb = thumb.replace('/src/assets/', '/assets/');
+
+  return {
+    type: 'Post',
+    date: entry.data.date,
+    title: entry.data.title,
+    url: `/blog/${entry.id}`,
+    thumb,
+  };
+});
+
+const formattedChangelogs: FeedEntry[] = await Promise.all(
+  changelogs.map(async (entry) => {
+    const { Content } = await render(entry);
+    return {
+      type: 'Update',
+      date: entry.data.date,
+      title: entry.data.title,
+      url: '#',
+      ContentComponent: Content,
+    };
+  })
+);
+
+const allEntries = [...formattedComics, ...formattedArt, ...formattedPosts, ...formattedChangelogs].sort(
+  (a, b) => b.date.getTime() - a.date.getTime()
+);
+
+const col1 = allEntries.filter((_, idx) => idx % 2 === 0);
+const col2 = allEntries.filter((_, idx) => idx % 2 === 1);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+function formatDateAttr(date: Date) {
+  return date.toISOString().split('T')[0];
+}
+---
+
+<div class="changec">
+  <h3 style="margin: 0; padding: 0;">What's New?</h3>
+  <section class="changelog">
+    <div class="changelog-track" id="changelog-track">
+      <div class="changelog-col">
+        {col1.map((entry) => (
+          entry.type === 'Update' ? (
+            <div class="changelog-item changelog-item--Update" data-date={formatDateAttr(entry.date)}>
+              <p style="margin: 0; font-size: 16px;">Update</p>
+              <span class="changelog-date"><p style="margin: 0;"><b>{formatDate(entry.date)}</b></p></span>
+              <span class="changelog-title"><p>{entry.title}</p></span>
+              <div class="changelog-content">
+                {entry.ContentComponent && <entry.ContentComponent />}
+              </div>
+            </div>
+          ) : (
+            <a class={`changelog-item changelog-item--${entry.type}`} href={entry.url} data-date={formatDateAttr(entry.date)}>
+              <p style="margin: 0; font-size: 16px;">{entry.type}</p>
+              <span class="changelog-date"><b>{formatDate(entry.date)}</b></span>
+              <span class="changelog-title"><p>{entry.title}</p></span>
+              {entry.thumb && (
+                <img class="changelog-thumb" src={entry.thumb} alt={entry.title} loading="lazy" decoding="async" />
+              )}
+            </a>
+          )
+        ))}
+      </div>
+      <div class="changelog-col">
+        {col2.map((entry) => (
+          entry.type === 'Update' ? (
+            <div class="changelog-item changelog-item--Update" data-date={formatDateAttr(entry.date)}>
+              <p style="margin: 0; font-size: 16px;">Update</p>
+              <span class="changelog-date"><p style="margin: 0;"><b>{formatDate(entry.date)}</b></p></span>
+              <span class="changelog-title"><p>{entry.title}</p></span>
+              <div class="changelog-content">
+                {entry.ContentComponent && <entry.ContentComponent />}
+              </div>
+            </div>
+          ) : (
+            <a class={`changelog-item changelog-item--${entry.type}`} href={entry.url} data-date={formatDateAttr(entry.date)}>
+              <p style="margin: 0; font-size: 16px;">{entry.type}</p>
+              <span class="changelog-date"><b>{formatDate(entry.date)}</b></span>
+              <span class="changelog-title"><p>{entry.title}</p></span>
+              {entry.thumb && (
+                <img class="changelog-thumb" src={entry.thumb} alt={entry.title} loading="lazy" decoding="async" />
+              )}
+            </a>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+.changelog {
+  width: 100%;
+}
+.changelog-track {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  align-items: flex-start;
+}
+.changelog-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+.changelog-item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: var(--font);
+  width: 100%;
+  padding: 10px;
+  transition: opacity 0.15s;
+  background: var(--content-bg);
+  border-radius: 15px;
+  backdrop-filter: blur(5px) !important;
+  overflow: hidden;
+}
+.changelog-thumb {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.changelog-content {
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+</style>

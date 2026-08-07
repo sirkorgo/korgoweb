@@ -1,0 +1,89 @@
+---
+import "../../css/global.scss";
+import Navbar from "../../components/navbar.astro";
+import Footer from "../../components/footer.astro";
+import Comments from "../../components/comments.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+  title?: string;
+  series?: string;
+  chapter?: number;
+  currentId?: string;
+}
+
+const { title = "Comic", series = "", chapter = 1, currentId = "" } = Astro.props;
+
+const allComics = await getCollection("comics");
+const seriesComics = allComics
+  .filter((c) => c.data.series === series)
+  .sort((a, b) => a.data.chapter - b.data.chapter);
+
+const pageTitle = `${title} (sirkorgo.com)`;
+---
+
+<!doctype html>
+<html id="html" class="default light comics" lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={`Read ${title}, a comic on sirkorgo.com.`} />
+    <meta property="og:title" content={`${title} on sirkorgo.com`} />
+    <meta property="og:description" content={`Read ${title}, a comic on sirkorgo.com.`} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.png" />
+    <style>
+      nav {
+        background: none !important;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <span class="mobileSupportBtn">
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+      ></script>
+      <script type="text/javascript">
+        kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
+        kofiwidget2.draw();
+      </script>
+    </span>
+    <Navbar hideBanner={true} />
+    <div class="pageContainer">
+      <main class="page">
+        <span class="comicHeader">
+          <a href="/comics"><button class="generic-btn">← Go Back</button></a>
+          <p><b>{series} • Chapter {chapter}</b></p>
+
+          <select onchange="location = this.value" class="dropdown">
+            {
+              seriesComics.map((comic) => (
+                <option value={`/comics/${comic.id}`} selected={comic.id === currentId}>
+                  Chapter {comic.data.chapter}
+                </option>
+              ))
+            }
+          </select>
+        </span>
+        <hr />
+        <br />
+        <span class="comicContent">
+          <slot />
+        </span>
+      </main>
+    </div>
+    <Comments />
+
+    <script src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+    <Footer />
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8562550888898510"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/default.astro';
+import { getCollection } from 'astro:content';
+
+const allComics = await getCollection('comics');
+
+const cloudspaceComics = allComics
+  .filter((c) => c.data.series === 'Cloudspace')
+  .sort((a, b) => a.data.chapter - b.data.chapter);
+const latestCloudspace = cloudspaceComics[cloudspaceComics.length - 1];
+
+const meantimeComics = allComics
+  .filter((c) => c.data.series === 'Sirkorgo! In the Meantime...')
+  .sort((a, b) => a.data.chapter - b.data.chapter);
+const latestMeantime = meantimeComics[meantimeComics.length - 1];
+---
+
+<Layout title="Comics" colors="comics" desc="Exclusively on sirkorgo.com, read Cloudspace and comics about Sirkorgo & Friends for free!">
+  <div class="container pulse">
+    <div class="content">
+      <span class="heading"
+        ><h1 style="text-align: left; margin: 0;">Webcomics</h1><span
+          style="display: flex; width: 100%; justify-content: flex-end; gap: 5px;"
+          ><a href="https://blogtrottr.com/?subscribe=https://www.sirkorgo.com/comics/rss.xml"
+            ><button class="generic-btn">Subscribe</button></a
+          ></span
+        ></span
+      >
+      <div style="display: flex; flex-direction: column; gap: 15px">
+        <div class="post" style="display: flex; flex-direction: column">
+          <span style="display: flex; gap: 10px">
+            <span style="width: 100%">
+              <h3 style="margin: 3px 0 5px">Cloudspace</h3>
+              <p>
+                Cloudspace, It’s a world atop clouds powered by a physics-defying energy core that also causes a lot of
+                issues called Anomalies. In other words, paranormal ‘glitches’ in Cloudspace that cause havoc. See how
+                the Anomaly Containment & Refinement crew that keep Cloudspace safe with Sirkorgo, Widget,
+                Rabbo, Pip and many others.
+              </p>
+            </span>
+            <img
+              src="/img/banners/cloudspace-thumb.gif"
+              loading="lazy"
+              decoding="async"
+              alt="Cloudspace Thumbnail"
+              width="128"
+              height="128"
+              style="border-radius: 10px"
+            />
+          </span>
+          <span style="display: flex; gap: 5px;">
+            <a href="/comics/cloudspace/01">
+              <button class="comicBtn">Read Chapter 1</button>
+            </a>
+            {latestCloudspace && (
+              <a href={`/comics/${latestCloudspace.id}`}>
+                <button class="comicBtn"
+                  >Read Latest Chapter <small> — Chapter {latestCloudspace.data.chapter}</small></button
+                >
+              </a>
+            )}
+          </span>
+        </div>
+
+        <div class="post" style="display: flex; flex-direction: column">
+          <span style="display: flex; gap: 10px">
+            <span style="width: 100%">
+              <h3 style="margin: 3px 0 5px">Sirkorgo! In the Meantime...</h3>
+              <p>
+                See what Sirkorgo and his friends do when they're off the clock! Check out what life is like in
+                Cloudspace, and what it has to offer! (not canon unless i say so)
+              </p>
+            </span>
+            <img
+              src="/img/banners/meantime-thumb.gif"
+              loading="lazy"
+              decoding="async"
+              alt="Sirkorgo! In the Meantime... Thumbnail"
+              width="128"
+              height="128"
+              style="border-radius: 10px"
+            />
+          </span>
+          <span style="display: flex; gap: 5px;">
+            <a href="/comics/meantime/01">
+              <button class="comicBtn">Read Chapter 1</button>
+            </a>
+            {latestMeantime && (
+              <a href={`/comics/${latestMeantime.id}`}>
+                <button class="comicBtn"
+                  >Read Latest Chapter <small> — Chapter {latestMeantime.data.chapter}</small></button
+                >
+              </a>
+            )}
+          </span>
+        </div>
+      </div>
+
+      <div class="char">
+        <h3>Meet the Characters!</h3>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px">
+          <img
+            src="/img/emblems/srkgo_meet.webp"
+            alt="Sirkorgo waving"
+            width="128"
+            height="128"
+            loading="lazy"
+            decoding="async"
+          />
+          <div style="overflow-wrap: break-word">
+            <p><b>Sirkorgo</b></p>
+            <p>
+              Meet Sirkorgo! He's energetic, a leader, and most importantly, can
+              shapeshift! Sirkorgo loves researching and building little gadgets.
+              If Sirkorgo were to be compared to someone from the Sonic universe,
+              he'd be a lot like Tails!
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px">
+          <img
+            src="/img/emblems/wget_meet.webp"
+            alt="Widget hovering"
+            width="128"
+            height="128"
+            loading="lazy"
+            decoding="async"
+          />
+          <div style="overflow-wrap: break-word">
+            <p><b>Widget</b></p>
+            <p>
+              Check out Widget! Widget is an experimental Artificial Quantum
+              Lifeform (AQL) in the shape of a UFO. He's a quick thinker, pays
+              attention to small details, and can fly really fast with his built-in
+              motor. Widget and Sirkorgo are best buds and basically inseparable.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px">
+          <img
+            src="/img/emblems/mono_meet.webp"
+            alt="Mono smiling"
+            width="128"
+            height="128"
+            loading="lazy"
+            decoding="async"
+          />
+          <div style="overflow-wrap: break-word">
+            <p><b>Mono</b></p>
+            <p>
+              Say hi to Mono! Mono is Sirkorgo's little brother and a remarkable
+              young boy. Mono is a lot smarter than the average middle schooler,
+              so he gets to skip class and tag along with Sirkorgo and Widget
+              occasionally. He may be a bit shy but is still very playful!
+              Despite not having arms or legs, Mono gets around by bouncing,
+              rolling, and when needed, by <b>DIGGING</b> in the ground!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
