@@ -1,5 +1,40 @@
 ---
 import { getCollection, render } from "astro:content";
+import { getImage } from "astro:assets";
+
+// 1. Grab all images from /public/assets/
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "/public/assets/**/*.{png,jpg,jpeg,webp,gif,svg}",
+);
+
+// 2. Safely create thumbnails with full error checking
+async function createThumb(rawPath?: string, width = 300): Promise<string | undefined> {
+  if (!rawPath) return undefined;
+
+  try {
+    const cleanPath = rawPath
+      .trim()
+      .replace(/^(\.\.\/)+/, "/")
+      .replace(/^\/?(public\/)?assets\//, "");
+
+    const assetPath = `/public/assets/${cleanPath}`;
+    const imageImporter = imageModules[assetPath];
+
+    if (!imageImporter) return undefined;
+
+    const imageModule = await imageImporter();
+    const optimized = await getImage({
+      src: imageModule.default,
+      width,
+      format: "webp",
+    });
+
+    return optimized.src;
+  } catch (e) {
+    console.error(`Failed to generate thumbnail for: ${rawPath}`, e);
+    return undefined;
+  }
+}
 
 const comics = await getCollection("comics");
 const posts = await getCollection("posts");
@@ -15,52 +50,51 @@ type FeedEntry = {
   ContentComponent?: any;
 };
 
-const formattedComics: FeedEntry[] = comics.map((entry) => {
-  let thumb = "";
-  if (entry.data.series === "Cloudspace") {
-    thumb = "/img/banners/cloudspace-thumb.gif";
-  } else if (entry.data.series === "Sirkorgo! In the Meantime...") {
-    thumb = "/img/banners/meantime-thumb.gif";
-  }
-  return {
-    type: "Comic",
-    date: entry.data.date,
-    title: entry.data.title,
-    url: `/comics/${entry.id}`,
-    thumb,
-  };
-});
+// 3. Format entries safely
+const formattedComics: FeedEntry[] = await Promise.all(
+  comics.map(async (entry) => {
+    let rawThumb = "";
+    if (entry.data?.series === "Cloudspace") {
+      rawThumb = "/assets/banners/cloudspace-thumb.gif";
+    } else if (entry.data?.series === "Sirkorgo! In the Meantime...") {
+      rawThumb = "/assets/banners/meantime-thumb.gif";
+    }
 
-const formattedArt: FeedEntry[] = art.map((entry) => {
-  let img = entry.data.image || "";
-  if (img.startsWith("/src/img/banners/")) img = img.replace("/src/img/banners/", "/img/banners/");
-  else if (img.startsWith("/src/img/")) img = img.replace("/src/img/", "/img/banners/");
-  else if (img.startsWith("/src/art/")) img = img.replace("/src/art/", "/assets/");
-  else if (img.startsWith("/src/assets/")) img = img.replace("/src/assets/", "/assets/");
+    return {
+      type: "Comic",
+      date: entry.data.date,
+      title: entry.data.title,
+      url: `/comics/${entry.id}`,
+      thumb: await createThumb(rawThumb, 300),
+    };
+  }),
+);
 
-  return {
+const formattedArt: FeedEntry[] = await Promise.all(
+  art.map(async (entry) => ({
     type: "Art",
     date: entry.data.date,
     title: entry.data.title,
     url: `/art/${entry.id}`,
-    thumb: img,
-  };
-});
+    thumb: await createThumb(entry.data?.image, 300),
+  })),
+);
 
-const formattedPosts: FeedEntry[] = posts.map((entry) => {
-  const match = entry.body?.match(/<img[^>]+src=["']([^"']+)["']/i);
-  let thumb = match ? match[1] : "";
-  if (thumb.startsWith("/src/img/")) thumb = thumb.replace("/src/img/", "/img/");
-  else if (thumb.startsWith("/src/assets/")) thumb = thumb.replace("/src/assets/", "/assets/");
+const formattedPosts: FeedEntry[] = await Promise.all(
+  posts.map(async (entry) => {
+    const body = entry.body || "";
+    const match = body.match(/<img[^>]+src=["']([^"']+)["']/i) || body.match(/!\[.*?\]\((.*?)\)/);
+    const firstImageSrc = match ? match[1] : undefined;
 
-  return {
-    type: "Post",
-    date: entry.data.date,
-    title: entry.data.title,
-    url: `/blog/${entry.id}`,
-    thumb,
-  };
-});
+    return {
+      type: "Post",
+      date: entry.data.date,
+      title: entry.data.title,
+      url: `/blog/${entry.id}`,
+      thumb: await createThumb(firstImageSrc, 300),
+    };
+  }),
+);
 
 const formattedChangelogs: FeedEntry[] = await Promise.all(
   changelogs.map(async (entry) => {
@@ -86,7 +120,11 @@ const col1 = allEntries.filter((_, idx) => idx % 2 === 0);
 const col2 = allEntries.filter((_, idx) => idx % 2 === 1);
 
 function formatDate(date: Date) {
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 function formatDateAttr(date: Date) {
   return date.toISOString().split("T")[0];
@@ -222,7 +260,6 @@ function formatDateAttr(date: Date) {
     transition: opacity 0.15s;
     background: var(--content-bg);
     border-radius: 15px;
-    /* backdrop-filter: blur(5px) !important; */
     overflow: hidden;
   }
   .changelog-thumb {

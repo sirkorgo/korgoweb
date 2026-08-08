@@ -1,19 +1,55 @@
 ---
 import Layout from "../layouts/default.astro";
 import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+
 export const title = "Portfolio";
+
+// 1. Grab all images from /public/assets/
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "/public/assets/**/*.{png,jpg,jpeg,webp,gif,svg}",
+);
+
+// 2. Safely create thumbnails with full error checking
+async function getOptimizedArtThumb(rawPath?: string, width = 400): Promise<string> {
+  if (!rawPath) return "";
+
+  try {
+    const cleanPath = rawPath
+      .trim()
+      .replace(/^(\.\.\/)+/, "/")
+      .replace(/^\/?(public\/)?assets\//, "");
+
+    const assetPath = `/public/assets/${cleanPath}`;
+    const imageImporter = imageModules[assetPath];
+
+    // Fall back to raw path if file isn't found in glob
+    if (!imageImporter) return rawPath;
+
+    const imageModule = await imageImporter();
+    const optimized = await getImage({
+      src: imageModule.default,
+      width,
+      format: "webp",
+    });
+
+    return optimized.src;
+  } catch (e) {
+    console.error(`Failed to generate thumbnail for portfolio item: ${rawPath}`, e);
+    return rawPath;
+  }
+}
 
 const artEntries = await getCollection("art");
 artEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-function getArtImage(img: string) {
-  if (!img) return "";
-  if (img.startsWith("/src/img/banners/")) return img.replace("/src/img/banners/", "/img/banners/");
-  if (img.startsWith("/src/img/")) return img.replace("/src/img/", "/img/banners/");
-  if (img.startsWith("/src/art/")) return img.replace("/src/art/", "/assets/");
-  if (img.startsWith("/src/assets/")) return img.replace("/src/assets/", "/assets/");
-  return img;
-}
+// 3. Map collection through optimizer
+const formattedArt = await Promise.all(
+  artEntries.map(async (art) => ({
+    ...art,
+    thumbSrc: await getOptimizedArtThumb(art.data?.image, 400),
+  })),
+);
 ---
 
 <Layout
@@ -109,10 +145,10 @@ function getArtImage(img: string) {
       <div>
         <div class="grid">
           {
-            artEntries.map((art) => (
+            formattedArt.map((art) => (
               <a class="thumb" href={`/art/${art.id}`}>
                 <img
-                  src={getArtImage(art.data.image)}
+                  src={art.thumbSrc}
                   class="thumb"
                   alt={art.data.title}
                   loading="lazy"
