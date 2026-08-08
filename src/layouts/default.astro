@@ -30,18 +30,23 @@ const footerTitle = title;
     <Preload />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script is:inline={true} src="https://u.widget.st/ar.js"></script>
+    <script is:inline={true} defer src="https://u.widget.st/ar.js"></script>
     <title>{pageTitle}</title>
 
     <meta property="og:title" content="sirkorgo.com" />
     <meta name="description" content={desc} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={`https://www.sirkorgo.com${url}`} />
-    <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.png" />
+    <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.webp" />
   </head>
 
   <body>
-    <img class="field" src="/img/bg-field.png" />
+    <img
+      fetchpriority="high"
+      class="field"
+      alt="A distant field on sirkorgo.com"
+      src="/img/bg-field.webp"
+    />
     <div class="bg-layer"></div>
     <main>
       <Navbar />

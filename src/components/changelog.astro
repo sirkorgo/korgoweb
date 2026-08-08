@@ -2,31 +2,38 @@
 import { getCollection, render } from "astro:content";
 import { getImage } from "astro:assets";
 
-// 1. Grab all images from /public/assets/
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  "/public/assets/**/*.{png,jpg,jpeg,webp,gif,svg}",
+  "/public/{assets,img}/**/*.{png,jpg,jpeg,webp,gif,svg}",
 );
 
-// 2. Safely create thumbnails with full error checking
 async function createThumb(rawPath?: string, width = 300): Promise<string | undefined> {
   if (!rawPath) return undefined;
 
   try {
-    const cleanPath = rawPath
-      .trim()
-      .replace(/^(\.\.\/)+/, "/")
-      .replace(/^\/?(public\/)?assets\//, "");
+    let cleanPath = rawPath.trim().replace(/^(\.\.\/)+/, "/");
 
-    const assetPath = `/public/assets/${cleanPath}`;
-    const imageImporter = imageModules[assetPath];
+    if (cleanPath.startsWith("/src/img/")) {
+      cleanPath = cleanPath.replace("/src/img/", "/public/img/");
+    } else if (cleanPath.startsWith("/src/assets/")) {
+      cleanPath = cleanPath.replace("/src/assets/", "/public/assets/");
+    } else if (cleanPath.startsWith("/assets/")) {
+      cleanPath = `/public${cleanPath}`;
+    } else if (cleanPath.startsWith("/img/")) {
+      cleanPath = `/public${cleanPath}`;
+    } else if (!cleanPath.startsWith("/public/")) {
+      cleanPath = `/public/assets/${cleanPath.replace(/^\//, "")}`;
+    }
+
+    const imageImporter = imageModules[cleanPath];
 
     if (!imageImporter) return undefined;
 
     const imageModule = await imageImporter();
     const optimized = await getImage({
       src: imageModule.default,
-      width,
+      width: 270,
       format: "webp",
+      quality: 50,
     });
 
     return optimized.src;
@@ -50,14 +57,13 @@ type FeedEntry = {
   ContentComponent?: any;
 };
 
-// 3. Format entries safely
 const formattedComics: FeedEntry[] = await Promise.all(
   comics.map(async (entry) => {
     let rawThumb = "";
     if (entry.data?.series === "Cloudspace") {
-      rawThumb = "/assets/banners/cloudspace-thumb.gif";
+      rawThumb = "/img/banners/cloudspace-thumb.gif";
     } else if (entry.data?.series === "Sirkorgo! In the Meantime...") {
-      rawThumb = "/assets/banners/meantime-thumb.gif";
+      rawThumb = "/img/banners/meantime-thumb.gif";
     }
 
     return {
@@ -109,12 +115,9 @@ const formattedChangelogs: FeedEntry[] = await Promise.all(
   }),
 );
 
-const allEntries = [
-  ...formattedComics,
-  ...formattedArt,
-  ...formattedPosts,
-  ...formattedChangelogs,
-].sort((a, b) => b.date.getTime() - a.date.getTime());
+const allEntries = [...formattedComics, ...formattedArt, ...formattedPosts, ...formattedChangelogs]
+  .sort((a, b) => b.date.getTime() - a.date.getTime())
+  .slice(0, 10);
 
 const col1 = allEntries.filter((_, idx) => idx % 2 === 0);
 const col2 = allEntries.filter((_, idx) => idx % 2 === 1);

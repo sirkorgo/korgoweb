@@ -7,12 +7,11 @@ const { title = "an Unknown Page" } = Astro.props;
 ---
 
 <footer>
-  <script is:inline type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
-  ></script>
-  <script is:inline type="text/javascript">
-    kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
-    kofiwidget2.draw();
-  </script>
+  <span style="display: flex; justify-content: center;">
+    <a href="https://ko-fi.com/sirkorgo">
+      <img width="185" height="37" alt="Support me on Ko-Fi" src="/img/kofi.webp" />
+    </a>
+  </span>
   <span
     style="
       display: flex;
@@ -21,7 +20,12 @@ const { title = "an Unknown Page" } = Astro.props;
       gap: 5px;
     ">
     <a href="/is-this-site-ai">
-      <img width="130px" src="/img/buttons/notbyai.svg" />
+      <img
+        alt="Written by a human, not by AI."
+        width="130px"
+        height="42px"
+        src="/img/buttons/notbyai.svg"
+      />
     </a>
     <p style="text-align: left;">
       ©Sirkorgo 2026. Made with love and <a href="https://astro.build">Astro</a> by sirkorgo.

@@ -37,7 +37,7 @@ const formattedDate = date
     <meta property="og:title" content={`A post about ${title} on sirkorgo.com`} />
     <meta property="og:description" content={excerpt} />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.png" />
+    <meta property="og:image" content="https://www.sirkorgo.com/img/emblems/thegang.webp" />
     <style>
       :global(nav) {
         background: none !important;
@@ -48,13 +48,10 @@ const formattedDate = date
 
   <body>
     <Navbar hideBanner={true} />
-    <span class="mobileSupportBtn">
-      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js">
-      </script>
-      <script type="text/javascript">
-        kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
-        kofiwidget2.draw();
-      </script>
+    <span style="display: flex; justify-content: center;">
+      <a href="https://ko-fi.com/sirkorgo">
+        <img width="185" height="37" alt="Support me on Ko-Fi" src="/img/kofi.webp" />
+      </a>
     </span>
     <div class="page">
       <section class="pageHeader">

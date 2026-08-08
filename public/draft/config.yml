@@ -13,7 +13,7 @@ publish_mode: editorial_workflow
 site_url: https://www.sirkorgo.com
 display_url: https://sirkorgo.com
 logo:
-  src: /img/emblems/thegang.png
+  src: /img/emblems/thegang.webp
   show_in_header: true
 
 collections:
