@@ -7,19 +7,18 @@
 @use "components/nav";
 @use "components/post";
 
-@import "@fontsource/cabin/400.css";
-@import "@fontsource/cabin/700.css";
-@import "@fontsource/cabin/400-italic.css";
-@import "@fontsource/cabin/700-italic.css";
-@import "@fontsource/cabin-condensed/400.css";
-@import "@fontsource/cabin-condensed/500.css";
-@import "@fontsource/cabin-condensed/600.css";
-@import "@fontsource/cabin-condensed/700.css";
-@import "@fontsource/dm-mono/400.css";
-@import "@fontsource/dm-mono/500.css";
-@import "@fontsource/dm-mono/400-italic.css";
-@import "@fontsource/material-symbols-outlined";
-
+@use "@fontsource/cabin/400" as *;
+@use "@fontsource/cabin/700" as *;
+@use "@fontsource/cabin/400-italic" as *;
+@use "@fontsource/cabin/700-italic" as *;
+@use "@fontsource/cabin-condensed/400" as *;
+@use "@fontsource/cabin-condensed/500" as *;
+@use "@fontsource/cabin-condensed/600" as *;
+@use "@fontsource/cabin-condensed/700" as *;
+@use "@fontsource/dm-mono/400" as *;
+@use "@fontsource/dm-mono/500" as *;
+@use "@fontsource/dm-mono/400-italic" as *;
+@use "@fontsource/material-symbols-outlined" as *;
 /* base */
 html {
   cursor: url(/img/cursor.webp), auto;

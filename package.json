@@ -10,9 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "cms": "decap-server",
-    "build:css": "sass src/css/global.scss public/css/global.css",
+    "build:css": "sass --load-path=node_modules src/css/global.scss public/css/global.css",
     "build": "npm run build:css && astro build",
-    "watch:css": "sass --watch src/css/global.scss:public/css/global.css src/css/post.scss:public/css/post.css",
+    "watch:css": "sass --load-path=node_modules --watch src/css/global.scss:public/css/global.css src/css/post.scss:public/css/post.css",
     "dev:cms": "concurrently \"npm run watch:css\" \"astro dev\" \"decap-server\""
   },
   "dependencies": {
