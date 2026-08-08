@@ -1,10 +1,23 @@
-CMS.registerPreviewStyle("/css/global.css");
-CMS.registerPreviewStyle("/css/post.css");
+CMS.registerPreviewStyle("/css/global.css", { raw: true });
+CMS.registerPreviewStyle("/css/post.css", { raw: true });
+
+function injectFonts(doc) {
+  if (!doc || doc.getElementById("cms-fonts")) return;
+
+  const style = doc.createElement("style");
+  style.id = "cms-fonts";
+  style.innerHTML = `
+    @import url("https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Cabin:ital,wght@0,400..700;1,400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+  `;
+  doc.head.appendChild(style);
+}
 
 const ArtPreview = createClass({
   componentDidMount: function () {
     if (this.props.document) {
       this.props.document.documentElement.className = "default light canvas";
+      injectFonts(this.props.document);
     }
   },
   render: function () {
@@ -82,6 +95,7 @@ const BlogPreview = createClass({
   componentDidMount: function () {
     if (this.props.document) {
       this.props.document.documentElement.className = "default light blog";
+      injectFonts(this.props.document);
     }
   },
   render: function () {
@@ -125,6 +139,7 @@ const ComicPreview = createClass({
   componentDidMount: function () {
     if (this.props.document) {
       this.props.document.documentElement.className = "default light comics";
+      injectFonts(this.props.document);
     }
   },
   render: function () {
