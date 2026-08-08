@@ -31,6 +31,7 @@ html.default {
 
 /* light theme */
 html.light {
+  color-scheme: light;
   --html-bg: var(--accent-bg-light);
   --font: #000000;
   --content-bg: linear-gradient(to bottom, var(--accent-bg-light) 0%, rgba(255, 255, 255, 0.6) 50%);
@@ -54,6 +55,7 @@ html.light {
 
 /* dark theme */
 html.dark {
+  color-scheme: dark;
   --html-bg: var(--accent-bg-dark);
   --font: #ffffff;
   --page-bg-welcome: linear-gradient(
@@ -196,4 +198,40 @@ html.dark {
   background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: none;
+}
+
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #005dff;
+}
+
+@property --accent-bg-light {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #eaeaea;
+}
+
+@property --accent-bg-dark {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #131313;
+}
+
+@property --html-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #13192f;
+}
+
+@property --font {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
+@property --nav-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(27, 27, 27, 0.8);
 }

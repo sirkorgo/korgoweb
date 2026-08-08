@@ -1,0 +1,22 @@
+---
+// src/components/preload.astro
+---
+
+<script is:inline>
+  (function () {
+    try {
+      var theme = localStorage.getItem("theme");
+      var doc = document.documentElement;
+
+      if (theme === "dark") {
+        doc.classList.remove("light");
+        doc.classList.add("dark");
+        doc.style.colorScheme = "dark";
+      } else {
+        doc.classList.remove("dark");
+        doc.classList.add("light");
+        doc.style.colorScheme = "light";
+      }
+    } catch (e) {}
+  })();
+</script>

@@ -4,6 +4,7 @@ import "../../css/global.scss";
 import Navbar from "../../components/navbar.astro";
 import Footer from "../../components/footer.astro";
 import Comments from "../../components/comments.astro";
+import Preload from "../../components/preload.astro";
 import { getCollection } from "astro:content";
 
 interface Props {
@@ -42,8 +43,9 @@ const next = allArt[nextIndex];
 ---
 
 <!doctype html>
-<html id="html" class="default canvas" lang="en">
+<html id="html" class="default light canvas" lang="en">
   <head>
+    <Preload />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <meta charset="utf-8" />
     <title>{pageTitle}</title>
@@ -80,8 +82,8 @@ const next = allArt[nextIndex];
   <body>
     <Navbar hideBanner={true} />
     <span class="mobileSupportBtn">
-      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
-      ></script>
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js">
+      </script>
       <script type="text/javascript">
         kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
         kofiwidget2.draw();

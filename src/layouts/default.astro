@@ -3,6 +3,7 @@
 import "../css/global.scss";
 import Navbar from "../components/navbar.astro";
 import Footer from "../components/footer.astro";
+import Preload from "../components/preload.astro";
 
 interface Props {
   title?: string;
@@ -23,9 +24,10 @@ const footerTitle = title;
 ---
 
 <!doctype html>
-<html id="html" class={`${colors} dark`} lang="en-US">
+<html id="html" class={`${colors} light `} lang="en-US">
   <head>
     <meta charset="utf-8" />
+    <Preload />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline={true} src="https://u.widget.st/ar.js"></script>
@@ -46,6 +48,5 @@ const footerTitle = title;
       <slot />
       <Footer title={footerTitle} />
     </main>
-  </body>
-  <script is:inline src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
+  </body><script is:inline src="https://cursor-party.sirkorgo.partykit.dev/cursors.js"></script>
 </html>

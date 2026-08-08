@@ -14,6 +14,15 @@
 html {
   cursor: url(/img/cursor.webp), auto;
   min-height: 100%;
+
+  /* Transition the registered color variables directly */
+  transition:
+    --html-bg 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    --accent 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    --font 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    --accent-bg-light 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    --accent-bg-dark 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *,
@@ -39,26 +48,50 @@ main {
   background: var(--container-bg);
   padding: 15px;
   border-radius: 0 0 10px 10px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 /* transitions */
-.theme-transition * {
-  transition: all 0.2s ease;
+body,
+.bg-layer,
+.bg-layer::after {
+  transition:
+    background-color 0.4s ease,
+    background 0.4s ease,
+    --html-bg 0.4s ease;
 }
 
+/* 3. Keep your UI elements snappy on user interactions */
 .navBtn,
 .navBtn.active,
 .navBtn:hover,
 .post,
 .navHeader,
-span {
-  transition: all 0.3s ease;
+span,
+div,
+button,
+a {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 /* page enter animation */
 body > *:not(.navContainer) {
   animation: zoomIn 0.18s ease-out;
+}
+
+html.no-transition,
+html.no-transition *,
+html.no-transition *::before,
+html.no-transition *::after {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }
 
 /* accent pulse glow */
@@ -68,37 +101,48 @@ body > *:not(.navContainer) {
   width: 100%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle at center, var(--accent) 0%, rgba(255, 255, 255, 0) 100%);
+
+  background: radial-gradient(circle at center, var(--accent) 0%, rgba(255, 255, 255, 0) 70%);
+
   animation: none;
   z-index: -2;
   border-radius: 50%;
-  filter: blur(250px);
+  will-change: transform;
 }
 
-/* scrolling background tile */
 .bg-layer {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -2;
-  -webkit-mask-image: radial-gradient(
-    circle 1px at 50vw 50vh,
-    var(--html-bg) 50%,
-    transparent 500px
-  );
-  mask-image: radial-gradient(circle 1px at 50vw 50vh, var(--html-bg) 0%, transparent 700px);
+
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  background-color: var(--html-bg);
 }
 
 .bg-layer::before {
   content: "";
   position: absolute;
-  inset: 0;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+
   background-image: var(--html-img);
   background-repeat: repeat;
   background-size: 200px 200px;
-  filter: blur(1.5px);
   opacity: 0.7;
-  animation: scrollBackground 2000s linear infinite;
+
+  will-change: transform;
+  animation: scrollBackground 20s linear infinite;
+}
+.bg-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50vw 50vh, transparent 0%, var(--html-bg) 575px);
+  pointer-events: none;
 }
 
 body.is-index .bg-layer::before {
@@ -109,20 +153,10 @@ body.is-index .bg-layer::before {
 /* animations */
 @keyframes scrollBackground {
   from {
-    background-position: 0% 0%;
+    transform: translate3d(0, 0, 0);
   }
   to {
-    background-position: 10000vw 10000vh;
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(0.95);
-  }
-  50% {
-    transform: scale(1.08);
+    transform: translate3d(-200px, -200px, 0);
   }
 }
 
@@ -419,5 +453,6 @@ footer {
   height: fit-content;
   padding: 10px;
   border-radius: 10px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }

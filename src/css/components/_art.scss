@@ -13,7 +13,7 @@
   overflow: hidden;
   border-radius: 15px;
   background: var(--content-bg);
-  backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
   cursor: pointer;
 }
 
@@ -38,7 +38,7 @@
 }
 
 @media (max-width: 1200px) {
-    .sidebar {
+  .sidebar {
     width: 100% !important;
   }
 }
@@ -68,11 +68,7 @@
 /* korgosketch warning */
 .warn {
   display: none;
-  background: linear-gradient(
-    2deg,
-    rgba(255, 249, 232, 1) 0%,
-    rgba(255, 242, 145, 1) 100%
-  );
+  background: linear-gradient(2deg, rgba(255, 249, 232, 1) 0%, rgba(255, 242, 145, 1) 100%);
   border: 1px solid #c3af00;
   border-radius: 10px;
   margin-bottom: 10px;

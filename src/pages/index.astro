@@ -78,8 +78,15 @@ export const title = "Index";
             </code>
             <p style="margin-bottom: 0"><small>hotlinking recommended!</small></p>
           </span>
+          <span>
+            <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js">
+            </script>
+            <script type="text/javascript">
+              kofiwidget2.init("Support me on Ko-fi", "#3076f0", "T6T61WP8KV");
+              kofiwidget2.draw();
+            </script>
+          </span>
         </div>
-
         <div class="index-marquee">
           <Marquee />
           <span
@@ -102,7 +109,6 @@ export const title = "Index";
         </div>
       </section>
       <br />
-      <Changelog />
       <span
         style="
           display: flex;
@@ -112,11 +118,24 @@ export const title = "Index";
           margin-top: 15px;
         ">
         <iframe
-          style="height: 270px; border: none; width: 250px"
+          style="height: 150px; border: none; width: 150px"
           title="Wii Webring"
           src="https://neocities.jeith.com/wii-webring.html?site=https://www.sirkorgo.com&variant=standard">
         </iframe>
+        <div id="3DS-Players" style="max-width: 20%;">
+          <script
+            is:inline
+            type="text/javascript"
+            src="https://3dsplayers.neocities.org/onionring-variables.js">
+          </script>
+          <script
+            type="text/javascript"
+            is:inline
+            src="https://3dsplayers.neocities.org/onionring-widget.js">
+          </script>
+        </div>
       </span>
+      <Changelog />
     </div>
   </div>
   <br />

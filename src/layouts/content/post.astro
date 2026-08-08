@@ -3,6 +3,7 @@ import "../../css/global.scss";
 import Navbar from "../../components/navbar.astro";
 import Footer from "../../components/footer.astro";
 import Comments from "../../components/comments.astro";
+import Preload from "../../components/preload.astro";
 
 interface Props {
   title?: string;
@@ -25,8 +26,9 @@ const formattedDate = date
 ---
 
 <!doctype html>
-<html id="html" class="default blog" lang="en">
+<html id="html" class="default light blog" lang="en">
   <head>
+    <Preload />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <meta charset="utf-8" />
     <title>{pageTitle}</title>

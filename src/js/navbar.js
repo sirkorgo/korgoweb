@@ -1,40 +1,43 @@
-// Function to toggle theme
+function getActiveTheme() {
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+function updateToggleButton(theme) {
+  const btn = document.getElementById("btn");
+  if (btn) {
+    btn.innerHTML = `<img src="/img/${theme}.svg" alt="${theme} mode">`;
+  }
+}
+
 function setTheme() {
   const html = document.documentElement;
-  const btn = document.getElementById("btn");
+  const currentTheme = getActiveTheme();
+  const newTheme = currentTheme === "light" ? "dark" : "light";
 
+  // Add transition class temporarily for smooth toggle
   html.classList.add("theme-transition");
-  const isLight = html.classList.contains("light");
-  const newTheme = isLight ? "dark" : "light";
 
   html.classList.remove("light", "dark");
   html.classList.add(newTheme);
 
-  if (btn) {
-    btn.innerHTML = `<img src="/img/${newTheme}.svg" alt="Theme Toggle">`;
-  }
-
+  updateToggleButton(newTheme);
   localStorage.setItem("theme", newTheme);
-  setTimeout(() => html.classList.remove("theme-transition"), 200);
+
+  setTimeout(() => {
+    html.classList.remove("theme-transition");
+  }, 200);
 }
 
-// Wrap DOM manipulation in DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-  const html = document.documentElement;
+  // Sync toggle button with theme initialized by <head> script
+  const currentTheme = getActiveTheme();
+  updateToggleButton(currentTheme);
+
   const btn = document.getElementById("btn");
-
-  // Init theme
-  html.classList.remove("light", "dark");
-  const saved = localStorage.getItem("theme");
-  const theme = saved || "light";
-  html.classList.add(theme);
-
   if (btn) {
-    btn.innerHTML = `<img src="/img/${theme}.svg" alt="Theme Toggle">`;
     btn.addEventListener("click", setTheme);
   }
 
-  // Mobile Support
   const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.getElementById("links");
   const navbar = document.getElementById("nav");
@@ -46,11 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Stats visitor display
   const site = location.hostname.replace(/^www\./, "");
   const visitorsEl = document.getElementById("visitors");
 
-  fetch("https://stats.sirkorgo.com/count?site=" + site)
+  fetch(`https://stats.sirkorgo.com/count?site=${site}`)
     .then((r) => r.json())
     .then((d) => {
       if (visitorsEl) visitorsEl.innerHTML = "# " + d.count;
@@ -58,19 +60,22 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((err) => console.error("Stats count error:", err));
 });
 
-// WebSocket for online counter (can safely run at module load)
+const site = location.hostname.replace(/^www\./, "");
+
 const ws = new WebSocket("wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room");
 
 ws.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-  if (data.type === "users") {
-    const onlineEl = document.getElementById("online");
-    if (onlineEl) onlineEl.innerHTML = "🟢 " + data.count;
+  try {
+    const data = JSON.parse(event.data);
+    if (data.type === "users") {
+      const onlineEl = document.getElementById("online");
+      if (onlineEl) onlineEl.innerHTML = "🟢 " + data.count;
+    }
+  } catch (err) {
+    console.error("WebSocket message parse error:", err);
   }
 };
 
-// Analytics track call
-const site = location.hostname.replace(/^www\./, "");
 fetch("https://stats.sirkorgo.com/track", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
