@@ -1,0 +1,6 @@
+---
+title: Another Whimsy Sirkorgo
+date: 2026-09-13
+image: /assets/whimsyness.png
+---
+ohmygoditsanotherimageofsirkorgobeingallwhimsicalgenericallyishouldreallycomeupwithotherposestodrawsirkorgoinbutitsfinebecausenobodyisgonnabeseeingthisanywayssoumyeah
