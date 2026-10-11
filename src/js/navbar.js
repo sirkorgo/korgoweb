@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((err) => console.error("Stats count error:", err));
 });
 
-// const site = location.hostname.replace(/^www\./, "");
+const site = location.hostname.replace(/^www\./, "");
 
 // const ws = new WebSocket("wss://korgoviewer.sirkorgo.partykit.dev/parties/main/room");
 
