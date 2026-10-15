@@ -1,0 +1,73 @@
+# .pages.yml
+media:
+  input: public/assets
+  output: /assets
+
+content:
+  - name: art
+    label: Art
+    type: collection
+    path: src/content/art
+    filename: "{primary}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
+      - { name: image, label: Image, type: image }
+      - { name: body, label: Description, type: rich-text }
+
+  - name: blog
+    label: Blog
+    type: collection
+    path: src/content/posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: author, label: Author, type: string, default: sirkorgo }
+      - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: cloudspace
+    label: Cloudspace
+    type: collection
+    path: src/content/comics/cloudspace
+    filename: "{primary}.md"
+    view:
+      fields: [chapter, title, date]
+      primary: chapter
+      sort: [date]
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: series, label: Series, type: string, default: Cloudspace }
+      - { name: chapter, label: Chapter, type: string }
+      - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: meantime
+    label: "Sirkorgo! In the Meantime..."
+    type: collection
+    path: src/content/comics/meantime
+    filename: "{primary}.md"
+    view:
+      fields: [chapter, title, date]
+      primary: chapter
+      sort: [date]
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: series, label: Series, type: string, default: "Sirkorgo! In the Meantime..." }
+      - { name: chapter, label: Chapter, type: string }
+      - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
+      - { name: body, label: Body, type: rich-text }
